@@ -1,0 +1,197 @@
+{
+  "navbar": {
+    "1": "Quienes somos",
+    "2": "Nuestros proyectos",
+    "3": "Servicios",
+    "4": "Clientes",
+    "5": "Hablemos"
+  },
+
+  "landing": {
+    "1": "Bienvenidos a Reforce Infinity",
+    "2": "Nuestra marca vende la tuya",
+    "3": "Ver video"
+  },
+
+  "about": {
+    "1": "Somos un estudio de innovación digital dedicado a hacerte crecer.",
+    "2": "Completamos tus servicios mediante la implementación estratégica de marketing innovador",
+    "3": "Completamos tus soluciones de marketing mediante la implementación de",
+    "4": "tecnologías emergentes.",
+    "new": "Creando soluciones que generan resultados",
+    "cta": "Eleva tu presencia digital hoy"
+  },
+
+  "projects": {
+    "1": "Nuestros proyectos",
+    "2": "Linea de NFTS para Chester",
+    "3": "Diseño y desarrollo de plataforma de Coach AI",
+    "4": "Experiencia en el metaverso",
+    "5": "Gestión de evento",
+    "6": "Ver más proyectos"
+  },
+
+  "services": {
+    "1": "Servicios",
+    "2": "Generación y edición de Contenido",
+    "3": "Paid Media Ads",
+    "4": "Experiencias VR y AR",
+    "5": "Desarrollo web, Integraciones blockchain e IA",
+    "6": "Producto y estrategia",
+    "7": "Empresas con las que trabajamos"
+  },
+
+  "problem": {
+    "1": "Problema",
+    "2": "En el marketing digital actual, las marcas enfrentan desafíos para integrar",
+    "3": "Tecnologías emergentes como inteligencia artificial, blockchain y realidad aumentada",
+    "4": "debido a la falta de experiencia técnica."
+  },
+
+  "solution": {
+    "1": "Solución",
+    "2": "Nuestro estudio de Innovación Digital fusiona experiencia en marketing digital y conocimientos técnicos en tecnologías emergentes.",
+    "3": "Ayudamos a marcas a implementar soluciones tecnológicas avanzadas y ampliar su alcance en el mercado con",
+    "4": "estratégias de marketing efectivas."
+  },
+
+  "contact": {
+    "1": "Hablemos",
+    "2": "nombre",
+    "3": "escribe tu mensaje aquí...",
+    "4": "Enviar",
+    "5": "O agenda una consultoría gratuita ingresando aquí",
+    "6": "Agendar consultoría"
+  },
+
+  "atlas": {
+    "1": "La guía para encontrar tu camino",
+    "2": "está con Atlas",
+    "3": "Sobre el proyecto",
+    "4": "En Atlascoach.AI, nuestra misión es capacitar a los adultos jóvenes para que superen la indecisión y desarrollen todo su potencial. Nos esforzamos por iluminar caminos hacia el crecimiento personal y profesional a través de nuestra innovadora plataforma de coaching basada en IA.",
+    "5": "Problema",
+    "6": "En el mundo actual, muchas personas enfrentan desafíos para identificar su potencial, tomar decisiones profesionales informadas y manejar transiciones de vida.",
+    "7": "La indecisión se agrava por la falta de orientación y apoyo personalizados que consideren las habilidades, intereses y objetivos únicos de cada individuo.",
+    "8": "Solución",
+    "9": "Aborda el desafío de la indecisión entre los adultos jóvenes, proporcionando un camino estructurado, impulsado por la IA, hacia la realización personal y profesional. Cierra la brecha entre el conocimiento académico y la aplicación en el mundo real, garantizando un enfoque de desarrollo holístico."
+  },
+
+  "chester": {
+    "1": "¿Dónde está Chester?",
+    "2": "Contexto",
+    "3": "La ley de etiquetado frontal en los paises latinoamericanos obligó a Pepsi a eliminar sus personnajes de los paquetes de sus productos.",
+    "4": "Reto",
+    "5": "Lograr que sus personajes continúen siendo parte de la marca sin ir en contra de las leyes.",
+    "6": "Solución",
+    "7": "Inmortalizado la imagen de Chester en el metaverso con una colección de activos digitales en la cadena de bloques Ethereum.",
+    "8": "Servicios",
+    "9": "Desarrollo",
+    "10": "Tecnología",
+    "11": "Producto y estratégia",
+    "12": "Generaración de contenido",
+    "13": "Diseño de NFT",
+    "14": "El lanzamiento del primer NFT de Chester es una colección de 1,986 NFTs, que rinden homenaje a la historia de la marca y el conjunto de sabores de Cheetos que han cautivado a los consumidores amantes del snack durante décadas.",
+    "15": "Página web",
+    "16": "La página web se utilizó para mostrar toda la campaña. Desde las NFT's hasta la forma de compra, datos de chester, etc. Es simple y se buscó que sea lo mejor comunicativa posible.",
+    "17": "Campaña RRSS",
+    "18": "Se buscó generar la máxima repercusión en los medios.",
+    "19": "Se atacó por todas las redes sociales."
+  },
+
+  "charles": {
+    "1": "Explorando el metaverso",
+    "2": "Acerca del proyecto",
+    "3": "Se desarrollaron oficinas virtuales para la consultoría de compañías de seguros, en los metaversos Gather y Decentraland. El objetivo es posicionarse como marca, siendo los pioneros de la industria que incursionan en el metaverso. Esto les permite poder crear seguros para los activos digitales en el futuro.",
+    "4": "Servicios",
+    "5": "Metaverso",
+    "6": "Tecnología",
+    "7": "Producto y estrategia",
+    "8": "¿Por qué el metaverso?",
+    "9": "A través de una presencia en el metaverso, las marcas ganan terreno para lanzar activos web3 vinculados a sus productos o servicios, creando un nuevo canal de ventas y un espacio para su comunidad",
+    "10": "Estas acciones generan un espacio para su comunidad, e innovarían la imagen de la marca, ya que se muestran como pioneros en una nueva era de la comunicación."
+  },
+
+  "uala": {
+    "1": "Desarrollo de metaverso",
+    "2": "Contexto",
+    "3": "Los usuarios pedían la posibilidad de invertir en cripto además de poder hacerlo en pesos a través de la app de Ualá.",
+    "4": "Reto",
+    "5": "Ualá busca presentar un nuevo producto de una manera más innovadora pero manteniendo la tradicionalidad de generar un evento.",
+    "6": "Solución",
+    "7": "Desarrollamos una",
+    "8": "experiencia de realidad virtual",
+    "9": "para anunciar un comunicado de prensa de un",
+    "10": "nuevo producto",
+    "11": ", desde el metaverso",
+    "12": "Consiste en un evento donde se invitaron a",
+    "13": "15 personas de la prensa a experimentar y aprender desde VR",
+    "14": "Servicios",
+    "15": "Metaverso",
+    "16": "Tecnología",
+    "17": "Producto y estratégia",
+    "18": "Diseño de personajes",
+    "19": "Cada invitado podía elegir entre distintos personajes, seleccionando acorde a sus gustos."
+  },
+
+  "service1": {
+    "1": "Generación y edición de contenido",
+    "2": "Diseñamos experiencias digitales que capturan la atención, inspiran y convierten. Cada publicación, cada video y cada imagen es una oportunidad para atraer a tu audiencia y fortalecer tu presencia en línea.",
+    "3": "experiencias digitales",
+    "4": "que capturan la atención, inspiran y convierten.",
+    "5": "Cada publicación, cada video y cada imagen es una oportunidad para atraer a tu audiencia y",
+    "6": "fortalecer",
+    "7": "tu ",
+    "8": "presencia en línea.",
+    "9": "¡Crea contenido que inspire!"
+  },
+
+  "service2": {
+    "1": "Potencia tu",
+    "2": "Potencia tu presencia digital con campañas publicitarias estratégicas Desarrollamos anuncios en LinkedIn, Meta, TikTok y Google, diseñados para alcanzar y captar a tu público ideal. Convertimos clics en clientes y búsquedas en ventas",
+    "3": "con campañas publicitarias estratégicas",
+    "4": "Desarrollamos",
+    "5": "anuncios",
+    "6": "en LinkedIn, Meta, TikTok y Google, diseñados para alcanzar y captar a tu público ideal. Convertimos clics en",
+    "7": "clientes",
+    "8": "y búsquedas en",
+    "9": "ventas",
+    "10": "¡Impulsa tu éxito ahora!"
+  },
+
+  "service3": {
+    "1": "Experiencias VR y AR",
+    "2": "Sumérgete en el futuro con nuestras experiencias de realidad aumentada y virtual. Desde demostraciones interactivas hasta entornos inmersivos, creamos experiencias que capturan la imaginación de tu audiencia",
+    "3": "futuro",
+    "4": "con nuestras experiencias de realidad aumentada y virtual.",
+    "5": "Desde demostraciones interactivas hasta entornos inmersivos, creamos ",
+    "6": "experiencias que capturan",
+    "7": "la imaginación de tu audiencia",
+    "8": "¡Explora nuevas realidades!"
+  },
+
+  "service4": {
+    "1": "Diseño web",
+    "2": "Eleva tu presencia con sitios web de última generación Ya sea que necesites un sitio estándar o con integraciones avanzadas de IA, nuestro equipo construye soluciones web funcionales e innovadoras. Garantizamos una experiencia de usuario excepcional y segura.",
+    "3": "presencia",
+    "4": " con sitios web de última generación",
+    "5": "Ya sea que necesites un sitio estándar o con integraciones avanzadas de IA o Blockchain, nuestro equipo construye ",
+    "6": "soluciones web funcionales e innovadoras. ",
+    "7": "Garantizamos una experiencia de usuario excepcional y segura.",
+    "8": "¡Construye tu presencia digital!"
+  },
+
+  "service5": {
+    "1": "Influencer Marketing",
+    "2": "Conectamos tu marca con influencers clave de Latinoamérica para amplificar tu mensaje y generar confianza. Diseñamos y gestionamos campañas estratégicas, asegurando resultados auténticos y medibles."
+  },
+
+  "casestudy": {
+    "1": "MÉTRICAS DE CLIENTES",
+    "2": "Descubre cómo generamos tráfico e impulsamos las conversiones para nuestros clientes",
+    "3": "Con numerosas campañas en diversas industrias, nuestros clientes necesitaban estrategias de publicidad digital efectivas para aumentar el tráfico y mejorar las conversiones. Al optimizar sus estrategias de marketing y optimizar sus procesos, les ayudamos a lograr un crecimiento notable en impresiones, clics, conversiones y medidas de conversión.",
+    "4": "IMPRESIONES HASTA LA FECHA",
+    "5": "TOTAL DE CLICS",
+    "6": "CONVERSIONES TOTALES",
+    "7": "TASA DE CONVERSIÓN TOTAL"
+  }
+}

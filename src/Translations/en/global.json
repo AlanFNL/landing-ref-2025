@@ -1,0 +1,197 @@
+{
+  "navbar": {
+    "1": "About Us",
+    "2": "Our Projects",
+    "3": "Services",
+    "4": "Clients",
+    "5": "Boost Results Now"
+  },
+
+  "landing": {
+    "1": "Welcome to Reforce Infinity",
+    "2": "Our brand sells yours",
+    "3": "Watch video"
+  },
+
+  "about": {
+    "1": "We are a digital innovation studio dedicated to making you grow.",
+    "2": "We complete your services through the strategic implementation of innovative marketing",
+    "3": "We complete your marketing solutions through the implementation of",
+    "4": "emerging technologies.",
+    "new": "Crafting solutions that drive results",
+    "cta": "Elevate your digital presence today"
+  },
+
+  "projects": {
+    "1": "Our Projects",
+    "2": "NFT Line for Chester",
+    "3": "Design and development of Coach AI platform",
+    "4": "Metaverse experience",
+    "5": "Event management",
+    "6": "See more projects"
+  },
+
+  "services": {
+    "1": "Services",
+    "2": "Content Generation and Editing",
+    "3": "Paid Media Ads",
+    "4": "VR and AR Experiences",
+    "5": "Web Development, Blockchain and AI Integrations",
+    "6": "Product and Strategy",
+    "7": "Companies we worked with"
+  },
+
+  "problem": {
+    "1": "Problem",
+    "2": "In current digital marketing, brands face challenges integrating",
+    "3": "emerging technologies like artificial intelligence, blockchain, and augmented reality",
+    "4": "due to a lack of technical expertise."
+  },
+
+  "solution": {
+    "1": "Solution",
+    "2": "Our Digital Innovation Studio merges digital marketing expertise with technical knowledge in emerging technologies.",
+    "3": "We help brands implement advanced technological solutions and expand their market reach with",
+    "4": "effective marketing strategies."
+  },
+
+  "contact": {
+    "1": "Let's Talk",
+    "2": "name",
+    "3": "write your message here...",
+    "4": "Send",
+    "5": "Or schedule a free consultation by entering here",
+    "6": "Schedule consultation"
+  },
+
+  "atlas": {
+    "1": "The guide to finding your path",
+    "2": "is with Atlas",
+    "3": "About the project",
+    "4": "At atlascoach.ai, our mission is to empower young adults to overcome indecision and realize their full potential. We strive to illuminate paths to personal and professional growth through our innovative data-based coaching platform. AI.",
+    "5": "Problem",
+    "6": "In today's world, many people face challenges identifying their potential, making informed career decisions, and managing life transitions.",
+    "7": "Indecision is compounded by a lack of personalized guidance and support that considers each individual's unique abilities, interests, and goals.",
+    "8": "Solution",
+    "9": "Addresses the challenge of indecision among young adults, providing a structured, AI-powered path to personal and professional fulfillment. Bridges the gap between academic knowledge and real-world application, ensuring a holistic development approach."
+  },
+
+  "chester": {
+    "1": "Where's Chester?",
+    "2": "Context",
+    "3": "The front labeling law in Latin American countries forced Pepsi to eliminate its characters from the packages of its products.",
+    "4": "Challenge",
+    "5": "Ensure that your characters continue to be part of the brand without going against the laws.",
+    "6": "Solution",
+    "7": "Chester's image immortalized in the metaverse with a collection of digital assets on the Ethereum blockchain.",
+    "8": "Services",
+    "9": "Development",
+    "10": "Technology",
+    "11": "Product and strategy",
+    "12": "Content generation",
+    "13": "NFT Design",
+    "14": "Chester's first NFT release is a collection of 1,986 NFTs, paying homage to the brand's history and the suite of Cheetos flavors that have captivated snack-loving consumers for decades.",
+    "15": "Web page",
+    "16": "The website was used to show the entire campaign. From the NFT's to the purchase method, chester data, etc. It is simple and we sought to make it as communicative as possible.",
+    "17": "Social Media Campaign",
+    "18": "We sought to generate maximum impact in the media.",
+    "19": "We attacked on all social networks."
+  },
+
+  "charles": {
+    "1": "Exploring the Insurance Metaverse",
+    "2": "About the project",
+    "3": "Virtual offices were developed for the insurance company consultancy, in the Gather and Decentraland metaverses. The objective is to position itself as a brand, being the pioneers of the industry that venture into the metaverse. This allows them to be able to create insurance for digital assets in the future.",
+    "4": "Services",
+    "5": "Metaverse",
+    "6": "Technology",
+    "7": "Product and Strategy",
+    "8": "Why the metaverse?",
+    "9": "Through a presence in the metaverse, brands gain traction to launch web3 assets tied to their products or services, creating a new sales channel and a space for their community",
+    "10": "These actions generate a space for their community, and would innovate the image of the brand, since they show themselves as pioneers in a new era of communication."
+  },
+
+  "uala": {
+    "1": "Metaverse development",
+    "2": "Context",
+    "3": "Users requested the possibility of investing in crypto in addition to being able to do so in pesos through the Ualá app.",
+    "4": "Challenge",
+    "5": "Ualá seeks to present a new product in a more innovative way but maintaining the traditionality of generating an event.",
+    "6": "Solution",
+    "7": "We developed one",
+    "8": "virtual reality experience",
+    "9": "to announce a press release of a ",
+    "10": "new product",
+    "11": ", from the metaverse",
+    "12": "Consists of an event where they were invited to",
+    "13": "15 people from the press to experiment and learn from VR",
+    "14": "Services",
+    "15": "Metaverse",
+    "16": "Technology",
+    "17": "Product and strategy",
+    "18": "Character Design",
+    "19": "Each guest could choose between different characters, selecting according to their tastes."
+  },
+
+  "service1": {
+    "1": "Content creation and editing",
+    "2": "We design digital experiences that capture attention, inspire and convert. Every post, every video and every image is an opportunity to engage your audience and strengthen your online presence.",
+    "3": "digital experiences",
+    "4": "that capture attention, inspire and convert.",
+    "5": "Every post, every video and every image is an opportunity to engage your audience and",
+    "6": "strengthen",
+    "7": "your ",
+    "8": "online presence.",
+    "9": "Create content that inspires!"
+  },
+
+  "service2": {
+    "1": "Boost your",
+    "2": "Boost your digital presence with strategic advertising campaigns We develop ads on LinkedIn, Meta, TikTok and Google, designed to reach and engage your ideal audience. We convert clicks into customers and searches in sales",
+    "3": "with strategic advertising campaigns",
+    "4": "We develop",
+    "5": "ads",
+    "6": "on LinkedIn, Meta, TikTok and Google, designed to reach and engage your ideal audience. We convert clicks into",
+    "7": "customers",
+    "8": "and searches in",
+    "9": "sales",
+    "10": "Boost your success now!"
+  },
+
+  "service3": {
+    "1": "VR and AR experiences",
+    "2": "Immerse yourself in the future with our augmented and virtual reality experiences. From interactive demos to immersive environments, we create experiences that catch the imagination of your audience",
+    "3": "future",
+    "4": "with our augmented and virtual reality experiences.",
+    "5": "From interactive demos to immersive environments, we create ",
+    "6": "experiences that catch",
+    "7": "the imagination of your audience",
+    "8": "Explore new realities!"
+  },
+
+  "service4": {
+    "1": "Web design",
+    "2": "Raise your presence with cutting-edge websites Whether you need a standard site or with advanced AI integrations, our team builds functional and innovative web solutions. We guarantee an exceptional and secure user experience.",
+    "3": "presence",
+    "4": "with cutting-edge websites",
+    "5": "Whether you need a standard site or with advanced AI or Blockchain integrations, our team builds",
+    "6": "functional and innovative web solutions.",
+    "7": "We guarantee an exceptional and secure user experience.",
+    "8": "Build your digital presence!"
+  },
+
+  "service5": {
+    "1": "Influencer Marketing",
+    "2": "We connect your brand with key influencers from Latin America to tailor your value proposition to your ideal customer and build trust. We design and manage strategic campaigns, ensuring measurable results."
+  },
+
+  "casestudy": {
+    "1": "CLIENTS METRICS",
+    "2": "Discover How We Drive Traffic and Boost Conversions for Our Clients",
+    "3": "With numerous campaigns across various industries, our clients needed effective digital advertising strategies to increase traffic and enhance conversions. By optimizing their marketing tactics and streamlining their processes, we helped them achieve remarkable growth in impressions, clicks, conversions, and conversion rates.",
+    "4": "YEAR-TO-DATE IMPRESSIONS",
+    "5": "TOTAL CLICKS",
+    "6": "TOTAL CONVERSIONS",
+    "7": "TOTAL CONVERSION RATE"
+  }
+}
