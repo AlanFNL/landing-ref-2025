@@ -38,7 +38,7 @@ function FAQ() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 h-screen pt-20">
+    <div className="max-w-4xl mx-auto px-4 h-fit pb-20 pt-20">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
