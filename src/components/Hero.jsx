@@ -117,13 +117,13 @@ function Hero({ scrollToSection }) {
           "radial-gradient(circle closest-side, black 0%, transparent 250%)",
       }}
       transition={{ duration: 1, ease: "easeInOut" }}
-      className="w-screen h-fit md:h-screen bg-[url('./assets/gradient-1.webp')] bg-cover overflow-hidden flex flex-col"
+      className="w-screen h-screen bg-[url('./assets/gradient-1.webp')] bg-cover overflow-hidden flex flex-col"
     >
       <div
         className="max-w-[1200px] mt-16 md:mb-4 p-0 md:p-8 m-auto relative z-10"
         ref={heroHeaderRef}
       >
-        <div className="flex flex-col justify-center items-center text-center p-12">
+        <div className="flex flex-col justify-center items-center text-center mt-24 p-4 md:p-12">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}

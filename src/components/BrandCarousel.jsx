@@ -165,7 +165,7 @@ const BrandCarousel = forwardRef(({ clientsRef }, ref) => {
       <div className="absolute inset-0 flex items-center justify-center">
         <motion.div
           initial={{ opacity: 0, width: "40%" }}
-          whileInView={{ opacity: 1, width: "70%" }}
+          whileInView={{ opacity: 1, width: "100%" }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
           className="absolute h-full bg-gradient-to-b from-purple-500/30 via-transparent to-transparent blur-3xl"
           style={{
