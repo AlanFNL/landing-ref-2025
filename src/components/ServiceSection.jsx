@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { ServiceCard } from "./ServiceCard";
 import { useTranslation } from "react-i18next";
 
-import stock1 from "../assets/1.gif";
+import stock1 from "../assets/1v.gif";
 import stock2 from "../assets/2.gif";
 import stock3 from "../assets/3.gif";
 import stock4 from "../assets/4.gif";
