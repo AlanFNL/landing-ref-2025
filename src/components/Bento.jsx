@@ -154,7 +154,7 @@ export default function Bento() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   transition={{ ease: "easeInOut" }}
-                  className="px-4 py-2  mt-4 w-full md:mt-0 md:w-[35%] bg-[#ffffff5a] border-[#ffffff52] border  text-white text-xl rounded-lg hover:shadow-2xs hover:shadow-[#f5e5ff] transition-shadow"
+                  className="px-4 py-2  mt-4 w-full md:mt-0 md:w-[35%] bg-white text-purple-800 border-[#ffffff52] border text-xl rounded-lg hover:shadow-2xs hover:shadow-[#f5e5ff] transition-shadow"
                 >
                   Schedule a free consultation
                 </motion.button>

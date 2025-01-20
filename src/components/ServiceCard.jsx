@@ -134,7 +134,7 @@ export function ServiceCard({
         href={ctaUrl}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="mt-auto bg-[#ffffff5e] font-bold hover:shadow-2xs hover:shadow-[#f5e5ff] border-[#ffffff52] border transition-all duration-300 text-white px-6 py-2 rounded-full tracking-wide z-50 text-sm"
+        className="mt-auto bg-white text-purple-800 font-bold hover:shadow-2xs hover:shadow-[#f5e5ff] border-[#ffffff52] border transition-all duration-300 px-6 py-2 rounded-full tracking-wide z-50 text-sm"
       >
         {ctaText}
       </motion.a>

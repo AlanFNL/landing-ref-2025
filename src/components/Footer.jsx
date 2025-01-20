@@ -81,7 +81,7 @@ function Footer() {
             </motion.a>
             <motion.a
               href="#contact"
-              className="flex items-center gap-2 px-6 py-3 border border-[#ffffff52] bg-[#ffffff5e]   text-white rounded-lg transition-colors"
+              className="flex items-center gap-2 px-6 py-3 border border-[#ffffff52] bg-white text-purple-800 rounded-lg transition-colors"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >

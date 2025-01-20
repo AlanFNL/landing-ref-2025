@@ -231,9 +231,8 @@ const Contact = forwardRef((props, ref) => {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => setShowForm(true)}
-                  className="group relative w-[80vw] md:w-fit flex items-center gap-3 px-8 py-4 bg-[#ffffff5e] hover:bg-white/20 backdrop-blur-sm rounded-xl text-white font-medium transition-all border border-white/20"
+                  className="group relative w-[80vw] md:w-fit flex items-center gap-3 px-8 py-4 bg-white text-purple-800  backdrop-blur-sm rounded-xl  font-medium transition-all border border-white/20"
                 >
-                  <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-purple-500/20 to-purple-300/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                   {t("Send Us a Message")}
                 </motion.button>

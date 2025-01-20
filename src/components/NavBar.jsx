@@ -191,12 +191,15 @@ function NavBar({ scrollToSection }) {
                   )}
                 </AnimatePresence>
               </div>
-              <button
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.2 }}
                 onClick={() => scrollToSection("contact")}
-                className="bg-[#ffffff5e] w-48 font-bold hover:shadow-2xs hover:shadow-[#f5e5ff] border-[#ffffff52] border transition-shadow text-white px-6 py-2 rounded-full"
+                className="bg-white text-purple-500 w-48 font-bold hover:shadow-2xs hover:shadow-[#f5e5ff] border-[#ffffff52] border transition-shadow px-6 py-2 rounded-full"
               >
                 {t("navbar.5")}
-              </button>
+              </motion.button>
             </div>
           </div>
         </div>
@@ -332,7 +335,7 @@ function NavBar({ scrollToSection }) {
               >
                 <button
                   onClick={() => handleMenuItemClick("contact")}
-                  className="w-full bg-gray-600 hover:bg-gray-700 text-white py-4 rounded-full text-lg transition-colors"
+                  className="w-full bg-white text-purple-800 py-4 rounded-full text-lg transition-colors"
                 >
                   Boost Results Now
                 </button>
