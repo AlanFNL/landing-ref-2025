@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { ServiceCard } from "./ServiceCard";
 import { useTranslation } from "react-i18next";
@@ -20,7 +20,25 @@ export const ServicesSection = () => {
   });
   const opacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.15], [1, 0.8]);
-  const x = useTransform(scrollYProgress, [0.15, 0.8], [0, -2000]);
+  const [transformValue, setTransformValue] = useState(-2000);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const isMobile = window.innerWidth < 768; // Adjust breakpoint as needed
+      setTransformValue(isMobile ? -1850 : -2000);
+    };
+
+    // Set initial value
+    handleResize();
+
+    // Add event listener
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const x = useTransform(scrollYProgress, [0.15, 0.8], [0, transformValue]);
   const scale2 = useTransform(scrollYProgress, [0.8, 1], ["1", "0.98"]);
   const rotate = useTransform(scrollYProgress, [0.1, 0.2], [0, -10]);
   const y = useTransform(scrollYProgress, [0.1, 0.2], [0, -50]);
