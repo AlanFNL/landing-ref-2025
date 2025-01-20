@@ -1,5 +1,5 @@
 import { motion, useMotionValue, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 
 export function ServiceCard({
   title,
@@ -39,6 +39,27 @@ export function ServiceCard({
     x.set(0);
     y.set(0);
   };
+
+  const imgRef = useRef();
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setLoaded(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "50px" }
+    );
+
+    if (imgRef.current) {
+      observer.observe(imgRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <motion.div
@@ -88,7 +109,8 @@ export function ServiceCard({
       >
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-purple-900/50 z-10" />
         <img
-          src={gifUrl}
+          ref={imgRef}
+          src={loaded ? gifUrl : ""}
           alt={title}
           className="w-full h-[160px] object-cover"
           loading="lazy"
