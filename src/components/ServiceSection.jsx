@@ -3,11 +3,11 @@ import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { ServiceCard } from "./ServiceCard";
 import { useTranslation } from "react-i18next";
 
-import stock1 from "../assets/1v.gif";
-import stock2 from "../assets/2.gif";
-import stock3 from "../assets/3.gif";
-import stock4 from "../assets/4.gif";
-import stock5 from "../assets/5.gif";
+import stock1 from "../assets/1.lottie";
+import stock2 from "../assets/2.lottie";
+import stock3 from "../assets/5.lottie";
+import stock4 from "../assets/4.lottie";
+import stock5 from "../assets/3.lottie";
 
 export const ServicesSection = () => {
   const [t, i18n] = useTranslation("global");
@@ -48,7 +48,7 @@ export const ServicesSection = () => {
       title: t("service1.1"),
       description: t("service1.2"),
 
-      gifUrl: stock1,
+      lottieUrl: stock1,
       ctaText: t("service1.9"),
       ctaUrl: "/services/content-creation",
     },
@@ -56,7 +56,7 @@ export const ServicesSection = () => {
       title: "Paid Media Ads",
       description: t("service2.2"),
 
-      gifUrl: stock2,
+      lottieUrl: stock2,
       ctaText: t("service2.10"),
       ctaUrl: "/services/paid-media",
     },
@@ -64,7 +64,7 @@ export const ServicesSection = () => {
       title: t("service3.1"),
       description: t("service3.2"),
 
-      gifUrl: stock3,
+      lottieUrl: stock3,
       ctaText: t("service3.8"),
       ctaUrl: "/services/vr-ar",
     },
@@ -72,14 +72,14 @@ export const ServicesSection = () => {
       title: t("service5.1"),
       description: t("service5.2"),
 
-      gifUrl: stock4,
+      lottieUrl: stock4,
       ctaText: t("service4.8"),
       ctaUrl: "/services/influencer-marketing",
     },
     {
       title: t("service4.1"),
       description: t("service4.2"),
-      gifUrl: stock5,
+      lottieUrl: stock5,
       ctaText: t("service4.8"),
       ctaUrl: "/services/web-development",
     },

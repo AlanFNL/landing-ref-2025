@@ -1,12 +1,12 @@
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 
 export function ServiceCard({
   title,
   description,
-  icon,
   index,
-  gifUrl,
+  lottieUrl,
   ctaText,
   ctaUrl,
 }) {
@@ -108,12 +108,11 @@ export function ServiceCard({
         style={{ transform: "translateZ(50px)" }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-purple-900/50 z-10" />
-        <img
-          ref={imgRef}
-          src={loaded ? gifUrl : ""}
-          alt={title}
+        <DotLottieReact
+          src={lottieUrl}
+          loop
+          autoplay
           className="w-full h-[160px] object-cover"
-          loading="lazy"
         />
       </div>
 
