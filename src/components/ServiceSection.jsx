@@ -90,7 +90,6 @@ export const ServicesSection = () => {
       className="h-[400vh] relative bg-[url('./assets/services-bg3.webp')] bg-no-repeat bg-cover bg-fixed inset-4 rounded-xl mb-8 border border-[#ffffff52]/50"
       style={{ scale2 }}
     >
-      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/noise.png')] opacity-10"></div>
       <div className="sticky top-0 h-screen overflow-hidden">
         <motion.div
           style={{
