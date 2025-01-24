@@ -105,7 +105,7 @@ export const ServicesSection = () => {
   return (
     <div
       ref={containerRef}
-      className="h-[400vh] relative bg-[url('./assets/services-bg3.webp')] bg-no-repeat bg-cover bg-fixed inset-4 rounded-xl mb-8 border border-[#ffffff52]/50"
+      className="h-[400vh] relative bg-[url('./assets/services-bg3.webp')] bg-no-repeat bg-cover bg-fixed inset-0 sm:inset-4 rounded-xl mb-8 border border-[#ffffff52]/50"
       style={{ scale2 }}
     >
       <div className="sticky top-0 h-screen overflow-hidden">
