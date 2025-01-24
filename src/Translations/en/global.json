@@ -255,5 +255,12 @@
       "services": "Services",
       "clients": "Clients"
     }
+  },
+
+  "services_section": {
+    "welcome": "Welcome to",
+    "title": "Digital Excellence",
+    "description": "Transform your digital presence with our premium marketing services",
+    "background_text": "Our Services"
   }
 }

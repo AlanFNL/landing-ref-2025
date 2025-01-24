@@ -60,7 +60,7 @@ export const ServicesSection = () => {
     [0, 1, 1, 0]
   );
 
-  const titleWords = "Digital Excellence".split(" ");
+  const titleWords = t("services_section.title").split(" ");
   const services = [
     {
       title: t("service1.1"),
@@ -133,7 +133,7 @@ export const ServicesSection = () => {
               transition={{ duration: 0.5 }}
               className="text-white uppercase tracking-wider font-medium mb-4 sm:mb-8 block text-sm sm:text-base"
             >
-              Welcome to
+              {t("services_section.welcome")}
             </motion.span>
             <motion.div
               initial={{ opacity: 0 }}
@@ -182,8 +182,7 @@ export const ServicesSection = () => {
               }}
               className="text-gray-300 text-base sm:text-lg md:text-xl max-w-2xl mx-auto mt-4 sm:mt-8 px-4"
             >
-              Transform your digital presence with our premium marketing
-              services
+              {t("services_section.description")}
             </motion.p>
 
             <motion.div
@@ -229,7 +228,7 @@ export const ServicesSection = () => {
         >
           <div className="flex items-center gap-4 opacity-10">
             <span className=" text-6xl md:text-[12vw] font-bold text-white whitespace-nowrap">
-              Our Services
+              {t("services_section.background_text")}
             </span>
             <motion.span
               style={{ rotate: asteriskRotate }}
@@ -238,7 +237,7 @@ export const ServicesSection = () => {
               ✱
             </motion.span>
             <span className="text-6xl md:text-[12vw] font-bold text-white whitespace-nowrap">
-              Our Services
+              {t("services_section.background_text")}
             </span>
             <motion.span
               style={{ rotate: asteriskRotate }}
@@ -247,7 +246,7 @@ export const ServicesSection = () => {
               ✱
             </motion.span>
             <span className="text-6xl md:text-[12vw] font-bold text-white whitespace-nowrap">
-              Our Services
+              {t("services_section.background_text")}
             </span>
             <motion.span
               style={{ rotate: asteriskRotate }}
@@ -266,7 +265,7 @@ export const ServicesSection = () => {
         >
           <div className="flex items-center gap-4 opacity-10">
             <span className=" text-6xl md:text-[12vw] font-bold text-white whitespace-nowrap">
-              Our Services
+              {t("services_section.background_text")}
             </span>
             <motion.span
               style={{ rotate: asteriskRotate }}
@@ -275,7 +274,7 @@ export const ServicesSection = () => {
               ✱
             </motion.span>
             <span className="text-6xl md:text-[12vw] font-bold text-white whitespace-nowrap">
-              Our Services
+              {t("services_section.background_text")}
             </span>
             <motion.span
               style={{ rotate: asteriskRotate }}
@@ -284,7 +283,7 @@ export const ServicesSection = () => {
               ✱
             </motion.span>
             <span className="text-6xl md:text-[12vw] font-bold text-white whitespace-nowrap">
-              Our Services
+              {t("services_section.background_text")}
             </span>
             <motion.span
               style={{ rotate: asteriskRotate }}
