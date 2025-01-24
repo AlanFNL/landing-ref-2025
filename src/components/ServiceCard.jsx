@@ -117,7 +117,7 @@ export function ServiceCard({
       </div>
 
       <h3
-        className="text-xl text-white font-semibold mb-2 transition-transform duration-300"
+        className="text-xl text-center text-white font-semibold mb-2 transition-transform duration-300"
         style={{ transform: "translateZ(50px)" }}
       >
         {title}

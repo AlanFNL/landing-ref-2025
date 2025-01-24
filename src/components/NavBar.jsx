@@ -196,7 +196,7 @@ function NavBar({ scrollToSection }) {
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.2 }}
                 onClick={() => scrollToSection("contact")}
-                className="bg-white text-purple-500 w-48 font-bold hover:shadow-2xs hover:shadow-[#f5e5ff] border-[#ffffff52] border transition-shadow px-6 py-2 rounded-full"
+                className="bg-white text-purple-500 min-w-48 w-64 font-bold hover:shadow-2xs hover:shadow-[#f5e5ff] border-[#ffffff52] border transition-shadow px-6 py-2 rounded-full"
               >
                 {t("navbar.5")}
               </motion.button>
@@ -337,7 +337,7 @@ function NavBar({ scrollToSection }) {
                   onClick={() => handleMenuItemClick("contact")}
                   className="w-full bg-white text-purple-800 py-4 rounded-full text-lg transition-colors"
                 >
-                  Boost Results Now
+                  {t("navbar.5")}
                 </button>
               </motion.div>
             </div>

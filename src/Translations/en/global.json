@@ -61,7 +61,19 @@
     "3": "write your message here...",
     "4": "Send",
     "5": "Or schedule a free consultation by entering here",
-    "6": "Schedule consultation"
+    "6": "Schedule consultation",
+    "title": "Transform Your Marketing, Transform Your Results.",
+    "subtitle": "Choose how you'd like to start your journey towards digital excellence",
+    "schedule_button": "Schedule Free Consultation",
+    "message_button": "Send Us a Message",
+    "back": "Back",
+    "form": {
+      "title": "Let's Discuss Your Project",
+      "email": "Email",
+      "name": "Name",
+      "message": "Message",
+      "send": "Send Message"
+    }
   },
 
   "atlas": {
@@ -193,5 +205,55 @@
     "5": "TOTAL CLICKS",
     "6": "TOTAL CONVERSIONS",
     "7": "TOTAL CONVERSION RATE"
+  },
+
+  "bento": {
+    "ytd_growth": "YTD Growth",
+    "total_impressions": "Total Impressions",
+    "engagement": "Engagement",
+    "total_clicks": "Total Clicks",
+    "performance": "Performance",
+    "average_roi": "Average ROI",
+    "success_rate": "Success Rate",
+    "conversion_rate": "Conversion Rate",
+    "growth": "Growth",
+    "track_record": "Track Record",
+    "heading": "Driving Growth Through Digital Excellence",
+    "subheading": "Our data-driven strategies have transformed businesses across industries, delivering exceptional ROI through targeted campaigns and optimization.",
+    "cta": "Ready to Elevate Your Digital Presence?",
+    "cta_button": "Schedule a free consultation"
+  },
+
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Everything you need to know about our platform",
+    "items": [
+      {
+        "question": "How can emerging technologies improve our marketing strategy?",
+        "answer": "We integrate cutting-edge technologies like AI, blockchain, and AR/VR into your marketing strategy to create unique, engaging experiences. Our solutions help you stand out in the digital space while driving measurable results through innovative campaigns and enhanced customer interactions."
+      },
+      {
+        "question": "What sets your digital marketing services apart?",
+        "answer": "Our unique blend of traditional digital marketing expertise and advanced technological integration sets us apart. We specialize in creating comprehensive strategies that combine content creation, paid media, and emerging technologies to deliver measurable business growth and innovative market positioning."
+      },
+      {
+        "question": "How do you measure campaign success?",
+        "answer": "We implement robust analytics and tracking systems to measure key performance indicators (KPIs) across all campaigns. From impression tracking to conversion rates and ROI analysis, we provide transparent reporting and data-driven insights to demonstrate the impact of our strategies on your business goals."
+      }
+    ]
+  },
+
+  "footer": {
+    "quick_links": "Quick Links",
+    "get_in_touch": "Get in Touch",
+    "schedule_consultation": "Schedule free consultation",
+    "send_message": "Send us a message",
+    "follow_us": "Follow us on",
+    "copyright": "© Reforce Infinity 2025 All rights reserved",
+    "nav_items": {
+      "about": "About Us",
+      "services": "Services",
+      "clients": "Clients"
+    }
   }
 }

@@ -4,7 +4,7 @@
     "2": "Nuestros proyectos",
     "3": "Servicios",
     "4": "Clientes",
-    "5": "Hablemos"
+    "5": "Aumentar resultados ya"
   },
 
   "landing": {
@@ -61,7 +61,19 @@
     "3": "escribe tu mensaje aquí...",
     "4": "Enviar",
     "5": "O agenda una consultoría gratuita ingresando aquí",
-    "6": "Agendar consultoría"
+    "6": "Agendar consultoría",
+    "title": "Transforma tu Marketing, Transforma tus Resultados.",
+    "subtitle": "Elige cómo quieres comenzar tu camino hacia la excelencia digital",
+    "schedule_button": "Agenda una Consulta Gratuita",
+    "message_button": "Envíanos un Mensaje",
+    "back": "Volver",
+    "form": {
+      "title": "Hablemos de tu Proyecto",
+      "email": "Correo electrónico",
+      "name": "Nombre",
+      "message": "Mensaje",
+      "send": "Enviar Mensaje"
+    }
   },
 
   "atlas": {
@@ -193,5 +205,55 @@
     "5": "TOTAL DE CLICS",
     "6": "CONVERSIONES TOTALES",
     "7": "TASA DE CONVERSIÓN TOTAL"
+  },
+
+  "bento": {
+    "ytd_growth": "Crecimiento Anual",
+    "total_impressions": "Impresiones Totales",
+    "engagement": "Interacción",
+    "total_clicks": "Clics Totales",
+    "performance": "Rendimiento",
+    "average_roi": "ROI Promedio",
+    "success_rate": "Tasa de Éxito",
+    "conversion_rate": "Tasa de Conversión",
+    "growth": "Crecimiento",
+    "track_record": "Trayectoria",
+    "heading": "Impulsando el Crecimiento a través de la Excelencia Digital",
+    "subheading": "Nuestras estrategias basadas en datos han transformado negocios en diversas industrias, entregando un ROI excepcional a través de campañas dirigidas y optimización.",
+    "cta": "¿Listo para Elevar tu Presencia Digital?",
+    "cta_button": "Agenda una consulta gratuita"
+  },
+
+  "faq": {
+    "title": "Preguntas Frecuentes",
+    "subtitle": "Todo lo que necesitas saber sobre nuestra plataforma",
+    "items": [
+      {
+        "question": "¿Cómo pueden las tecnologías emergentes mejorar nuestra estrategia de marketing?",
+        "answer": "Integramos tecnologías de vanguardia como IA, blockchain y AR/VR en tu estrategia de marketing para crear experiencias únicas y atractivas. Nuestras soluciones te ayudan a destacar en el espacio digital mientras generamos resultados medibles a través de campañas innovadoras e interacciones mejoradas con los clientes."
+      },
+      {
+        "question": "¿Qué distingue a sus servicios de marketing digital?",
+        "answer": "Nuestra combinación única de experiencia en marketing digital tradicional e integración tecnológica avanzada nos distingue. Nos especializamos en crear estrategias integrales que combinan creación de contenido, medios pagados y tecnologías emergentes para ofrecer un crecimiento empresarial medible y un posicionamiento innovador en el mercado."
+      },
+      {
+        "question": "¿Cómo miden el éxito de las campañas?",
+        "answer": "Implementamos sistemas robustos de análisis y seguimiento para medir los indicadores clave de rendimiento (KPIs) en todas las campañas. Desde el seguimiento de impresiones hasta las tasas de conversión y el análisis de ROI, proporcionamos informes transparentes y perspectivas basadas en datos para demostrar el impacto de nuestras estrategias en tus objetivos comerciales."
+      }
+    ]
+  },
+
+  "footer": {
+    "quick_links": "Enlaces Rápidos",
+    "get_in_touch": "Contáctanos",
+    "schedule_consultation": "Agenda una consulta gratuita",
+    "send_message": "Envíanos un mensaje",
+    "follow_us": "Síguenos en",
+    "copyright": "© Reforce Infinity 2025 Todos los derechos reservados",
+    "nav_items": {
+      "about": "Quiénes Somos",
+      "services": "Servicios",
+      "clients": "Clientes"
+    }
   }
 }

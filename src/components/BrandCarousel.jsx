@@ -179,6 +179,7 @@ const BrandCarousel = forwardRef(({ clientsRef }, ref) => {
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ ease: "easeInOut", duration: 0.75 }}
+        viewport={{ once: true }}
         className="relative z-10 text-center text-4xl font-bold text-white mb-16"
       >
         {t("services.7")}

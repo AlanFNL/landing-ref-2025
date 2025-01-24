@@ -7,6 +7,29 @@ import global_en from "./Translations/en/global.json";
 import { I18nextProvider } from "react-i18next";
 import i18next from "i18next";
 
+// Original console warning function
+const originalConsoleWarn = console.warn;
+
+// Filter out blur-related warnings
+console.warn = function filterWarnings(msg, ...args) {
+  if (
+    !msg.match(
+      /Invalid keyframe value for property filter: blur\(-\d+\.?\d*px\)/
+    )
+  ) {
+    originalConsoleWarn(msg, ...args);
+  }
+};
+
+// Suppress React DevTools console.log
+const originalConsoleLog = console.log;
+console.log = function filterLogs(msg, ...args) {
+  if (typeof msg === "string" && msg.includes("blur")) {
+    return;
+  }
+  originalConsoleLog(msg, ...args);
+};
+
 i18next.init({
   interpolation: { escapeValue: false },
   lng: "en",

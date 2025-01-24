@@ -1,5 +1,6 @@
 import React, { Suspense } from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import {
   TrendingUp,
   Users,
@@ -14,6 +15,8 @@ const IconFallback = () => (
 );
 
 export default function Bento() {
+  const [t] = useTranslation("global");
+
   const fadeInUp = {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
@@ -38,7 +41,7 @@ export default function Bento() {
             }}
             initial="initial"
             whileInView="animate"
-            viewport={{ once: false, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.3 }}
             variants={{
               animate: {
                 transition: {
@@ -55,10 +58,14 @@ export default function Bento() {
             >
               <div className="flex items-start justify-between">
                 <TrendingUp className="text-purple-300 w-6 h-6" />
-                <span className="text-xs text-purple-200/80">YTD Growth</span>
+                <span className="text-xs text-purple-200/80">
+                  {t("bento.ytd_growth")}
+                </span>
               </div>
               <h3 className="text-4xl font-bold text-white mt-4">+8.9M</h3>
-              <p className="text-purple-200/90 mt-2">Total Impressions</p>
+              <p className="text-purple-200/90 mt-2">
+                {t("bento.total_impressions")}
+              </p>
             </motion.div>
 
             {/* Main Content */}
@@ -68,12 +75,10 @@ export default function Bento() {
               variants={fadeInUp}
             >
               <h1 className="text-xl md:text-2xl lg:text-5xl font-bold text-white mb-6">
-                Driving Growth Through Digital Excellence
+                {t("bento.heading")}
               </h1>
               <p className="md:text-sm lg:text-lg text-violet-200/90">
-                Our data-driven strategies have transformed businesses across
-                industries, delivering exceptional ROI through targeted
-                campaigns and optimization.
+                {t("bento.subheading")}
               </p>
             </motion.div>
 
@@ -85,10 +90,14 @@ export default function Bento() {
             >
               <div className="flex items-start justify-between">
                 <MousePointerClick className="text-fuchsia-300 w-6 h-6" />
-                <span className="text-xs text-fuchsia-200/80">Engagement</span>
+                <span className="text-xs text-fuchsia-200/80">
+                  {t("bento.engagement")}
+                </span>
               </div>
               <h3 className="text-4xl font-bold text-white mt-4">193.3K</h3>
-              <p className="text-fuchsia-200/90 mt-2">Total Clicks</p>
+              <p className="text-fuchsia-200/90 mt-2">
+                {t("bento.total_clicks")}
+              </p>
             </motion.div>
 
             {/* ROI Card */}
@@ -99,10 +108,12 @@ export default function Bento() {
             >
               <div className="flex items-start justify-between">
                 <BarChart3 className="text-pink-300 w-6 h-6" />
-                <span className="text-xs text-pink-200/80">Performance</span>
+                <span className="text-xs text-pink-200/80">
+                  {t("bento.performance")}
+                </span>
               </div>
               <h3 className="text-4xl font-bold text-white mt-4">312%</h3>
-              <p className="text-pink-200/90 mt-2">Average ROI</p>
+              <p className="text-pink-200/90 mt-2">{t("bento.average_roi")}</p>
             </motion.div>
 
             {/* Conversion Rate Card (2 rows) */}
@@ -113,11 +124,15 @@ export default function Bento() {
             >
               <div className="flex items-start justify-between">
                 <Target className="text-purple-300 w-6 h-6" />
-                <span className="text-xs text-purple-200/80">Success Rate</span>
+                <span className="text-xs text-purple-200/80">
+                  {t("bento.success_rate")}
+                </span>
               </div>
               <div>
                 <h3 className="text-5xl font-bold text-white mt-4">+28%</h3>
-                <p className="text-purple-200/90 mt-2">Conversion Rate</p>
+                <p className="text-purple-200/90 mt-2">
+                  {t("bento.conversion_rate")}
+                </p>
               </div>
             </motion.div>
 
@@ -129,11 +144,15 @@ export default function Bento() {
             >
               <div className="flex items-start justify-between">
                 <Users className="text-violet-300 w-6 h-6" />
-                <span className="text-xs text-violet-200/80">Growth</span>
+                <span className="text-xs text-violet-200/80">
+                  {t("bento.growth")}
+                </span>
               </div>
               <div>
                 <h3 className="text-5xl font-bold text-white mt-4">10+</h3>
-                <p className="text-violet-200/90 mt-2">Track Record</p>
+                <p className="text-violet-200/90 mt-2">
+                  {t("bento.track_record")}
+                </p>
               </div>
             </motion.div>
 
@@ -146,17 +165,17 @@ export default function Bento() {
               <div className="flex flex-col md:flex-row items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Target className="text-violet-300 w-6 h-6" />
-                  <span className="text-lg font-semibold  text-white">
-                    Ready to Elevate Your Digital Presence?
+                  <span className="text-lg font-semibold text-white">
+                    {t("bento.cta")}
                   </span>
                 </div>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   transition={{ ease: "easeInOut" }}
-                  className="px-4 py-2  mt-4 w-full md:mt-0 md:w-[35%] bg-white text-purple-800 border-[#ffffff52] border text-xl rounded-lg hover:shadow-2xs hover:shadow-[#f5e5ff] transition-shadow"
+                  className="px-4 py-2 mt-4 w-full md:mt-0 md:w-[35%] bg-white text-purple-800 border-[#ffffff52] border text-xl rounded-lg hover:shadow-2xs hover:shadow-[#f5e5ff] transition-shadow"
                 >
-                  Schedule a free consultation
+                  {t("bento.cta_button")}
                 </motion.button>
               </div>
             </motion.div>

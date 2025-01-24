@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import "./App.css";
 
@@ -9,33 +9,68 @@ import Contact from "./components/Contact";
 import BrandCarousel from "./components/BrandCarousel";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
-
+import { ReactLenis } from "lenis/dist/lenis-react";
 import FAQ from "./components/FAQ";
 import Testimonials from "./components/Testimonials";
 
 function App() {
-  const aboutUsRef = useRef(null);
   const servicesRef = useRef(null);
-  const projectsRef = useRef(null);
   const contactRef = useRef(null);
   const clientsRef = useRef(null);
+  const [contactView, setContactView] = useState("options");
+  const [openCalendly, setOpenCalendly] = useState(false);
 
-  const scrollToSection = (ref) => {
+  const smoothScroll = (target, duration = 1000) => {
+    const targetPosition =
+      target === 0 ? 0 : target.getBoundingClientRect().top;
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition;
+    let startTime = null;
+
+    function animation(currentTime) {
+      if (startTime === null) startTime = currentTime;
+      const timeElapsed = currentTime - startTime;
+      const run = ease(timeElapsed, startPosition, distance, duration);
+      window.scrollTo(0, run);
+      if (timeElapsed < duration) requestAnimationFrame(animation);
+    }
+
+    // Easing function
+    function ease(t, b, c, d) {
+      t /= d / 2;
+      if (t < 1) return (c / 2) * t * t + b;
+      t--;
+      return (-c / 2) * (t * (t - 2) - 1) + b;
+    }
+
+    requestAnimationFrame(animation);
+  };
+
+  const scrollToSection = (ref, view, openCalendlyPopup = false) => {
     switch (ref) {
       case "aboutUs":
-        aboutUsRef.current.scrollIntoView({ behavior: "smooth" });
+        smoothScroll(0);
         break;
       case "services":
-        servicesRef.current.scrollIntoView({ behavior: "smooth" });
-        break;
-      case "projects":
-        projectsRef.current.scrollIntoView({ behavior: "smooth" });
+        if (servicesRef.current) {
+          smoothScroll(servicesRef.current);
+        }
         break;
       case "clients":
-        clientsRef.current.scrollIntoView({ behavior: "smooth" });
+        if (clientsRef.current) {
+          smoothScroll(clientsRef.current);
+        }
         break;
       case "contact":
-        contactRef.current.scrollIntoView({ behavior: "smooth" });
+        if (contactRef.current) {
+          smoothScroll(contactRef.current);
+          setTimeout(() => {
+            setContactView(view);
+            if (openCalendlyPopup) {
+              setOpenCalendly(true);
+            }
+          }, 800);
+        }
         break;
       default:
         break;
@@ -45,18 +80,30 @@ function App() {
   return (
     <>
       <motion.div className="w-screen h-fit overflow-clip bg-black">
-        <NavBar />
-        <Hero />
-        <BrandCarousel />
-        <ServicesSection />
-        <Bento />
-
-        <BrandCarousel />
-        <Contact />
-        <Testimonials />
-        <FAQ />
-
-        <Footer />
+        <ReactLenis
+          root
+          options={{ lerp: 0.1, duration: 1.5, smoothWheel: true }}
+        >
+          <NavBar scrollToSection={scrollToSection} />
+          <Hero />
+          <BrandCarousel />
+          <div ref={servicesRef}>
+            <ServicesSection />
+          </div>
+          <Bento />
+          <div ref={clientsRef}>
+            <BrandCarousel />
+          </div>
+          <div ref={contactRef}>
+            <Contact
+              initialView={contactView}
+              openCalendly={openCalendly}
+              setOpenCalendly={setOpenCalendly}
+            />
+          </div>
+          <FAQ />
+          <Footer scrollToSection={scrollToSection} />
+        </ReactLenis>
       </motion.div>
     </>
   );

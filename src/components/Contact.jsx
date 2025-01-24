@@ -22,6 +22,11 @@ import {
 const Contact = forwardRef((props, ref) => {
   const [t, i18n] = useTranslation("global");
   const contactRef = useRef(null);
+  const {
+    initialView = "options",
+    openCalendly = false,
+    setOpenCalendly,
+  } = props;
   const isInView = useInView(contactRef, {
     margin: "100px 0px",
     once: false,
@@ -36,6 +41,19 @@ const Contact = forwardRef((props, ref) => {
     }
   }, [i18n]);
 
+  useEffect(() => {
+    if (openCalendly) {
+      // Find and click the Calendly button
+      const calendlyButton = document.querySelector(
+        '[data-url*="calendly.com"]'
+      );
+      if (calendlyButton) {
+        calendlyButton.click();
+        setOpenCalendly(false); // Reset the state
+      }
+    }
+  }, [openCalendly, setOpenCalendly]);
+
   const [formData, setFormData] = useState({
     email: "",
     name: "",
@@ -43,7 +61,7 @@ const Contact = forwardRef((props, ref) => {
   });
   const [formStatus, setFormStatus] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showForm, setShowForm] = useState(false);
+  const [showForm, setShowForm] = useState(initialView === "form");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -180,7 +198,7 @@ const Contact = forwardRef((props, ref) => {
                   whileInView="visible"
                   viewport={{ once: false }}
                 >
-                  {t("Transform Your Marketing, Transform Your Results.")}
+                  {t("contact.title")}
                 </motion.h1>
                 <motion.div
                   className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-purple-500 via-purple-300 to-purple-500"
@@ -199,9 +217,7 @@ const Contact = forwardRef((props, ref) => {
                 whileInView="visible"
                 viewport={{ once: false }}
               >
-                {t(
-                  "Choose how you'd like to start your journey towards digital excellence"
-                )}
+                {t("contact.subtitle")}
               </motion.p>
 
               <motion.div
@@ -218,12 +234,12 @@ const Contact = forwardRef((props, ref) => {
                   <div className="absolute  -inset-0.5 bg-gradient-to-r from-purple-600 to-purple-400 rounded-xl blur opacity-0 group-hover:opacity-30 transition duration-500" />
                   <PopupButton
                     className="relative flex w-[80vw] md:w-fit items-center gap-3 px-8 py-4 bg-purple-600 hover:bg-purple-700 rounded-xl text-white font-medium transition-all shadow-lg hover:shadow-purple-500/25"
-                    text={t("Schedule Free Consultation")}
+                    text={t("contact.schedule_button")}
                     url="https://calendly.com/reforce/reforce-discovery-call"
                     rootElement={document.getElementById("root")}
                   >
                     <Calendar className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300 z-50" />
-                    {t("Schedule Free Consultation")}
+                    {t("contact.schedule_button")}
                   </PopupButton>
                 </motion.div>
 
@@ -234,7 +250,7 @@ const Contact = forwardRef((props, ref) => {
                   className="group relative w-[80vw] md:w-fit flex items-center gap-3 px-8 py-4 bg-white text-purple-800  backdrop-blur-sm rounded-xl  font-medium transition-all border border-white/20"
                 >
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                  {t("Send Us a Message")}
+                  {t("contact.message_button")}
                 </motion.button>
               </motion.div>
             </motion.div>
@@ -278,7 +294,7 @@ const Contact = forwardRef((props, ref) => {
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
               >
                 <ArrowRight className="w-4 h-4 rotate-180" />
-                {t("Back")}
+                {t("contact.back")}
               </motion.button>
 
               <motion.div
@@ -296,17 +312,25 @@ const Contact = forwardRef((props, ref) => {
                 }}
               >
                 <h2 className="text-3xl font-bold text-white mb-6">
-                  {t("Let's Discuss Your Project")}
+                  {t("contact.form.title")}
                 </h2>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {[
-                    { name: "email", type: "email", placeholder: "Email" },
-                    { name: "name", type: "text", placeholder: t("Name") },
+                    {
+                      name: "email",
+                      type: "email",
+                      placeholder: t("contact.form.email"),
+                    },
+                    {
+                      name: "name",
+                      type: "text",
+                      placeholder: t("contact.form.name"),
+                    },
                     {
                       name: "message",
                       type: "textarea",
-                      placeholder: t("Message"),
+                      placeholder: t("contact.form.message"),
                       className: "min-h-[150px]",
                     },
                   ].map((field, index) => (
@@ -363,7 +387,7 @@ const Contact = forwardRef((props, ref) => {
                       <CheckCircle className="w-6 h-6" />
                     ) : (
                       <>
-                        {t("Send Message")}
+                        {t("contact.form.send")}
                         <ArrowRight className="w-5 h-5" />
                       </>
                     )}

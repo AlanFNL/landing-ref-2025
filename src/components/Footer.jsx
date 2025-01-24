@@ -1,5 +1,6 @@
 import React, { Suspense } from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import logo from "../assets/reflogo.webp";
 // Import lazy loaded icons
 import { Linkedin, Instagram, Send, Calendar } from "./icons";
@@ -9,14 +10,28 @@ const IconFallback = () => (
   <div className="w-6 h-6 bg-slate-700 animate-pulse rounded" />
 );
 
-function Footer() {
+function Footer({ scrollToSection }) {
+  const [t] = useTranslation("global");
+
   const fadeInUp = {
     initial: { y: 20, opacity: 0 },
     animate: { y: 0, opacity: 1 },
     transition: { duration: 0.6 },
   };
 
-  const navItems = ["About Us", "Services", "Clients"];
+  const navItems = [
+    { key: "about", href: "about-us" },
+    { key: "services", href: "services" },
+    { key: "clients", href: "clients" },
+  ];
+
+  const handleContactClick = (type) => {
+    if (type === "consultation") {
+      scrollToSection("contact", "options", true); // Will open Calendly after delay
+    } else if (type === "message") {
+      scrollToSection("contact", "form", false); // Will open form after delay
+    }
+  };
 
   return (
     <footer className="w-[98vw] rounded-xl mx-auto mt-8 mb-8 pt-12 pb-8 px-8 bg-gradient-to-br from-purple-900 via-slate-900 to-black z-50">
@@ -26,7 +41,7 @@ function Footer() {
           initial="initial"
           whileInView="animate"
           variants={fadeInUp}
-          viewport={{ once: false, amount: 0.6 }}
+          viewport={{ once: true, amount: 0.6 }}
           className="col-span-1 lg:col-span-1"
         >
           <img
@@ -41,20 +56,22 @@ function Footer() {
           initial="initial"
           whileInView="animate"
           variants={fadeInUp}
-          viewport={{ once: false, amount: 0.6 }}
+          viewport={{ once: true, amount: 0.6 }}
           className="col-span-1 lg:col-span-1"
         >
-          <h3 className="text-white font-semibold mb-4">Quick Links</h3>
+          <h3 className="text-white font-semibold mb-4">
+            {t("footer.quick_links")}
+          </h3>
           <nav className="flex flex-col gap-2">
-            {navItems.map((item, index) => (
+            {navItems.map((item) => (
               <motion.a
-                key={item}
-                href={`#${item.toLowerCase().replace(" ", "-")}`}
+                key={item.key}
+                href={`#${item.href}`}
                 className="text-slate-400 hover:text-white transition-colors w-fit"
                 whileHover={{ x: 5 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                {item}
+                {t(`footer.nav_items.${item.key}`)}
               </motion.a>
             ))}
           </nav>
@@ -65,29 +82,31 @@ function Footer() {
           initial="initial"
           whileInView="animate"
           variants={fadeInUp}
-          viewport={{ once: false, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.3 }}
           className="col-span-1 lg:col-span-2"
         >
-          <h3 className="text-white font-semibold mb-4">Get in Touch</h3>
+          <h3 className="text-white font-semibold mb-4">
+            {t("footer.get_in_touch")}
+          </h3>
           <div className="flex flex-col sm:flex-row gap-4">
-            <motion.a
-              href="#schedule"
-              className="flex items-center gap-2 px-6 py-3  bg-purple-600 hover:bg-purple-700 text-white rounded-lg  shadow-lg hover:shadow-purple-500/25 transition-colors"
+            <motion.button
+              onClick={() => handleContactClick("consultation")}
+              className="flex items-center gap-2 px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg shadow-lg hover:shadow-purple-500/25 transition-colors"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
               <Calendar className="w-4 h-4" />
-              Schedule free consultation
-            </motion.a>
-            <motion.a
-              href="#contact"
+              {t("footer.schedule_consultation")}
+            </motion.button>
+            <motion.button
+              onClick={() => handleContactClick("message")}
               className="flex items-center gap-2 px-6 py-3 border border-[#ffffff52] bg-white text-purple-800 rounded-lg transition-colors"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
               <Send className="w-4 h-4" />
-              Send us a message
-            </motion.a>
+              {t("footer.send_message")}
+            </motion.button>
           </div>
         </motion.div>
       </div>
@@ -96,14 +115,13 @@ function Footer() {
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
         transition={{ delay: 0.3 }}
         className="flex flex-col md:flex-row justify-between items-center gap-4 pt-8 border-t border-slate-800"
       >
-        <p className="text-slate-400 text-sm">
-          © Reforce Infinity 2025 All rights reserved
-        </p>
+        <p className="text-slate-400 text-sm">{t("footer.copyright")}</p>
         <div className="flex items-center gap-4">
-          <span className="text-slate-400">Follow us on</span>
+          <span className="text-slate-400">{t("footer.follow_us")}</span>
           <Suspense fallback={<IconFallback />}>
             <motion.a
               href="https://uk.linkedin.com/company/reforce-infinity"
