@@ -119,7 +119,7 @@ function Hero({ scrollToSection }) {
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
+            transition={{ duration: 0.5 }}
             className="mb-8"
           >
             <span className="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium text-white border border-white/20">
@@ -130,15 +130,15 @@ function Hero({ scrollToSection }) {
           <AnimatedText
             text={t("about.1")}
             className="text-3xl md:text-7xl font-bold text-white leading-tight"
-            delay={0.1}
+            delay={0}
             lines={3}
-            lineDelay={0.1}
+            lineDelay={0}
           />
 
           <AnimatedText
             text={t("about.2")}
             className="text-sm md:text-3xl text-white/80 mt-8 max-w-3xl"
-            delay={0.4}
+            delay={0.2}
             lines={2}
             lineDelay={0.05}
           />
@@ -149,7 +149,7 @@ function Hero({ scrollToSection }) {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{
               duration: 0.5,
-              delay: 1.5,
+              delay: 0.5,
               ease: [0.33, 1, 0.68, 1],
             }}
             viewport={{ once: true }}
