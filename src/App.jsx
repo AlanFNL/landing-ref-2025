@@ -90,7 +90,7 @@ function App() {
           <div ref={servicesRef}>
             <ServicesSection />
           </div>
-          <Bento />
+          <Bento scrollToSection={scrollToSection} />
           <div ref={clientsRef}>
             <BrandCarousel />
           </div>
