@@ -356,7 +356,7 @@ const Contact = forwardRef((props, ref) => {
                           required
                           value={formData[field.name]}
                           onChange={handleChange}
-                          className={`w-full p-4 bg-black/20 rounded-lg border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all ${
+                          className={`w-full p-4 bg-black/20 rounded-lg border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all resize-none ${
                             field.className || ""
                           }`}
                         />
