@@ -185,13 +185,6 @@ function Hero({ scrollToSection }) {
       </div>
 
       <motion.div
-        className="absolute inset-0 bg-gradient-to-b from-purple-900/0 via-purple-900/50 to-purple-900/80 pointer-events-none"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.3 }}
-        transition={{ duration: 1 }}
-      />
-
-      <motion.div
         className="hero-slide"
         style={{
           x: slideX,
