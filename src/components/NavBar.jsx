@@ -161,6 +161,7 @@ function NavBar({ scrollToSection }) {
             <div className="hidden md:flex items-center space-x-6">
               <div className="relative" ref={dropdownRef}>
                 <button
+                  aria-label="Language"
                   onClick={toggleDropdown}
                   className="p-2 text-gray-300 hover:text-white transition-colors"
                 >
