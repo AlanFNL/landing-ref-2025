@@ -9,7 +9,7 @@ import stock3 from "../assets/5.lottie";
 import stock4 from "../assets/4.lottie";
 import stock5 from "../assets/3.lottie";
 
-export const ServicesSection = () => {
+export const ServicesSection = ({ scrollToSection }) => {
   const [t, i18n] = useTranslation("global");
   const containerRef = useRef();
   const titleRef = useRef();
@@ -300,7 +300,12 @@ export const ServicesSection = () => {
         >
           <div className="flex gap-4 sm:gap-8 px-4 sm:px-24">
             {services.map((service, index) => (
-              <ServiceCard key={service.title} {...service} index={index} />
+              <ServiceCard
+                key={service.title}
+                {...service}
+                index={index}
+                scrollToSection={scrollToSection}
+              />
             ))}
           </div>
         </motion.div>

@@ -9,6 +9,7 @@ export function ServiceCard({
   lottieUrl,
   ctaText,
   ctaUrl,
+  scrollToSection,
 }) {
   const cardRef = useRef(null);
 
@@ -131,10 +132,12 @@ export function ServiceCard({
       </p>
 
       <motion.a
-        href={ctaUrl}
+        onClick={() => {
+          scrollToSection("contact");
+        }}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="mt-auto bg-white text-purple-800 font-bold hover:shadow-2xs hover:shadow-[#f5e5ff] border-[#ffffff52] border transition-all duration-300 px-6 py-2 rounded-full tracking-wide z-50 text-sm"
+        className="mt-auto select-none cursor-pointer bg-white text-purple-800 font-bold hover:shadow-2xs hover:shadow-[#f5e5ff] border-[#ffffff52] border transition-all duration-300 px-6 py-2 rounded-full tracking-wide z-50 text-sm"
       >
         {ctaText}
       </motion.a>

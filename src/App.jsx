@@ -88,7 +88,7 @@ function App() {
           <Hero scrollToSection={scrollToSection} />
           <BrandCarousel />
           <div ref={servicesRef}>
-            <ServicesSection />
+            <ServicesSection scrollToSection={scrollToSection} />
           </div>
           <Bento scrollToSection={scrollToSection} />
           <div ref={clientsRef}>
