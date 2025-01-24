@@ -20,9 +20,9 @@ function Footer({ scrollToSection }) {
   };
 
   const navItems = [
-    { key: "about", href: "about-us" },
-    { key: "services", href: "services" },
-    { key: "clients", href: "clients" },
+    { key: "about", section: "aboutUs" },
+    { key: "services", section: "services" },
+    { key: "clients", section: "clients" },
   ];
 
   const handleContactClick = (type) => {
@@ -64,15 +64,15 @@ function Footer({ scrollToSection }) {
           </h3>
           <nav className="flex flex-col gap-2">
             {navItems.map((item) => (
-              <motion.a
+              <motion.button
                 key={item.key}
-                href={`#${item.href}`}
+                onClick={() => scrollToSection(item.section)}
                 className="text-slate-400 hover:text-white transition-colors w-fit"
                 whileHover={{ x: 5 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 {t(`footer.nav_items.${item.key}`)}
-              </motion.a>
+              </motion.button>
             ))}
           </nav>
         </motion.div>
