@@ -85,7 +85,7 @@ function App() {
           options={{ lerp: 0.1, duration: 1.5, smoothWheel: true }}
         >
           <NavBar scrollToSection={scrollToSection} />
-          <Hero />
+          <Hero scrollToSection={scrollToSection} />
           <BrandCarousel />
           <div ref={servicesRef}>
             <ServicesSection />
