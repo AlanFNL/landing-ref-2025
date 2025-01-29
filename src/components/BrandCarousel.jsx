@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useRef, useState } from "react";
+import React, { forwardRef, useEffect, useRef, useState, useMemo } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import logo1 from "../assets/logo1.png";
 import logo2 from "../assets/logo2.png";
@@ -58,12 +58,14 @@ const distributeLogos = (allLogos, columnCount) => {
 };
 
 const LogoColumn = React.memo(({ logos, index, currentTime, isInView }) => {
-  const cycleInterval = 2000;
+  const cycleInterval = 3000;
   const columnDelay = index * 200;
-  const adjustedTime = isInView
-    ? (currentTime + columnDelay) % (cycleInterval * logos.length)
-    : 0;
-  const currentIndex = isInView ? Math.floor(adjustedTime / cycleInterval) : 0;
+  const currentIndex = useMemo(() => {
+    if (!isInView) return 0;
+    const adjustedTime =
+      (currentTime + columnDelay) % (cycleInterval * logos.length);
+    return Math.floor(adjustedTime / cycleInterval);
+  }, [currentTime, columnDelay, cycleInterval, logos.length, isInView]);
 
   return (
     <motion.div
@@ -76,36 +78,28 @@ const LogoColumn = React.memo(({ logos, index, currentTime, isInView }) => {
         ease: "easeOut",
       }}
     >
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="wait" initial={false}>
         <motion.div
           key={`logo-${currentIndex}`}
           className="absolute inset-0 flex items-center justify-center"
-          initial={{ y: "10%", opacity: 0, filter: "blur(8px)" }}
-          animate={
-            isInView
-              ? {
-                  y: "0%",
-                  opacity: 1,
-                  filter: "blur(0px)",
-                  transition: {
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 20,
-                    mass: 1,
-                    bounce: 0.2,
-                    duration: 0.5,
-                  },
-                }
-              : {}
-          }
+          initial={{ y: "10%", opacity: 0 }}
+          animate={{
+            y: "0%",
+            opacity: 1,
+            transition: {
+              type: "spring",
+              stiffness: 200,
+              damping: 20,
+              mass: 1,
+              bounce: 0.2,
+            },
+          }}
           exit={{
             y: "-20%",
             opacity: 0,
-            filter: "blur(6px)",
             transition: {
-              type: "tween",
-              ease: "easeIn",
               duration: 0.3,
+              ease: "easeOut",
             },
           }}
         >
@@ -114,6 +108,10 @@ const LogoColumn = React.memo(({ logos, index, currentTime, isInView }) => {
             src={logos[currentIndex]}
             alt={`logo-${currentIndex}`}
             className="h-20 w-20 max-h-[80%] max-w-[80%] object-contain md:h-32 md:w-32 brightness-0 invert opacity-80"
+            style={{
+              willChange: "transform",
+              transform: "translateZ(0)",
+            }}
           />
         </motion.div>
       </AnimatePresence>
@@ -130,30 +128,47 @@ const BrandCarousel = forwardRef(({ clientsRef }, ref) => {
   const isInView = useInView(containerRef, {
     once: false,
     amount: 0.3,
+    margin: "100px",
   });
 
-  useEffect(() => {
-    const distributedLogos = distributeLogos(logos, columnCount);
-    setLogoSets(distributedLogos);
+  const distributedLogos = useMemo(() => {
+    return distributeLogos(logos, columnCount);
   }, []);
 
   useEffect(() => {
+    setLogoSets(distributedLogos);
+  }, [distributedLogos]);
+
+  useEffect(() => {
     let intervalId;
+    let rafId;
+    let lastUpdate = 0;
+    const fps = 30;
+    const interval = 1000 / fps;
+
+    const updateTime = (timestamp) => {
+      if (!lastUpdate || timestamp - lastUpdate >= interval) {
+        if (isInView) {
+          setCurrentTime((prevTime) => prevTime + interval);
+        }
+        lastUpdate = timestamp;
+      }
+      rafId = requestAnimationFrame(updateTime);
+    };
+
     if (isInView) {
-      intervalId = setInterval(() => {
-        setCurrentTime((prevTime) => prevTime + 100);
-      }, 100);
+      rafId = requestAnimationFrame(updateTime);
     }
-    return () => clearInterval(intervalId);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      clearInterval(intervalId);
+    };
   }, [isInView]);
 
   useEffect(() => {
     const browserLang = navigator.language;
-    if (browserLang.startsWith("es")) {
-      i18n.changeLanguage("es");
-    } else {
-      i18n.changeLanguage("en");
-    }
+    i18n.changeLanguage(browserLang.startsWith("es") ? "es" : "en");
   }, [i18n]);
 
   return (
@@ -171,6 +186,8 @@ const BrandCarousel = forwardRef(({ clientsRef }, ref) => {
           style={{
             maskImage:
               "radial-gradient(circle at center 0%, black, transparent 70%)",
+            willChange: "transform, opacity",
+            transform: "translateZ(0)",
           }}
         />
       </div>
