@@ -70,7 +70,7 @@ export default function Bento({ scrollToSection }) {
 
             {/* Main Content */}
             <motion.div
-              className="rounded-3xl bg-gradient-to-br from-purple-800/50 to-purple-900/50 p-8 backdrop-blur-sm border border-[#ffffff52] flex flex-col justify-center items-center text-center"
+              className="rounded-3xl min-h-fit bg-gradient-to-br from-purple-800/50 to-purple-900/50 p-8 backdrop-blur-sm border border-[#ffffff52] flex flex-col justify-center items-center text-center"
               style={{ gridArea: "main" }}
               variants={fadeInUp}
             >
