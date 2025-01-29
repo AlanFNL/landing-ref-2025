@@ -67,6 +67,35 @@ const LogoColumn = React.memo(({ logos, index, currentTime, isInView }) => {
     return Math.floor(adjustedTime / cycleInterval);
   }, [currentTime, columnDelay, cycleInterval, logos.length, isInView]);
 
+  const animationProps = isInView
+    ? {
+        initial: { y: "10%", opacity: 0 },
+        animate: {
+          y: "0%",
+          opacity: 1,
+          transition: {
+            type: "spring",
+            stiffness: 200,
+            damping: 20,
+            mass: 1,
+            bounce: 0.2,
+          },
+        },
+        exit: {
+          y: "-20%",
+          opacity: 0,
+          transition: {
+            duration: 0.3,
+            ease: "easeOut",
+          },
+        },
+      }
+    : {
+        initial: false,
+        animate: { y: "0%", opacity: 1 },
+        exit: false,
+      };
+
   return (
     <motion.div
       className="relative h-14 w-24 overflow-hidden md:h-24 md:w-48"
@@ -82,26 +111,7 @@ const LogoColumn = React.memo(({ logos, index, currentTime, isInView }) => {
         <motion.div
           key={`logo-${currentIndex}`}
           className="absolute inset-0 flex items-center justify-center"
-          initial={{ y: "10%", opacity: 0 }}
-          animate={{
-            y: "0%",
-            opacity: 1,
-            transition: {
-              type: "spring",
-              stiffness: 200,
-              damping: 20,
-              mass: 1,
-              bounce: 0.2,
-            },
-          }}
-          exit={{
-            y: "-20%",
-            opacity: 0,
-            transition: {
-              duration: 0.3,
-              ease: "easeOut",
-            },
-          }}
+          {...animationProps}
         >
           <img
             loading="lazy"
@@ -109,8 +119,8 @@ const LogoColumn = React.memo(({ logos, index, currentTime, isInView }) => {
             alt={`logo-${currentIndex}`}
             className="h-20 w-20 max-h-[80%] max-w-[80%] object-contain md:h-32 md:w-32 brightness-0 invert opacity-80"
             style={{
-              willChange: "transform",
-              transform: "translateZ(0)",
+              willChange: isInView ? "transform" : "auto",
+              transform: isInView ? "translateZ(0)" : "none",
             }}
           />
         </motion.div>
@@ -125,6 +135,7 @@ const BrandCarousel = forwardRef(({ clientsRef }, ref) => {
   const [currentTime, setCurrentTime] = useState(0);
   const columnCount = 4;
   const containerRef = useRef(null);
+  const animationRef = useRef(null);
   const isInView = useInView(containerRef, {
     once: false,
     amount: 0.3,
@@ -140,29 +151,33 @@ const BrandCarousel = forwardRef(({ clientsRef }, ref) => {
   }, [distributedLogos]);
 
   useEffect(() => {
-    let intervalId;
-    let rafId;
     let lastUpdate = 0;
     const fps = 30;
     const interval = 1000 / fps;
 
     const updateTime = (timestamp) => {
+      if (!isInView) {
+        animationRef.current = null;
+        return;
+      }
+
       if (!lastUpdate || timestamp - lastUpdate >= interval) {
-        if (isInView) {
-          setCurrentTime((prevTime) => prevTime + interval);
-        }
+        setCurrentTime((prevTime) => prevTime + interval);
         lastUpdate = timestamp;
       }
-      rafId = requestAnimationFrame(updateTime);
+
+      animationRef.current = requestAnimationFrame(updateTime);
     };
 
     if (isInView) {
-      rafId = requestAnimationFrame(updateTime);
+      animationRef.current = requestAnimationFrame(updateTime);
     }
 
     return () => {
-      cancelAnimationFrame(rafId);
-      clearInterval(intervalId);
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+        animationRef.current = null;
+      }
     };
   }, [isInView]);
 
@@ -186,8 +201,8 @@ const BrandCarousel = forwardRef(({ clientsRef }, ref) => {
           style={{
             maskImage:
               "radial-gradient(circle at center 0%, black, transparent 70%)",
-            willChange: "transform, opacity",
-            transform: "translateZ(0)",
+            willChange: isInView ? "transform, opacity" : "auto",
+            transform: isInView ? "translateZ(0)" : "none",
           }}
         />
       </div>
