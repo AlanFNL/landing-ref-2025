@@ -74,7 +74,7 @@ export default function Bento({ scrollToSection }) {
               style={{ gridArea: "main" }}
               variants={fadeInUp}
             >
-              <h1 className="text-xl md:text-2xl lg:text-5xl font-bold text-white mb-6">
+              <h1 className="text-lg md:text-xl lg:text-5xl font-bold text-white mb-6">
                 {t("bento.heading")}
               </h1>
               <p className="md:text-sm lg:text-lg text-violet-200/90">
