@@ -69,19 +69,32 @@ function Hero({ scrollToSection }) {
       const currentScrollPos = window.scrollY;
       const scrollDelta = currentScrollPos - prevScrollPos;
 
-      // Use requestAnimationFrame for smoother animation
-      requestAnimationFrame(() => {
+      // Throttle the animation updates
+      window.requestAnimationFrame(() => {
         setSlideX((prev) => {
-          const newX = prev - scrollDelta * 0.3; // Reduced multiplier for smoother movement
-          return Math.min(Math.max(newX, -1000), 1000); // Reduced range
+          // Reduce the movement range and make it smoother
+          const newX = prev - scrollDelta * 0.15; // Reduced multiplier
+          return Math.min(Math.max(newX, -500), 500); // Reduced range
         });
       });
 
       setPrevScrollPos(currentScrollPos);
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    // Throttle scroll events
+    let ticking = false;
+    const scrollListener = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", scrollListener, { passive: true });
+    return () => window.removeEventListener("scroll", scrollListener);
   }, [prevScrollPos, isInView]);
 
   const heroHeaderRef = useRef();
