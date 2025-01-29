@@ -26,7 +26,7 @@ export default function Bento({ scrollToSection }) {
   return (
     <section className="min-h-fit w-[98%] mx-auto mb-4 rounded-xl bg-[url('./assets/bento-bg.webp')] bg-no-repeat bg-cover p-6 md:p-10">
       <Suspense fallback={<IconFallback />}>
-        <div className="mx-auto max-w-7xl h-fit md:h-[calc(100vh-5rem)]">
+        <div className="mx-auto max-w-7xl h-fit">
           <motion.div
             className="flex flex-col md:grid h-full gap-4 md:gap-6"
             style={{
