@@ -8,10 +8,6 @@ import AnimatedText from "./AnimatedText";
 function Hero({ scrollToSection }) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const [prevScrollPos, setPrevScrollPos] = useState(0);
-  const [slideX, setSlideX] = useState(0);
-  const [isInView, setIsInView] = useState(false);
-
   const [t, i18n] = useTranslation("global");
   useEffect(() => {
     // Check the browser's language and set the language accordingly
@@ -36,53 +32,6 @@ function Hero({ scrollToSection }) {
   }, [isOpen]);
 
   const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          setIsInView(entry.isIntersecting);
-          if (entry.isIntersecting) {
-            // Reset scroll position when coming back into view
-            setPrevScrollPos(window.scrollY);
-          }
-        });
-      },
-      { threshold: 0.1 } // Trigger when at least 10% of the section is visible
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!isInView) return;
-
-      const currentScrollPos = window.scrollY;
-      const scrollDelta = currentScrollPos - prevScrollPos;
-
-      // Use requestAnimationFrame for smoother animation
-      requestAnimationFrame(() => {
-        setSlideX((prev) => {
-          const newX = prev - scrollDelta * 0.3; // Reduced multiplier for smoother movement
-          return Math.min(Math.max(newX, -1000), 1000); // Reduced range
-        });
-      });
-
-      setPrevScrollPos(currentScrollPos);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [prevScrollPos, isInView]);
 
   const heroHeaderRef = useRef();
 
@@ -189,19 +138,10 @@ function Hero({ scrollToSection }) {
         </div>
       </div>
 
-      <motion.div
-        className="hero-slide"
-        style={{
-          x: slideX,
-        }}
-        transition={{
-          type: "spring",
-          stiffness: 200,
-          damping: 40,
-          mass: 0.2,
-          restDelta: 0.001,
-        }}
-      />
+      <div className="hero-slide-container">
+        <div className="hero-slide" />
+        <div className="hero-slide hero-slide-2" />
+      </div>
     </motion.section>
   );
 }
