@@ -69,9 +69,12 @@ function Hero({ scrollToSection }) {
       const currentScrollPos = window.scrollY;
       const scrollDelta = currentScrollPos - prevScrollPos;
 
-      setSlideX((prev) => {
-        const newX = prev - scrollDelta * 0.5;
-        return Math.min(Math.max(newX, -2000), 2000);
+      // Use requestAnimationFrame for smoother animation
+      requestAnimationFrame(() => {
+        setSlideX((prev) => {
+          const newX = prev - scrollDelta * 0.3; // Reduced multiplier for smoother movement
+          return Math.min(Math.max(newX, -1000), 1000); // Reduced range
+        });
       });
 
       setPrevScrollPos(currentScrollPos);
