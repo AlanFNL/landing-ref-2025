@@ -8,6 +8,10 @@ import AnimatedText from "./AnimatedText";
 function Hero({ scrollToSection }) {
   const [isOpen, setIsOpen] = useState(false);
 
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [slideX, setSlideX] = useState(0);
+  const [isInView, setIsInView] = useState(false);
+
   const [t, i18n] = useTranslation("global");
   useEffect(() => {
     // Check the browser's language and set the language accordingly
@@ -57,6 +61,41 @@ function Hero({ scrollToSection }) {
       }
     };
   }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!isInView) return;
+
+      const currentScrollPos = window.scrollY;
+      const scrollDelta = currentScrollPos - prevScrollPos;
+
+      // Throttle the animation updates
+      window.requestAnimationFrame(() => {
+        setSlideX((prev) => {
+          // Reduce the movement range and make it smoother
+          const newX = prev - scrollDelta * 0.15; // Reduced multiplier
+          return Math.min(Math.max(newX, -500), 500); // Reduced range
+        });
+      });
+
+      setPrevScrollPos(currentScrollPos);
+    };
+
+    // Throttle scroll events
+    let ticking = false;
+    const scrollListener = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", scrollListener, { passive: true });
+    return () => window.removeEventListener("scroll", scrollListener);
+  }, [prevScrollPos, isInView]);
 
   const heroHeaderRef = useRef();
 
@@ -162,6 +201,20 @@ function Hero({ scrollToSection }) {
           </motion.div>
         </div>
       </div>
+
+      <motion.div
+        className="hero-slide"
+        style={{
+          x: slideX,
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 200,
+          damping: 40,
+          mass: 0.2,
+          restDelta: 0.001,
+        }}
+      />
     </motion.section>
   );
 }
