@@ -13,6 +13,8 @@ function Hero({ scrollToSection }) {
   const [isInView, setIsInView] = useState(false);
 
   const [t, i18n] = useTranslation("global");
+  const [animationKey, setAnimationKey] = useState(0);
+
   useEffect(() => {
     // Check the browser's language and set the language accordingly
     const browserLang = navigator.language;
@@ -21,6 +23,8 @@ function Hero({ scrollToSection }) {
     } else {
       i18n.changeLanguage("en");
     }
+    // Trigger animation reset when language changes
+    setAnimationKey((prev) => prev + 1);
   }, [i18n]);
 
   useEffect(() => {
@@ -133,6 +137,7 @@ function Hero({ scrollToSection }) {
       >
         <div className="flex flex-col justify-center items-center text-center mt-24 md:mt-0 p-4 md:p-12">
           <motion.div
+            key={`badge-${animationKey}`}
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -144,24 +149,27 @@ function Hero({ scrollToSection }) {
           </motion.div>
 
           <AnimatedText
+            animationKey={animationKey}
             text={t("about.1")}
             className="text-3xl md:text-7xl font-bold text-white leading-tight"
             delay={0.1}
             lines={3}
             lineDelay={0.1}
-            style={{ minHeight: "calc(7rem * 3)" }}
+            style={{ minHeight: "calc(9rem * 3)" }}
           />
 
           <AnimatedText
+            animationKey={animationKey}
             text={t("about.2")}
             className="text-sm md:text-3xl text-white/80 mt-8 max-w-3xl"
             delay={0.4}
             lines={2}
             lineDelay={0.05}
-            style={{ minHeight: "calc(3rem * 2)" }}
+            style={{ minHeight: "calc(4rem * 2)" }}
           />
 
           <motion.div
+            animationKey={animationKey}
             className="flex gap-4 mt-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -170,7 +178,6 @@ function Hero({ scrollToSection }) {
               delay: 1.5,
               ease: [0.33, 1, 0.68, 1],
             }}
-            viewport={{ once: true }}
           >
             <motion.button
               whileHover={{ scale: 1.02 }}

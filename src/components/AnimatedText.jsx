@@ -1,5 +1,5 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useEffect } from "react";
+import { motion, useAnimation } from "framer-motion";
 
 const AnimatedText = ({
   text,
@@ -7,7 +7,16 @@ const AnimatedText = ({
   delay = 1, // delay in seconds before animation starts
   lines = 1,
   lineDelay = 0.15, // delay between lines in seconds
+  animationKey, // Add this prop
 }) => {
+  const controls = useAnimation();
+
+  // Reset and restart animation when text or animationKey changes
+  useEffect(() => {
+    controls.set("hidden");
+    controls.start("visible");
+  }, [text, animationKey, controls]);
+
   // Animation variants
   const whipInUp = {
     container: {
@@ -50,18 +59,18 @@ const AnimatedText = ({
       className={className}
       variants={whipInUp.container}
       initial="hidden"
-      whileInView="visible"
+      animate={controls}
       viewport={{ once: true, margin: "-50px" }}
     >
       {textLines.map((line, lineIndex) => (
         <motion.div
-          key={lineIndex}
+          key={`${lineIndex}-${animationKey}`}
           variants={whipInUp.line}
           className="overflow-hidden"
         >
           {line.split(" ").map((word, wordIndex) => (
             <span
-              key={wordIndex}
+              key={`${wordIndex}-${animationKey}`}
               className="inline-block overflow-hidden mr-[0.25em]"
             >
               <motion.span className="inline-block" variants={whipInUp.child}>

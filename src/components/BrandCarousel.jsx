@@ -117,7 +117,7 @@ const LogoColumn = React.memo(({ logos, index, currentTime, isInView }) => {
             loading="lazy"
             src={logos[currentIndex]}
             alt={`logo-${currentIndex}`}
-            className="h-20 w-20 max-h-[80%] max-w-[80%] object-contain md:h-32 md:w-32 brightness-0 invert opacity-80"
+            className="h-24 w-24 md:h-32 md:w-32 max-h-[85%] max-w-[85%] object-contain brightness-0 invert opacity-80"
             style={{
               willChange: isInView ? "transform" : "auto",
               transform: isInView ? "translateZ(0)" : "none",
