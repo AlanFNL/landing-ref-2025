@@ -22,18 +22,6 @@ function FAQ() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 h-fit pt-4 pb-20 rounded-xl sm:rounded-none ">
-      <motion.div
-        initial={{ opacity: 0, width: "40%" }}
-        whileInView={{ opacity: 1, width: "100%" }}
-        transition={{ duration: 0.8, ease: "easeInOut" }}
-        viewport={{ once: true }}
-        className="absolute h-full w-screen overflow-x-hidden sm:max-w-4xl bg-gradient-to-b from-purple-500/10 via-transparent to-transparent pointer-events-none"
-        style={{
-          maskImage:
-            "radial-gradient(circle at center 0%, black, transparent 70%)",
-        }}
-      />
-
       <motion.div className="text-center mb-16">
         <h2 className="text-4xl text-white font-bold mb-4 pt-16">
           {t("faq.title")}

@@ -196,10 +196,12 @@ function NavBar({ scrollToSection }) {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.2 }}
+                className="px-4 md:px-8 py-2 w-64 bg-white text-purple-500 font-bold border-[#ffffff52]  rounded-full  text-md shadow-lg hover:shadow-xl transition-shadow group"
                 onClick={() => scrollToSection("contact")}
-                className="bg-white text-purple-500 min-w-48 w-64 font-bold hover:shadow-2xs hover:shadow-[#f5e5ff] border-[#ffffff52] border transition-shadow px-6 py-2 rounded-full"
               >
-                {t("navbar.5")}
+                <span className="inline-flex items-center gap-2">
+                  {t("navbar.5")}
+                </span>
               </motion.button>
             </div>
           </div>

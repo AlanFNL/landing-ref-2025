@@ -262,5 +262,13 @@
     "title": "Excelencia Digital",
     "description": "Transforma tu presencia digital con nuestros servicios premium de marketing",
     "background_text": "Nuestros Servicios"
+  },
+
+  "testimonials": {
+    "1": "Si hay un hito clave en 2024, es la incorporación de Reforce Infinity para elevar nuestra comunicación. GRACIAS por impulsar nuestra visión, llevar la camiseta Unajera y conectar mejor con nuestra comunidad",
+    "2": "Nuestra experiencia con Reforce Infinity ha sido increíble, supieron adaptarse a nuestras necesidades con una visión estratégica y creativa. Su enfoque en investigación de mercado y pautas publicitarias hizo una gran diferencia en nuestros resultados. ¡Un equipo con el que da gusto trabajar!",
+    "title": "Lo que Dicen Nuestros Clientes",
+    "subtitle": "Empresas líderes confían en nosotros",
+    "role_at": "en"
   }
 }

@@ -169,14 +169,32 @@ export default function Bento({ scrollToSection }) {
                     {t("bento.cta")}
                   </span>
                 </div>
+
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ ease: "easeInOut" }}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ duration: 0.2 }}
+                  className="px-4 md:px-8 py-2 md:py-4 md:w-[35%] w-full mt-4 md:mt-0 bg-white text-purple-500 font-bold border-[#ffffff52]  rounded-xl  text-xs md:text-lg shadow-lg hover:shadow-xl transition-shadow group"
                   onClick={() => scrollToSection("contact")}
-                  className="px-4 py-2 mt-4 w-full md:mt-0 md:w-[35%] bg-white text-purple-800 border-[#ffffff52] border text-xl rounded-lg hover:shadow-2xs hover:shadow-[#f5e5ff] transition-shadow"
                 >
-                  {t("bento.cta_button")}
+                  <span className="inline-flex items-center gap-2">
+                    {t("bento.cta_button")}
+                    <motion.svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="group-hover:translate-x-1 transition-transform duration-200"
+                    >
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </motion.svg>
+                  </span>
                 </motion.button>
               </div>
             </motion.div>

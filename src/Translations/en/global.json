@@ -262,5 +262,13 @@
     "title": "Digital Excellence",
     "description": "Transform your digital presence with our premium marketing services",
     "background_text": "Our Services"
+  },
+
+  "testimonials": {
+    "1": "A key milestone in 2024 has been integrating Reforce Infinity to enhance our communication. THANK YOU for driving our vision, wearing the Unajera jersey, and helping us connect more effectively.",
+    "2": "Our experience with Reforce Infinity has been incredible; they adapted to our needs with a strategic and creative vision. Their focus on market research and advertising strategies made a significant difference in our results. A team that is truly a pleasure to work with!",
+    "title": "What Our Clients Say",
+    "subtitle": "Trusted by leading companies worldwide",
+    "role_at": "at"
   }
 }

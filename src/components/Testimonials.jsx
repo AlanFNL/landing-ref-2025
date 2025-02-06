@@ -1,43 +1,29 @@
 import React, { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
+import testimonials1 from "../assets/testimonials1.webp";
+import testimonials2 from "../assets/testimonials2.webp";
+import { useTranslation } from "react-i18next";
 
 function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const ref = useRef(null);
   const isInView = useInView(ref);
+  const [t] = useTranslation("global");
 
   const testimonials = [
     {
-      name: "Sarah Mitchell",
-      role: "Marketing Director",
-      company: "TechVision Solutions",
-      content:
-        "Reforce Infinity transformed our digital presence. Their innovative approach to combining AI with marketing strategies helped us increase engagement by 150% in just three months.",
-      image: "https://i.pravatar.cc/150?img=1",
-    },
-    {
-      name: "David Chen",
+      name: "Julián Losardo",
       role: "CEO",
-      company: "Innovate Corp",
-      content:
-        "The AR experiences they created for our product launches were groundbreaking. We've seen a 200% increase in customer interaction and brand recall.",
-      image: "https://i.pravatar.cc/150?img=7",
+      company: "Unaje",
+      content: t("testimonials.1"),
+      image: testimonials1,
     },
     {
-      name: "Maria Rodriguez",
-      role: "Head of Digital",
-      company: "Global Ventures",
-      content:
-        "Their expertise in emerging technologies and strategic marketing has been invaluable. Our ROI on digital campaigns has doubled since partnering with them.",
-      image: "https://i.pravatar.cc/150?img=3",
-    },
-    {
-      name: "James Wilson",
-      role: "Operations Manager",
-      company: "Future Systems",
-      content:
-        "The web3 integration and marketing strategy they developed positioned us as industry leaders. Exceptional service and cutting-edge solutions.",
-      image: "https://i.pravatar.cc/150?img=4",
+      name: "Sebastián Otárola",
+      role: "CMO",
+      company: "Mosaikus",
+      content: t("testimonials.2"),
+      image: testimonials2,
     },
   ];
 
@@ -74,11 +60,9 @@ function Testimonials() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold mb-4 text-white pt-16">
-            What Our Clients Say
+            {t("testimonials.title")}
           </h2>
-          <p className="text-slate-400">
-            Trusted by leading companies worldwide
-          </p>
+          <p className="text-slate-400">{t("testimonials.subtitle")}</p>
         </motion.div>
 
         {/* Testimonials Carousel */}
@@ -90,14 +74,14 @@ function Testimonials() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -100 }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="flex flex-col md:flex-row items-center gap-8 max-w-4xl mx-auto"
+              className="flex flex-col md:flex-row items-center gap-8 max-w-4xl mx-auto min-h-64"
             >
               {/* Image */}
               <div className="w-32 h-32 md:w-40 md:h-40 flex-shrink-0">
                 <img
                   src={testimonials[currentIndex].image}
                   alt={testimonials[currentIndex].name}
-                  className="w-full h-full rounded-full object-cover border-4 border-purple-500/20"
+                  className="w-full h-full rounded-full object-cover border-4 border-purple-500/20 filter grayscale"
                 />
               </div>
 
@@ -112,7 +96,8 @@ function Testimonials() {
                       {testimonials[currentIndex].name}
                     </span>
                     <span className="text-slate-400">
-                      {testimonials[currentIndex].role} at{" "}
+                      {testimonials[currentIndex].role}{" "}
+                      {t("testimonials.role_at")}{" "}
                       {testimonials[currentIndex].company}
                     </span>
                   </cite>
@@ -127,7 +112,7 @@ function Testimonials() {
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${
                   index === currentIndex
                     ? "bg-purple-500 w-6"
                     : "bg-slate-600 hover:bg-slate-500"

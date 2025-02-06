@@ -94,6 +94,7 @@ function App() {
           <div ref={clientsRef}>
             <BrandCarousel />
           </div>
+          <div></div>
           <div ref={contactRef}>
             <Contact
               initialView={contactView}
@@ -101,7 +102,9 @@ function App() {
               setOpenCalendly={setOpenCalendly}
             />
           </div>
+          <Testimonials />
           <FAQ />
+
           <Footer scrollToSection={scrollToSection} />
         </ReactLenis>
       </motion.div>

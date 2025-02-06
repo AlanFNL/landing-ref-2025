@@ -229,16 +229,16 @@ const Contact = forwardRef((props, ref) => {
                 <motion.div
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="relative group"
+                  className="relative group flex justify-center items-center"
                 >
-                  <div className="absolute  -inset-0.5 bg-gradient-to-r from-purple-600 to-purple-400 rounded-xl blur opacity-0 group-hover:opacity-30 transition duration-500" />
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-purple-400 rounded-xl blur opacity-0 group-hover:opacity-30 transition duration-500" />
+
                   <PopupButton
                     className="relative flex w-[80vw] md:w-fit items-center gap-3 px-8 py-4 bg-purple-600 hover:bg-purple-700 rounded-xl text-white font-medium transition-all shadow-lg hover:shadow-purple-500/25"
                     text={t("contact.schedule_button")}
                     url="https://calendly.com/reforce/reforce-discovery-call"
                     rootElement={document.getElementById("root")}
                   >
-                    <Calendar className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300 z-50" />
                     {t("contact.schedule_button")}
                   </PopupButton>
                 </motion.div>
