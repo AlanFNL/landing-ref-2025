@@ -91,7 +91,7 @@ export const ServicesSection = ({ scrollToSection }) => {
       description: t("service5.2"),
 
       lottieUrl: stock4,
-      ctaText: t("service4.8"),
+      ctaText: t("service5.3"),
       ctaUrl: "/services/influencer-marketing",
     },
     {
