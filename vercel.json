@@ -1,12 +1,7 @@
 {
   "redirects": [
     {
-      "source": "http://www.reforceinfinity.com/:path*",
-      "destination": "https://www.reforceinfinity.com/:path*",
-      "permanent": true
-    },
-    {
-      "source": "http://reforceinfinity.com/:path*",
+      "source": "/:path*",
       "destination": "https://www.reforceinfinity.com/:path*",
       "permanent": true
     }
