@@ -1,11 +1,5 @@
 {
-  "redirects": [
-    {
-      "source": "/:path*",
-      "destination": "https://www.reforceinfinity.com/:path*",
-      "permanent": true
-    }
-  ],
+ 
   "rewrites": [
     {
       "source": "/(.*)",
