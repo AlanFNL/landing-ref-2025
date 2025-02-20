@@ -12,12 +12,7 @@
     <priority>1.0</priority>
   </url>
 
-  <!-- Non-www version (redirects to www) -->
-  <url>
-    <loc>https://reforceinfinity.com/</loc>
-    <lastmod>2025-02-15T12:19:32+00:00</lastmod>
-    <priority>1.0</priority>
-  </url>
+ 
 
   
 </urlset>
