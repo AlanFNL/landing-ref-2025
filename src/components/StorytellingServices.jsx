@@ -75,7 +75,7 @@ export const StorytellingServices = ({ scrollToSection }) => {
   return (
     <div
       ref={containerRef}
-      className="relative bg-[url('./assets/services-bg3.webp')] bg-no-repeat bg-cover bg-fixed h-[600vh] overflow-hidden w-full mx-auto rounded-xl mb-4"
+      className="relative bg-[url('./assets/services-bg3.webp')] bg-no-repeat bg-cover bg-fixed h-[530vh] overflow-hidden w-full mx-auto rounded-xl mb-4"
     >
       {/* No dark overlay - removed for cleaner design */}
 
