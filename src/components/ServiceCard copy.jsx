@@ -1,14 +1,15 @@
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 
 export function ServiceCard({
   title,
   description,
-  icon,
   index,
-  gifUrl,
+  lottieUrl,
   ctaText,
   ctaUrl,
+  scrollToSection,
 }) {
   const cardRef = useRef(null);
 
@@ -39,6 +40,27 @@ export function ServiceCard({
     x.set(0);
     y.set(0);
   };
+
+  const imgRef = useRef();
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setLoaded(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "50px" }
+    );
+
+    if (imgRef.current) {
+      observer.observe(imgRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <motion.div
@@ -86,16 +108,17 @@ export function ServiceCard({
         className="w-full mb-4 rounded-lg overflow-hidden bg-transparent transition-transform duration-300"
         style={{ transform: "translateZ(50px)" }}
       >
-        <img
-          src={gifUrl}
-          alt={title}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-purple-900/50 z-10" />
+        <DotLottieReact
+          src={lottieUrl}
+          loop
+          autoplay
           className="w-full h-[160px] object-cover"
-          loading="lazy"
         />
       </div>
 
       <h3
-        className="text-xl text-white font-semibold mb-2 transition-transform duration-300"
+        className="text-xl text-center text-white font-semibold mb-2 transition-transform duration-300"
         style={{ transform: "translateZ(50px)" }}
       >
         {title}
@@ -109,10 +132,12 @@ export function ServiceCard({
       </p>
 
       <motion.a
-        href={ctaUrl}
+        onClick={() => {
+          scrollToSection("contact");
+        }}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="mt-auto bg-[#ffffff5e] font-bold hover:shadow-2xs hover:shadow-[#f5e5ff] border-[#ffffff52] border transition-all duration-300 text-white px-6 py-2 rounded-full tracking-wide z-50 text-sm"
+        className="mt-auto select-none cursor-pointer bg-white text-purple-800 font-bold hover:shadow-2xs hover:shadow-[#f5e5ff] border-[#ffffff52] border transition-all duration-300 px-6 py-2 rounded-full tracking-wide z-50 text-sm"
       >
         {ctaText}
       </motion.a>

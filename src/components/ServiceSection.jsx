@@ -105,7 +105,7 @@ export const ServicesSection = ({ scrollToSection }) => {
   return (
     <div
       ref={containerRef}
-      className="h-[400vh] relative bg-[url('./assets/services-bg3.webp')] bg-no-repeat bg-cover bg-fixed inset-0 sm:inset-4 rounded-xl mb-8 border border-[#ffffff52]/50"
+      className="h-[400vh] relative bg-[url('./assets/services-bg3.webp')] bg-no-repeat bg-cover bg-fixed rounded-xl mb-8 border border-[#ffffff52]/50"
       style={{ scale2 }}
     >
       <div className="sticky top-0 h-screen overflow-hidden">
@@ -180,7 +180,7 @@ export const ServicesSection = ({ scrollToSection }) => {
                 delay: 0.8,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="text-gray-300 text-base sm:text-lg md:text-xl max-w-2xl mx-auto mt-4 sm:mt-8 px-4"
+              className="text-gray-300 text-base sm:text-lg md:text-xl max-w-2xl mx-auto font-bold mt-4 sm:mt-8 px-4"
             >
               {t("services_section.description")}
             </motion.p>

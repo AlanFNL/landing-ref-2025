@@ -1,16 +1,24 @@
 import React, { useState, useEffect, useRef } from "react";
 import logo from "../assets/reflogo.webp";
-import { Globe, CircleArrowRight } from "lucide-react";
+import { Globe, CircleArrowRight, ChevronDown } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function NavBar({ scrollToSection }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isNavbarHidden, setIsNavbarHidden] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const dropdownRef = useRef(null);
+  const projectsDropdownRef = useRef(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isProjectsDropdownOpen, setIsProjectsDropdownOpen] = useState(false);
   const [t, i18n] = useTranslation("global");
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // Check if we're on a project detail page
+  const isProjectDetailPage = location.pathname.startsWith("/projects/");
 
   const handleLanguageChange = (lang) => {
     i18n.changeLanguage(lang);
@@ -20,6 +28,12 @@ function NavBar({ scrollToSection }) {
   const handleClickOutside = (event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
       setIsDropdownOpen(false);
+    }
+    if (
+      projectsDropdownRef.current &&
+      !projectsDropdownRef.current.contains(event.target)
+    ) {
+      setIsProjectsDropdownOpen(false);
     }
   };
 
@@ -49,8 +63,25 @@ function NavBar({ scrollToSection }) {
   }, [prevScrollPos]);
 
   const handleMenuItemClick = (section) => {
-    scrollToSection(section);
+    if (isProjectDetailPage) {
+      // If on a project detail page, navigate to home first
+      sessionStorage.setItem(
+        section === "projects" ? "scrollToProjects" : `scrollTo${section}`,
+        "true"
+      );
+      navigate("/");
+    } else {
+      // Otherwise, just scroll to the section
+      scrollToSection(section);
+    }
     setIsOpen(false);
+  };
+
+  const handleProjectClick = (projectId) => {
+    localStorage.setItem("projectTransitionDirection", "0");
+    sessionStorage.setItem("scrollToProjects", "true");
+    navigate(`/projects/${projectId}`);
+    setIsProjectsDropdownOpen(false);
   };
 
   const toggleDropdown = () => {
@@ -62,7 +93,11 @@ function NavBar({ scrollToSection }) {
   };
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (isProjectDetailPage) {
+      navigate("/");
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   // Animation variants for mobile menu items
@@ -105,6 +140,28 @@ function NavBar({ scrollToSection }) {
     },
   };
 
+  // Project dropdown item variants for staggered animation
+  const projectDropdownItemVariants = {
+    hidden: { opacity: 0, y: -8, x: -4 },
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      x: 0,
+      transition: {
+        delay: i * 0.05,
+        duration: 0.25,
+        ease: "easeOut",
+      },
+    }),
+    exit: {
+      opacity: 0,
+      y: -8,
+      transition: {
+        duration: 0.15,
+      },
+    },
+  };
+
   const hamburgerVariants = {
     closed: {
       rotate: 0,
@@ -116,6 +173,12 @@ function NavBar({ scrollToSection }) {
     },
   };
 
+  const projects = [
+    { id: "uala", title: "Ualá" },
+    { id: "unaje", title: "UNAJE" },
+    { id: "chester", title: "Chester" },
+  ];
+
   return (
     <div className="flex justify-center items-center">
       {/* Desktop Navbar */}
@@ -123,10 +186,10 @@ function NavBar({ scrollToSection }) {
         initial={false}
         animate={{ y: isNavbarHidden ? -100 : 0 }}
         transition={{ duration: 0.4, ease: "easeInOut" }}
-        className="w-full bg-white/10 backdrop-blur-md md:backdrop-blur-none md:bg-transparent fixed top-0 z-50 "
+        className="w-full fixed top-0 z-50"
       >
-        <div className="max-w-7xl mx-auto px-6 py-2 md:py-8 lg:px-8">
-          <div className="flex justify-between items-center h-20">
+        <div className="max-w-7xl mx-auto px-6 py-2 md:py-6 lg:px-8  bg-black/20 backdrop-blur-md border-b border-white/10 p-6 md:bg-black/0 md:border-none md:backdrop-blur-none">
+          <div className="flex justify-between items-center h-16 md:h-20  md:bg-black/20 md:backdrop-blur-md md:border-b md:border-white/10 p-6 md:rounded-full">
             {/* Left side */}
             <div className="flex items-center space-x-8 font-bold justify-around w-fit md:w-[80%]">
               <img
@@ -135,21 +198,76 @@ function NavBar({ scrollToSection }) {
                 alt="Reforce Infinity"
                 onClick={scrollToTop}
               />
-              <div className="hidden md:flex items-center justify-around  w-[60%]">
+              <div className="hidden md:flex items-center justify-around w-[60%]">
                 <button
                   onClick={scrollToTop}
                   className="text-gray-300 hover:text-white transition-colors"
                 >
                   {t("navbar.1")}
                 </button>
+
+                {/* Projects button with dropdown */}
+                <div
+                  className="relative"
+                  ref={projectsDropdownRef}
+                  onMouseEnter={() => setIsProjectsDropdownOpen(true)}
+                  onMouseLeave={() => setIsProjectsDropdownOpen(false)}
+                >
+                  <button
+                    onClick={() => handleMenuItemClick("projects")}
+                    className="text-gray-300 hover:text-white transition-colors flex items-center gap-1 group"
+                    aria-expanded={isProjectsDropdownOpen}
+                    aria-haspopup="true"
+                  >
+                    {t("navbar.2")}
+                    <ChevronDown
+                      className="w-4 h-4 transition-transform group-hover:text-white"
+                      style={{
+                        transform: isProjectsDropdownOpen
+                          ? "rotate(180deg)"
+                          : "rotate(0deg)",
+                        transition: "transform 0.2s ease",
+                      }}
+                    />
+                  </button>
+
+                  <AnimatePresence>
+                    {isProjectsDropdownOpen && (
+                      <motion.div
+                        variants={dropdownVariants}
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
+                        className="absolute left-0 mt-2 w-48 bg-black/60 backdrop-blur-md border border-white/10 rounded-md shadow-lg py-2 z-50"
+                      >
+                        {projects.map((project, index) => (
+                          <motion.button
+                            key={project.id}
+                            custom={index}
+                            variants={projectDropdownItemVariants}
+                            initial="hidden"
+                            animate="visible"
+                            exit="exit"
+                            onClick={() => handleProjectClick(project.id)}
+                            className="block px-4 py-2 text-sm text-white font-bold w-full text-left hover:bg-purple-600/30 transition-colors"
+                            tabIndex={isProjectsDropdownOpen ? 0 : -1}
+                          >
+                            {project.title}
+                          </motion.button>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
                 <button
-                  onClick={() => scrollToSection("services")}
+                  onClick={() => handleMenuItemClick("services")}
                   className="text-gray-300 hover:text-white transition-colors"
                 >
                   {t("navbar.3")}
                 </button>
                 <button
-                  onClick={() => scrollToSection("clients")}
+                  onClick={() => handleMenuItemClick("clients")}
                   className="text-gray-300 hover:text-white transition-colors"
                 >
                   {t("navbar.4")}
@@ -174,7 +292,7 @@ function NavBar({ scrollToSection }) {
                       initial="hidden"
                       animate="visible"
                       exit="exit"
-                      className="absolute right-0 mt -2 w-48 bg-[#ffffff5e] rounded-md shadow-lg py-1"
+                      className="absolute right-0 mt-2 w-48 bg-black/40 backdrop-blur-md border border-white/10 rounded-md shadow-lg py-1"
                     >
                       <button
                         onClick={() => handleLanguageChange("es")}
@@ -196,8 +314,8 @@ function NavBar({ scrollToSection }) {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.2 }}
-                className="px-4 md:px-8 py-2 w-64 bg-white text-purple-500 font-bold border-[#ffffff52]  rounded-full  text-md shadow-lg hover:shadow-xl transition-shadow group"
-                onClick={() => scrollToSection("contact")}
+                className="px-4 md:px-8 py-2 w-64 bg-white text-purple-500 font-bold border-[#ffffff52] rounded-full text-md shadow-lg hover:shadow-xl transition-shadow group"
+                onClick={() => handleMenuItemClick("contact")}
               >
                 <span className="inline-flex items-center gap-2">
                   {t("navbar.5")}
@@ -209,7 +327,7 @@ function NavBar({ scrollToSection }) {
       </motion.nav>
 
       {/* Mobile menu button and overlay */}
-      <div className="md:hidden fixed top-0 right-0 z-50 p-8">
+      <div className="md:hidden fixed top-0 right-0 z-50 p-4">
         <motion.button
           onClick={handleClick}
           className="relative z-50 p-2"
@@ -311,6 +429,7 @@ function NavBar({ scrollToSection }) {
               <div className="flex flex-col space-y-8 pr-2">
                 {[
                   { text: t("navbar.1"), section: "aboutUs" },
+                  { text: t("navbar.2"), section: "projects" },
                   { text: t("navbar.3"), section: "services" },
                   { text: t("navbar.4"), section: "clients" },
                 ].map((item, i) => (
@@ -328,6 +447,34 @@ function NavBar({ scrollToSection }) {
                   </motion.button>
                 ))}
               </div>
+
+              {/* Projects submenu in mobile view */}
+              <AnimatePresence>
+                {isOpen && isProjectsDropdownOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="ml-8 mt-2 border-l-2 border-purple-500/30 pl-4"
+                  >
+                    {projects.map((project, index) => (
+                      <motion.button
+                        key={project.id}
+                        custom={index}
+                        variants={projectDropdownItemVariants}
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
+                        onClick={() => handleProjectClick(project.id)}
+                        className="block py-3 text-white text-xl font-medium hover:text-purple-300 transition-colors w-full text-left"
+                      >
+                        {project.title}
+                      </motion.button>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
               {/* Let's Talk button */}
               <motion.div

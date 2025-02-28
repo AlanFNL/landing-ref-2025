@@ -1,7 +1,7 @@
 {
   "navbar": {
     "1": "Quienes somos",
-    "2": "Proyectos",
+    "2": "Nuestros proyectos",
     "3": "Servicios",
     "4": "Clientes",
     "5": "Aumentar resultados ya"
@@ -13,7 +13,7 @@
     "3": "Ver video"
   },
 
-"about": {
+  "about": {
     "1": "Somos un estudio de innovación digital dedicado a hacerte crecer.",
     "2": "Completamos tus servicios mediante la implementación estratégica de marketing innovador",
     "3": "Completamos tus soluciones de marketing mediante la implementación de",
@@ -28,13 +28,7 @@
     "3": "Diseño y desarrollo de plataforma de Coach AI",
     "4": "Experiencia en el metaverso",
     "5": "Gestión de evento",
-    "6": "Ver más proyectos",
-    "title": "Nuestros Proyectos",
-    "description": "Descubre nuestros innovadores proyectos que abarcan diversos dominios, incluyendo experiencias de metaverso, creación de contenido y desarrollo web.",
-    "cta": "Explorar Nuestro Trabajo",
-    "back": "Volver",
-    "featured": "Proyectos Destacados",
-    "learn_more": "Saber más"
+    "6": "Ver más proyectos"
   },
 
   "services": {

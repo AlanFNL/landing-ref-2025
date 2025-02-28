@@ -55,19 +55,28 @@ module.exports = {
             '100%': { transform: 'translateX(0%)' },
           },
         },
-            animation: {
-              "meteor-effect": "meteor 5s linear infinite",
+        animation: {
+          "meteor-effect": "meteor 5s linear infinite",
+        },
+        keyframes: {
+          meteor: {
+            "0%": { transform: "rotate(215deg) translateX(0)", opacity: "1" },
+            "70%": { opacity: "1" },
+            "100%": {
+              transform: "rotate(215deg) translateX(-500px)",
+              opacity: "0",
             },
-            keyframes: {
-              meteor: {
-                "0%": { transform: "rotate(215deg) translateX(0)", opacity: "1" },
-                "70%": { opacity: "1" },
-                "100%": {
-                  transform: "rotate(215deg) translateX(-500px)",
-                  opacity: "0",
-                },
-              },
-            },
+          },
+        },
+        backgroundImage: {
+          'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        },
+        perspective: {
+          'none': 'none',
+          '500': '500px',
+          '1000': '1000px',
+          '2000': '2000px',
+        },
       },
     },
     plugins: [],

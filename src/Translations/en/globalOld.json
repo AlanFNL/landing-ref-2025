@@ -1,7 +1,7 @@
 {
   "navbar": {
     "1": "About Us",
-    "2": "Projects",
+    "2": "Our Projects",
     "3": "Services",
     "4": "Clients",
     "5": "Boost Results Now"
@@ -13,7 +13,7 @@
     "3": "Watch video"
   },
 
-"about": {
+  "about": {
     "1": "We are a digital innovation studio dedicated to making you grow.",
     "2": "We complete your services through the strategic implementation of innovative marketing",
     "3": "We complete your marketing solutions through the implementation of",
@@ -28,13 +28,7 @@
     "3": "Design and development of Coach AI platform",
     "4": "Metaverse experience",
     "5": "Event management",
-    "6": "See more projects",
-    "title": "Our Projects",
-    "description": "Discover our innovative projects spanning across various domains including metaverse experiences, content creation, and web development.",
-    "cta": "Explore Our Work",
-    "back": "Back",
-    "featured": "Featured Projects",
-    "learn_more": "Learn more"
+    "6": "See more projects"
   },
 
   "services": {
@@ -44,7 +38,7 @@
     "4": "VR and AR Experiences",
     "5": "Web Development, Blockchain and AI Integrations",
     "6": "Product and Strategy",
-    "7": "Companies & Partners"
+    "7": "Companies we worked with"
   },
 
   "problem": {
@@ -264,12 +258,12 @@
     }
   },
 
-"services_section": {
-    "welcome": "Explore",
-    "title": "Our Services",
-    "description": "Unlock your brand's full potential with expert marketing solutions tailored to your needs.",
+  "services_section": {
+    "welcome": "Welcome to",
+    "title": "Digital Excellence",
+    "description": "Transform your digital presence with our premium marketing services",
     "background_text": "Our Services"
-},
+  },
 
   "testimonials": {
     "1": "A key milestone in 2024 has been integrating Reforce Infinity to enhance our communication. THANK YOU for driving our vision, wearing the Unajera jersey, and helping us connect more effectively.",

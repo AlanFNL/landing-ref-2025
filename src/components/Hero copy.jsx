@@ -132,7 +132,7 @@ function Hero({ scrollToSection }) {
       className="w-screen min-h-fit h-screen bg-[url('./assets/gradient-1.webp')] bg-cover overflow-hidden flex flex-col"
     >
       <div
-        className="max-w-[1200px] mt-24 md:mb-4 p-0 md:p-2 m-auto relative z-10"
+        className="max-w-[1200px] mt-16 md:mb-4 p-0 md:p-2 m-auto relative z-10"
         ref={heroHeaderRef}
       >
         <div className="flex flex-col justify-center items-center text-center mt-24 md:mt-0 p-4 md:p-12">
@@ -151,7 +151,7 @@ function Hero({ scrollToSection }) {
           <AnimatedText
             animationKey={animationKey}
             text={t("about.1")}
-            className="text-3xl md:text-7xl font-bold text-white leading-tight max-w-rxl"
+            className="text-3xl md:text-7xl font-bold text-white leading-tight"
             delay={0.1}
             lines={3}
             lineDelay={0.1}
@@ -161,7 +161,7 @@ function Hero({ scrollToSection }) {
           <AnimatedText
             animationKey={animationKey}
             text={t("about.2")}
-            className=" text-sm md:text-3xl text-white/80 font-bold mt-8 max-w-3xl"
+            className="text-sm md:text-3xl text-white/80 mt-8 max-w-3xl"
             delay={0.4}
             lines={2}
             lineDelay={0.05}
