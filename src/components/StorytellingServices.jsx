@@ -47,15 +47,6 @@ export const StorytellingServices = ({ scrollToSection }) => {
       hue: "from-blue-600/30 to-transparent",
     },
     {
-      id: "vr-ar",
-      title: t("service3.1"),
-      description: t("service3.2"),
-      animation: stock3,
-      ctaText: t("service3.8"),
-      color: "from-teal-500 to-emerald-400",
-      hue: "from-teal-500/30 to-transparent",
-    },
-    {
       id: "influencer",
       title: t("service5.1"),
       description: t("service5.2"),
