@@ -1,23 +1,10 @@
 import React, { forwardRef, useEffect, useState, useRef } from "react";
 
-import {
-  Instagram,
-  Linkedin,
-  ArrowRight,
-  Calendar,
-  CheckCircle,
-} from "lucide-react";
+import { ArrowRight, CheckCircle } from "lucide-react";
 
 import { useTranslation } from "react-i18next";
 import { PopupButton } from "react-calendly";
-import {
-  motion,
-  useMotionTemplate,
-  useMotionValue,
-  animate,
-  useInView,
-  AnimatePresence,
-} from "framer-motion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 
 const Contact = forwardRef((props, ref) => {
   const [t, i18n] = useTranslation("global");
