@@ -458,7 +458,7 @@ const Projects = forwardRef((props, ref) => {
 
                   {/* Coming Soon Card */}
                   <motion.div
-                    className="relative h-full w-full overflow-hidden rounded-2xl border border-white/10 bg-black/30 backdrop-blur-sm col-span-3"
+                    className="relative h-full w-full overflow-hidden rounded-2xl border border-white/10 bg-black/30 backdrop-blur-sm md:col-span-3 min-h-[160px] my-2 md:my-4"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{
                       opacity: isInView ? 1 : 0,
@@ -495,8 +495,8 @@ const Projects = forwardRef((props, ref) => {
                       />
                     </div>
 
-                    <div className="relative z-20 flex h-full flex-col items-center justify-center p-8 text-center">
-                      <p className="text-base text-purple-200/80 max-w-lg">
+                    <div className="relative z-20 flex h-full flex-col items-center justify-center py-8 px-4 md:px-8 text-center">
+                      <p className="text-sm md:text-base text-purple-200/80 max-w-lg">
                         {t(
                           "projects.stay_tuned",
                           "Additional project showcases are coming to our website soon. Stay tuned!"
