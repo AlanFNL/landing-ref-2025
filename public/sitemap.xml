@@ -8,11 +8,27 @@
   <!-- Homepage -->
   <url>
     <loc>https://www.reforceinfinity.com/</loc>
-    <lastmod>2025-02-15T12:19:32+00:00</lastmod>
+    <lastmod>2025-03-01T12:19:32+00:00</lastmod>
     <priority>1.0</priority>
   </url>
 
- 
+  <!-- Projects -->
+  <url>
+    <loc>https://www.reforceinfinity.com/projects/uala</loc>
+    <lastmod>2025-03-01T10:00:00+00:00</lastmod>
+    <priority>0.8</priority>
+  </url>
 
-  
+  <url>
+    <loc>https://www.reforceinfinity.com/projects/unaje</loc>
+    <lastmod>2025-03-01T10:00:00+00:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.reforceinfinity.com/projects/chester</loc>
+    <lastmod>2025-03-01T10:00:00+00:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
