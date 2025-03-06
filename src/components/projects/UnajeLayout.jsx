@@ -27,7 +27,7 @@ const UnajeLayout = ({
   i18n,
 }) => {
   return (
-    <div className="w-full max-w-screen-2xl mx-auto px-4 lg:px-0 py-16">
+    <div className="w-full max-w-7xl mx-auto px-4 lg:px-0 py-16">
       {/* Section navigation pills */}
       <motion.div
         className="relative mb-12 md:mb-16 mx-auto"
