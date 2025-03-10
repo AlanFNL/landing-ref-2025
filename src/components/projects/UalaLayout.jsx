@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import FloatingNav from "./FloatingNav";
+import useScrollSpy from "../../hooks/useScrollSpy";
 
 const UalaLayout = ({
   project,
@@ -12,52 +14,43 @@ const UalaLayout = ({
   projectSlug,
   i18n,
 }) => {
+  // Define sections for navigation
+  const sections = [
+    { id: "context", label: i18n.language === "en" ? "Context" : "Contexto" },
+    {
+      id: "challenge",
+      label: i18n.language === "en" ? "Challenge" : "Desafío",
+    },
+    { id: "solution", label: i18n.language === "en" ? "Solution" : "Solución" },
+    { id: "gallery", label: i18n.language === "en" ? "Gallery" : "Galería" },
+    {
+      id: "related",
+      label: i18n.language === "en" ? "Related" : "Relacionados",
+    },
+  ];
+
+  // Track the active section based on scroll position - improved detection
+  const activeSection = useScrollSpy(
+    sections.map((section) => section.id),
+    { threshold: 0.05, rootMargin: "0px 0px -80% 0px" }
+  );
+
+  // Update the current section in parent component when scrolling
+  useEffect(() => {
+    if (
+      activeSection &&
+      sections.some((section) => section.id === activeSection)
+    ) {
+      setCurrentSection(activeSection);
+    }
+  }, [activeSection, setCurrentSection, sections]);
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-16">
-      {/* Section navigation pills */}
-      <motion.div
-        className="relative mb-12 md:mb-16 mx-auto"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3 }}
-      >
-        {/* Left fade indicator for scrolling */}
-        <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none md:hidden"></div>
+      {/* Floating Section Navigation */}
+      <FloatingNav sections={sections} activeSection={activeSection} />
 
-        {/* Right fade indicator for scrolling */}
-        <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none md:hidden"></div>
-
-        {/* Scrollable container */}
-        <div className="flex overflow-x-auto hide-scrollbar py-2 px-4 md:px-0 md:justify-center md:overflow-visible">
-          <div className="flex space-x-2 md:space-x-4 px-4 md:px-0">
-            {["context", "challenge", "solution"].map((section) => (
-              <button
-                key={section}
-                onClick={() => setCurrentSection(section)}
-                className={`whitespace-nowrap px-3 md:px-6 py-2 md:py-3 rounded-full text-xs md:text-sm font-bold transition-all flex-shrink-0 ${
-                  currentSection === section
-                    ? "bg-purple-600 text-white shadow-lg shadow-purple-600/20"
-                    : "bg-gray-800/50 text-gray-300 hover:bg-gray-800"
-                }`}
-              >
-                {i18n.language === "en"
-                  ? section.charAt(0).toUpperCase() + section.slice(1)
-                  : section === "context"
-                  ? "Contexto"
-                  : section === "challenge"
-                  ? "Desafío"
-                  : section === "solution"
-                  ? "Solución"
-                  : section === "implementation"
-                  ? "Implementación"
-                  : "Resultados"}
-              </button>
-            ))}
-          </div>
-        </div>
-      </motion.div>
-
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-24">
         {/* Left Column - Header and Content */}
         <motion.div
           className="md:col-span-7 space-y-8"
@@ -82,77 +75,89 @@ const UalaLayout = ({
             </div>
           </div>
 
-          {/* Dynamic content based on selected section */}
-          <AnimatePresence mode="wait">
+          {/* Context Section - ID at the top for better detection */}
+          <div className="pt-16">
+            <div id="context" className="absolute -mt-24 invisible"></div>
             <motion.div
-              key={currentSection}
+              className="space-y-6 min-h-[300px]"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-              className="space-y-6"
+              transition={{ duration: 0.5 }}
             >
-              {currentSection === "context" && (
-                <motion.div>
-                  <h3 className="text-2xl font-semibold mb-4 text-purple-300">
-                    {i18n.language === "en" ? "About Ualá" : "Sobre Ualá"}
-                  </h3>
-                  <p className="text-gray-300 leading-relaxed">
-                    {projectContent.context}
-                  </p>
-                </motion.div>
-              )}
-
-              {currentSection === "challenge" && (
-                <motion.div>
-                  <h3 className="text-2xl font-semibold mb-4 text-purple-300">
-                    {i18n.language === "en" ? "Challenge" : "Reto"}
-                  </h3>
-                  <p className="text-gray-300 leading-relaxed">
-                    {projectContent.challenge}
-                  </p>
-                </motion.div>
-              )}
-
-              {currentSection === "solution" && (
-                <motion.div>
-                  <h3 className="text-2xl font-semibold mb-4 text-purple-300">
-                    {i18n.language === "en"
-                      ? "Solution Approach"
-                      : "Enfoque de Solución"}
-                  </h3>
-                  <p className="text-gray-300 leading-relaxed mb-8">
-                    {projectContent.solution}
-                  </p>
-
-                  <h4 className="text-xl font-medium mb-4 text-white">
-                    {i18n.language === "en"
-                      ? "The project included:"
-                      : "El proyecto incluyó:"}
-                  </h4>
-                  <ul className="space-y-4">
-                    {projectContent.project_included.map((item, idx) => (
-                      <motion.li
-                        key={idx}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.1 * idx }}
-                        className="flex items-start"
-                      >
-                        <span className="text-purple-400 mr-3 mt-1">•</span>
-                        <p className="text-gray-300">{item}</p>
-                      </motion.li>
-                    ))}
-                  </ul>
-                </motion.div>
-              )}
+              <h3 className="text-2xl font-semibold mb-4 text-purple-300">
+                {i18n.language === "en" ? "About Ualá" : "Sobre Ualá"}
+              </h3>
+              <p className="text-gray-300 leading-relaxed">
+                {projectContent.context}
+              </p>
             </motion.div>
-          </AnimatePresence>
+          </div>
+
+          {/* Challenge Section - ID at the top for better detection */}
+          <div className="pt-24">
+            <div id="challenge" className="absolute -mt-24 invisible"></div>
+            <motion.div
+              className="space-y-6 min-h-[300px]"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <h3 className="text-2xl font-semibold mb-4 text-purple-300">
+                {i18n.language === "en" ? "Challenge" : "Reto"}
+              </h3>
+              <p className="text-gray-300 leading-relaxed">
+                {projectContent.challenge}
+              </p>
+            </motion.div>
+          </div>
+
+          {/* Solution Section - ID at the top for better detection */}
+          <div className="pt-24">
+            <div id="solution" className="absolute -mt-24 invisible"></div>
+            <motion.div
+              className="space-y-6 min-h-[300px]"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <h3 className="text-2xl font-semibold mb-4 text-purple-300">
+                {i18n.language === "en"
+                  ? "Solution Approach"
+                  : "Enfoque de Solución"}
+              </h3>
+              <p className="text-gray-300 leading-relaxed mb-8">
+                {projectContent.solution}
+              </p>
+
+              <h4 className="text-xl font-medium mb-4 text-white">
+                {i18n.language === "en"
+                  ? "The project included:"
+                  : "El proyecto incluyó:"}
+              </h4>
+              <ul className="space-y-4">
+                {projectContent.project_included.map((item, idx) => (
+                  <motion.li
+                    key={idx}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.1 * idx }}
+                    className="flex items-start"
+                  >
+                    <span className="text-purple-400 mr-3 mt-1">•</span>
+                    <p className="text-gray-300">{item}</p>
+                  </motion.li>
+                ))}
+              </ul>
+            </motion.div>
+          </div>
         </motion.div>
 
         {/* Right Column - Featured Image with floating effect */}
         <motion.div
-          className="md:col-span-5 relative h-[500px]"
+          className="md:col-span-5 relative h-[500px] sticky top-24"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.5 }}
@@ -197,74 +202,78 @@ const UalaLayout = ({
         </motion.div>
       </div>
 
-      {/* Gallery Grid - Custom Layout */}
-      <motion.div
-        className="mt-20"
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.7, duration: 0.6 }}
-      >
-        <h3 className="text-2xl font-semibold mb-8 text-purple-300">
-          {i18n.language === "en" ? "Gallery" : "Galería"}
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-          {/* Large Images (first 2) */}
-          {project.gallery
-            .filter((item) => item.large)
-            .map((item, idx) => (
-              <motion.div
-                key={`large-${idx}`}
-                className="md:col-span-6 rounded-lg overflow-hidden bg-gray-800 aspect-video"
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-              >
-                <img
-                  src={item.src}
-                  alt={`${project.title} gallery ${idx + 1}`}
-                  className="w-full h-full object-cover"
-                />
-              </motion.div>
-            ))}
+      {/* Gallery Section - Full width with ID at the top */}
+      <div className="w-full pt-16 pb-16 min-h-[500px]">
+        <div id="gallery" className="absolute -mt-24 invisible"></div>
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h3 className="text-2xl font-semibold mb-8 text-purple-300">
+            {i18n.language === "en" ? "Gallery" : "Galería"}
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+            {/* Large Images (first 2) */}
+            {project.gallery
+              .filter((item) => item.large)
+              .map((item, idx) => (
+                <motion.div
+                  key={`large-${idx}`}
+                  className="md:col-span-6 rounded-lg overflow-hidden bg-gray-800 aspect-video"
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <img
+                    src={item.src}
+                    alt={`${project.title} gallery ${idx + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                </motion.div>
+              ))}
 
-          {/* Small Images (remaining 3) */}
-          {project.gallery
-            .filter((item) => item.small)
-            .map((item, idx) => (
-              <motion.div
-                key={`small-${idx}`}
-                className="md:col-span-4 rounded-lg overflow-hidden bg-gray-800 aspect-square"
-                whileHover={{ scale: 1.02 }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  delay: 0.7 + idx * 0.1,
-                  duration: 0.6,
-                }}
-              >
-                <img
-                  src={item.src}
-                  alt={`${project.title} gallery ${idx + 3}`}
-                  className="w-full h-full object-cover"
-                />
-              </motion.div>
-            ))}
-        </div>
-      </motion.div>
+            {/* Small Images (remaining 3) */}
+            {project.gallery
+              .filter((item) => item.small)
+              .map((item, idx) => (
+                <motion.div
+                  key={`small-${idx}`}
+                  className="md:col-span-4 rounded-lg overflow-hidden bg-gray-800 aspect-square"
+                  whileHover={{ scale: 1.02 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    delay: 0.1 * idx,
+                    duration: 0.6,
+                  }}
+                >
+                  <img
+                    src={item.src}
+                    alt={`${project.title} gallery ${idx + 3}`}
+                    className="w-full h-full object-cover"
+                  />
+                </motion.div>
+              ))}
+          </div>
+        </motion.div>
+      </div>
 
-      {/* Related Projects / Footer */}
-      <motion.div
-        className="mt-32"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.9, duration: 0.6 }}
-      >
-        <h3 className="text-2xl font-bold mb-8">
-          {i18n.language === "en" ? "Other Projects" : "Otros Proyectos"}
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Related projects rendering... */}
-          {relatedProjects.map((relatedProject, idx) => {
-            return (
+      {/* Related Projects / Footer - Full width with ID at the top */}
+      <div className="w-full pt-16 pb-16">
+        <div id="related" className="absolute -mt-24 invisible"></div>
+        <motion.div
+          className="mt-32"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.9, duration: 0.6 }}
+        >
+          <h3 className="text-2xl font-bold mb-8">
+            {i18n.language === "en" ? "Other Projects" : "Otros Proyectos"}
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {relatedProjects.map((relatedProject, idx) => (
               <Link
                 key={idx}
                 to={`/projects/${relatedProject.id}`}
@@ -302,10 +311,10 @@ const UalaLayout = ({
                   </div>
                 </motion.div>
               </Link>
-            );
-          })}
-        </div>
-      </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </div>
     </div>
   );
 };
