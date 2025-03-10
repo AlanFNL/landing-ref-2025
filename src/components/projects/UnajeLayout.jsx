@@ -186,9 +186,7 @@ const UnajeLayout = ({
 
         {/* Right Column - Featured Image with floating effect */}
         <motion.div
-          className={`md:col-span-5 relative h-[500px] ${
-            pastIntroSections ? "" : "sticky top-24"
-          }`}
+          className={`md:col-span-5 h-[500px] sticky top-24`}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.5 }}
