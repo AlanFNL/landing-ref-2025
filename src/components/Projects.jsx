@@ -41,25 +41,25 @@ const ProjectCard = ({ project, index, isInView, t, onCardClick }) => {
     onCardClick(project, index);
   };
 
-  // Simplified hover gradient - less intensive
+  // Optimized hover gradient for Safari - using a simpler approach with fewer transforms
   const background = useMotionTemplate`radial-gradient(
-    450px circle at ${mouseX}px ${mouseY}px,
-    rgba(168, 85, 247, 0.1),
-    transparent 70%
+    400px circle at ${mouseX}px ${mouseY}px,
+    rgba(168, 85, 247, 0.08),
+    transparent 80%
   )`;
 
   return (
     <motion.div
       ref={cardRef}
-      className="relative h-full w-full overflow-hidden rounded-2xl border border-white/10 bg-black/30 backdrop-blur-sm cursor-pointer"
+      className="relative h-full w-full overflow-hidden rounded-2xl border border-white/10 bg-black/30 backdrop-blur-sm cursor-pointer will-change-transform"
       initial={{ opacity: 0, y: 20 }}
       animate={{
         opacity: isInView ? 1 : 0,
         y: isInView ? 0 : 20,
         transition: {
-          delay: index * 0.1,
-          duration: 0.4,
-          ease: [0.23, 1, 0.32, 1],
+          delay: Math.min(index * 0.05, 0.15),
+          duration: 0.25,
+          ease: "easeOut",
         },
       }}
       whileHover={{
@@ -68,9 +68,14 @@ const ProjectCard = ({ project, index, isInView, t, onCardClick }) => {
       }}
       onClick={handleClick}
       onMouseMove={handleMouseMove}
-      tabIndex="0"
       onKeyDown={handleKeyDown}
-      aria-label={`View details for ${project.title} project`}
+      tabIndex={0}
+      role="button"
+      aria-label={t("projects.view", "View") + " " + project.title}
+      style={{
+        transform: "translateZ(0)",
+        willChange: "transform, opacity",
+      }}
     >
       <motion.div
         className="pointer-events-none absolute inset-0 z-10"
@@ -225,29 +230,29 @@ const Projects = forwardRef((props, ref) => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.1,
+        staggerChildren: 0.08,
+        delayChildren: 0.05,
       },
     },
     exit: {
       opacity: 0,
-      y: -20,
+      y: -10,
       transition: {
-        duration: 0.4,
-        ease: [0.4, 0, 0.2, 1],
+        duration: 0.3,
+        ease: "easeOut",
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 15 },
+    hidden: { opacity: 0, y: 10 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        type: "spring",
-        stiffness: 260,
-        damping: 20,
+        type: "tween",
+        duration: 0.25,
+        ease: "easeOut",
       },
     },
   };
@@ -287,44 +292,45 @@ const Projects = forwardRef((props, ref) => {
           <motion.div
             className="absolute inset-0 overflow-hidden"
             initial={{ opacity: 0 }}
-            animate={{ opacity: [0, 0.9, 0.7] }}
-            transition={{ duration: 3, times: [0, 0.6, 1] }}
+            animate={{ opacity: [0, 0.7, 0.6] }}
+            transition={{ duration: 2, times: [0, 0.6, 1] }}
             onAnimationComplete={() => setAnimationComplete(true)}
+            style={{
+              transform: "translateZ(0)",
+              willChange: "opacity",
+            }}
           >
             <motion.div
-              className="absolute top-0 -left-[30%] h-[120%] w-[160%] bg-gradient-to-r from-purple-900/10 via-purple-600/20 to-indigo-600/10 blur-[65px]"
+              className="absolute top-0 -left-[30%] h-[120%] w-[160%] bg-gradient-to-r from-purple-900/10 via-purple-600/20 to-indigo-600/10 blur-[60px]"
               initial={{ x: "-100%", rotate: -5, scale: 0.8 }}
-              animate={{ x: "50%", rotate: 2, scale: 1.2 }}
+              animate={{ x: "50%", rotate: 0, scale: 1.1 }}
               transition={{
-                duration: 3,
-                ease: "easeInOut",
+                duration: 2,
+                ease: "easeOut",
+              }}
+              style={{
+                transform: "translateZ(0)",
+                willChange: "transform",
               }}
             />
 
             <motion.div
-              className="absolute top-1/3 left-1/2 -translate-x-1/2 h-72 w-72 rounded-full bg-purple-500/20 blur-[60px]"
-              initial={{ scale: 0.5, opacity: 0 }}
-              animate={{ scale: [0.5, 1.5, 1.2], opacity: [0, 0.9, 0] }}
-              transition={{
-                duration: 3,
-                times: [0, 0.5, 1],
-                ease: "easeInOut",
-              }}
-            />
-
-            <motion.div
-              className="absolute top-1/4 left-1/4 h-32 w-32 rounded-full bg-fuchsia-500/15 blur-[40px]"
+              className="absolute top-1/4 left-1/4 h-32 w-32 rounded-full bg-fuchsia-500/15 blur-[30px]"
               initial={{ opacity: 0, scale: 0.2 }}
               animate={{
-                opacity: [0, 0.8, 0],
-                scale: [0.2, 1.3, 0.8],
-                x: [0, 100, 50],
-                y: [0, -50, -100],
+                opacity: [0, 0.6, 0],
+                scale: [0.2, 1.2, 0.8],
+                x: [0, 80, 40],
+                y: [0, -40, -80],
               }}
               transition={{
-                duration: 2.5,
+                duration: 2,
                 times: [0, 0.6, 1],
                 ease: "easeOut",
+              }}
+              style={{
+                transform: "translateZ(0)",
+                willChange: "transform, opacity",
               }}
             />
           </motion.div>
@@ -342,9 +348,13 @@ const Projects = forwardRef((props, ref) => {
         <motion.div
           layout
           transition={{
-            layout: { duration: 0.5, ease: [0.23, 1, 0.32, 1] },
+            layout: { duration: 0.35, ease: "easeOut" },
           }}
           className="relative"
+          style={{
+            transform: "translateZ(0)",
+            willChange: "transform",
+          }}
         >
           <AnimatePresence mode="wait">
             {!showCards ? (
@@ -355,6 +365,10 @@ const Projects = forwardRef((props, ref) => {
                 initial="hidden"
                 animate="visible"
                 exit="exit"
+                style={{
+                  transform: "translateZ(0)",
+                  willChange: "opacity, transform",
+                }}
               >
                 <motion.div
                   variants={itemVariants}
@@ -367,9 +381,11 @@ const Projects = forwardRef((props, ref) => {
                     className="absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-purple-600 via-purple-400 to-purple-600"
                     initial={{ width: "0%" }}
                     animate={{ width: "100%" }}
-                    transition={{ delay: 0.5, duration: 0.6 }}
+                    transition={{ delay: 0.3, duration: 0.4 }}
                     style={{
-                      filter: "drop-shadow(0 0 8px rgba(168, 85, 247, 0.4))",
+                      filter: "drop-shadow(0 0 6px rgba(168, 85, 247, 0.3))",
+                      transform: "translateZ(0)",
+                      willChange: "width",
                     }}
                   />
                 </motion.div>
@@ -425,7 +441,11 @@ const Projects = forwardRef((props, ref) => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.25 }}
+                style={{
+                  transform: "translateZ(0)",
+                  willChange: "opacity",
+                }}
               >
                 <div className="mb-8 flex items-center justify-between">
                   <button
@@ -456,22 +476,26 @@ const Projects = forwardRef((props, ref) => {
                     />
                   ))}
 
-                  {/* Coming Soon Card */}
+                  {/* Coming Soon Card - Further Optimized for Safari */}
                   <motion.div
-                    className="relative h-full w-full overflow-hidden rounded-2xl border border-white/10 bg-black/30 backdrop-blur-sm md:col-span-3 min-h-[160px] my-2 md:my-4"
+                    className="relative h-full w-full overflow-hidden rounded-2xl border border-white/10 bg-black/30 backdrop-blur-sm md:col-span-3 min-h-[160px] my-2 md:my-4 will-change-transform"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{
                       opacity: isInView ? 1 : 0,
                       y: isInView ? 0 : 20,
                       transition: {
-                        delay: projects.length * 0.1,
-                        duration: 0.4,
-                        ease: [0.23, 1, 0.32, 1],
+                        delay: Math.min(projects.length * 0.05, 0.15),
+                        duration: 0.25,
+                        ease: "easeOut",
                       },
                     }}
                     whileHover={{
                       scale: 1.01,
                       transition: { duration: 0.2 },
+                    }}
+                    style={{
+                      transform: "translateZ(0)",
+                      willChange: "transform, opacity",
                     }}
                   >
                     <div className="absolute inset-0 z-0">
