@@ -90,7 +90,12 @@ function Footer({ scrollToSection }) {
           </h3>
           <div className="flex flex-col sm:flex-row gap-4">
             <motion.button
-              onClick={() => handleContactClick("consultation")}
+              onClick={() =>
+                window.open(
+                  "https://calendly.com/reforce/web3-marketing-call",
+                  "_blank"
+                )
+              }
               className="flex items-center gap-2 px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg shadow-lg hover:shadow-purple-500/25 transition-colors"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}

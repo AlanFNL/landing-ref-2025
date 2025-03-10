@@ -225,7 +225,7 @@ const Contact = forwardRef((props, ref) => {
                     whileTap={{ scale: 0.98 }}
                     onClick={() =>
                       window.open(
-                        "https://calendar.app.google/ZuKQyM54fZDDK2Li6",
+                        "https://calendly.com/reforce/web3-marketing-call",
                         "_blank"
                       )
                     }
