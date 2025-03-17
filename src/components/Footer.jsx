@@ -103,15 +103,6 @@ function Footer({ scrollToSection }) {
               <Calendar className="w-4 h-4" />
               {t("footer.schedule_consultation")}
             </motion.button>
-            <motion.button
-              onClick={() => handleContactClick("message")}
-              className="flex items-center gap-2 px-6 py-3 border border-[#ffffff52] bg-white text-purple-800 rounded-lg transition-colors"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <Send className="w-4 h-4" />
-              {t("footer.send_message")}
-            </motion.button>
           </div>
         </motion.div>
       </div>
