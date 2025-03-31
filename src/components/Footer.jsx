@@ -96,7 +96,7 @@ function Footer({ scrollToSection }) {
                   "_blank"
                 )
               }
-              className="flex items-center gap-2 px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg shadow-lg hover:shadow-purple-500/25 transition-colors"
+              className="flex items-center gap-2 px-6 py-3 bg-white text-purple-500 font-bold border-[#ffffff52] rounded-lg shadow-lg hover:shadow-purple-500/25 transition-colors"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
