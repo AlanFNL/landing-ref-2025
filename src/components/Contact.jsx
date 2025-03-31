@@ -168,7 +168,7 @@ const Contact = forwardRef((props, ref) => {
                     "_blank"
                   )
                 }
-                className="group relative w-[80vw] md:w-fit flex items-center gap-3 px-8 py-4 bg-white text-purple-500 border-[#ffffff52] backdrop-blur-sm rounded-xl font-medium transition-all border hover:shadow-purple-500/25"
+                className="group relative w-[80vw] md:w-fit flex items-center gap-3 px-8 py-4 bg-purple-600 text-white backdrop-blur-sm rounded-xl font-medium transition-all border border-white/20 hover:shadow-purple-500/25"
                 aria-label="Schedule a free consultation"
                 tabIndex="0"
                 onKeyDown={(e) => {
