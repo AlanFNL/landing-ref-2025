@@ -456,7 +456,6 @@ const Projects = forwardRef((props, ref) => {
                     aria-label="Back to projects overview"
                   >
                     <ArrowRight className="h-4 w-4 rotate-180" />
-                    {t("projects.back", "Back")}
                   </button>
                   <h3 className="text-2xl font-bold text-white">
                     {t("projects.featured", "Featured Projects")}

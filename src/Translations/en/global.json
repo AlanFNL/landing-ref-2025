@@ -13,9 +13,13 @@
     "3": "Watch video"
   },
 
-"about": {
+  "our_work": {
+    "title": "OUR WORK"
+  },
+
+  "about": {
     "1": "We are a digital innovation studio dedicated to making you grow.",
-    "2": "We complete your services through the strategic implementation of innovative marketing",
+    "2": "We scale your digital presence through the strategic implementation of artificial intelligence and innovative marketing",
     "3": "We complete your marketing solutions through the implementation of",
     "4": "emerging technologies.",
     "new": "Crafting solutions that drive results",
@@ -29,11 +33,11 @@
     "4": "Metaverse experience",
     "5": "Event management",
     "6": "See more projects",
-    "title": "Our Projects",
-    "description": "Discover our innovative projects spanning across various domains including metaverse experiences, content creation, and web development.",
-    "cta": "Explore Our Work",
+    "title": "Case Studies",
+    "description": "Explore our detailed case studies showcasing successful projects and client outcomes across various industries.",
+    "cta": "Explore Case Studies",
     "back": "Back",
-    "featured": "Featured Projects",
+    "featured": "Featured Case Studies",
     "learn_more": "Learn more",
       "more_coming_soon": "We're constantly expanding our portfolio with exciting new work.",
     "stay_tuned": "Additional project showcases are coming to our website soon. Stay tuned!"
@@ -272,6 +276,11 @@
     "description": "Swift. Strategic. Successful.",
     "background_text": "Our Services"
 },
+
+  "videos": {
+    "title": "Motion Graphics & Animations",
+    "subtitle": "Visual storytelling through dynamic motion graphics and captivating animations."
+  },
 
   "testimonials": {
     "1": "A key milestone in 2024 has been integrating Reforce Infinity to enhance our communication. THANK YOU for driving our vision, wearing the Unajera jersey, and helping us connect more effectively.",

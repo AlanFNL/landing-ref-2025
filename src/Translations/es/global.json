@@ -13,7 +13,11 @@
     "3": "Ver video"
   },
 
-"about": {
+  "our_work": {
+    "title": "NUESTRO TRABAJO"
+  },
+
+  "about": {
     "1": "Somos un estudio de innovación digital dedicado a hacerte crecer.",
     "2": "Completamos tus servicios mediante la implementación estratégica de marketing innovador",
     "3": "Completamos tus soluciones de marketing mediante la implementación de",
@@ -29,11 +33,11 @@
     "4": "Experiencia en el metaverso",
     "5": "Gestión de evento",
     "6": "Ver más proyectos",
-    "title": "Nuestros Proyectos",
-    "description": "Descubre nuestros innovadores proyectos que abarcan diversos dominios, incluyendo experiencias de metaverso, creación de contenido y desarrollo web.",
-    "cta": "Explorar Nuestro Trabajo",
+    "title": "Casos de Estudio",
+    "description": "Explora nuestros casos de estudio detallados que muestran proyectos exitosos y resultados para clientes en diversas industrias.",
+    "cta": "Explorar Casos de Estudio",
     "back": "Volver",
-    "featured": "Proyectos Destacados",
+    "featured": "Casos de Estudio Destacados",
     "learn_more": "Saber más",
     "more_coming_soon": "Estamos constantemente expandiendo nuestro portafolio con nuevos proyectos emocionantes.",
     "stay_tuned": "Más proyectos destacados llegarán a nuestro sitio web pronto."
@@ -271,6 +275,11 @@
     "title": "Servicios Completos de Marketing",
     "description": "Rápidos. Estratégicos. Exitosos.",
     "background_text": "Nuestros Servicios"
+  },
+
+  "videos": {
+    "title": "Motion Graphics y Animaciones",
+    "subtitle": "Narración visual a través de dinámicos gráficos en movimiento y animaciones cautivadoras."
   },
 
   "testimonials": {

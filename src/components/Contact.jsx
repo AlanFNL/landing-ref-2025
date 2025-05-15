@@ -164,7 +164,7 @@ const Contact = forwardRef((props, ref) => {
                 whileTap={{ scale: 0.98 }}
                 onClick={() =>
                   window.open(
-                    "https://calendly.com/reforce/web3-marketing-call",
+                    "https://calendly.com/reforceinfinity-info/30min",
                     "_blank"
                   )
                 }
@@ -174,7 +174,7 @@ const Contact = forwardRef((props, ref) => {
                 onKeyDown={(e) => {
                   if (e.key === "Enter" || e.key === " ") {
                     window.open(
-                      "https://calendly.com/reforce/web3-marketing-call",
+                      "https://calendly.com/reforceinfinity-info/30min",
                       "_blank"
                     );
                   }

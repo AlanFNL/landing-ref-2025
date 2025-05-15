@@ -14,6 +14,8 @@ import Footer from "./components/Footer";
 import { ReactLenis } from "lenis/dist/lenis-react";
 import FAQ from "./components/FAQ";
 import Testimonials from "./components/Testimonials";
+import VideoShowcase from "./components/VideoShowcase.jsx";
+import OurWork from "./components/OurWork.jsx";
 
 // Export the smoothScroll function for use in other components
 export const smoothScroll = (target, duration = 1000) => {
@@ -134,13 +136,15 @@ function App() {
           <div ref={servicesRef}>
             <StorytellingServices scrollToSection={scrollToSection} />
           </div>
+          <div ref={projectsRef}>
+            <OurWork scrollToSection={scrollToSection} />
+          </div>
+
           <Bento scrollToSection={scrollToSection} />
           <div ref={clientsRef}>
             <BrandCarousel />
           </div>
-          <div ref={projectsRef}>
-            <Projects scrollToSection={scrollToSection} />
-          </div>
+
           <div ref={contactRef}>
             <Contact
               initialView={contactView}

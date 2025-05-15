@@ -27,3 +27,24 @@ export const BarChart3 = lazy(() =>
 export const Target = lazy(() =>
   import("lucide-react").then((mod) => ({ default: mod.Target }))
 );
+export const ArrowRight = lazy(() =>
+  import("lucide-react").then((mod) => ({ default: mod.ArrowRight }))
+);
+export const Clock = lazy(() =>
+  import("lucide-react").then((mod) => ({ default: mod.Clock }))
+);
+export const Percent = lazy(() =>
+  import("lucide-react").then((mod) => ({ default: mod.Percent }))
+);
+export const ChevronRight = lazy(() =>
+  import("lucide-react").then((mod) => ({ default: mod.ChevronRight }))
+);
+export const Rocket = lazy(() =>
+  import("lucide-react").then((mod) => ({ default: mod.Rocket }))
+);
+export const Play = lazy(() =>
+  import("lucide-react").then((mod) => ({ default: mod.Play }))
+);
+export const X = lazy(() =>
+  import("lucide-react").then((mod) => ({ default: mod.X }))
+);

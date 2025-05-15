@@ -92,7 +92,7 @@ function Footer({ scrollToSection }) {
             <motion.button
               onClick={() =>
                 window.open(
-                  "https://calendly.com/reforce/web3-marketing-call",
+                  "https://calendly.com/reforceinfinity-info/30min",
                   "_blank"
                 )
               }
