@@ -1,4 +1,10 @@
-import { StrictMode, createContext, useState } from "react";
+import {
+  StrictMode,
+  createContext,
+  useState,
+  useMemo,
+  useCallback,
+} from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
@@ -10,17 +16,47 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ProjectDetail from "./components/ProjectDetail.jsx";
 import { Analytics } from "@vercel/analytics/react";
 
-// Create context for sharing scrollToSection function
-export const ScrollContext = createContext(null);
+// Define default functions for the context
+const defaultScrollToSection = (targetName, viewOptions, openPopup) => {
+  console.warn(
+    "ScrollContext: scrollToSection called before App initialized or outside provider. Target:",
+    targetName
+  );
+};
+
+const defaultSetScrollFunction = (fn) => {
+  console.warn(
+    "ScrollContext: setScrollFunction called before App initialized or outside provider. Function:",
+    fn
+  );
+};
+
+// Create context with a default value to prevent null errors
+export const ScrollContext = createContext({
+  scrollToSection: defaultScrollToSection,
+  setScrollFunction: defaultSetScrollFunction,
+});
 
 // Wrapper component to provide context
 const AppWrapper = ({ children }) => {
-  const [scrollFunction, setScrollFunction] = useState(null);
+  // scrollFunctionInState will hold the actual scrollToSection function registered by App.jsx
+  // Initialize it with the default no-op/warning function.
+  const [scrollFunctionInState, setScrollFunctionInState] = useState(
+    () => defaultScrollToSection
+  );
+
+  // Value provided to context consumers
+  // setScrollFunction passed to context is the function App.jsx will call to register its own scrollToSection
+  const contextValue = useMemo(
+    () => ({
+      scrollToSection: scrollFunctionInState,
+      setScrollFunction: setScrollFunctionInState, // App.jsx will call this with its scrollToSection function
+    }),
+    [scrollFunctionInState]
+  );
 
   return (
-    <ScrollContext.Provider
-      value={{ scrollToSection: scrollFunction, setScrollFunction }}
-    >
+    <ScrollContext.Provider value={contextValue}>
       {children}
     </ScrollContext.Provider>
   );

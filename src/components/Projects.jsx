@@ -161,7 +161,7 @@ const Projects = forwardRef((props, ref) => {
     },
     {
       id: "chester",
-      title: "Chester",
+      title: "Chester - PepsiCo",
       pills: ["NFT", "Web Dev", "Ads"],
       image: chesterBg,
     },

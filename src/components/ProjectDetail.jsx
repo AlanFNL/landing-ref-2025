@@ -170,7 +170,7 @@ const ProjectDetail = () => {
     },
     {
       id: "chester",
-      title: "Chester",
+      title: "Chester - PepsiCo",
       subtitle: "NFT Development",
       cover: chester9,
       pills: ["NFT", "Web Dev", "Blockchain"],

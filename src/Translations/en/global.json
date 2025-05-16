@@ -288,5 +288,10 @@
     "title": "What Our Clients Say",
     "subtitle": "Trusted by leading companies worldwide",
     "role_at": "at"
+  },
+
+  "hero": {
+    "featured_on_bookface": "Featured on Bookface by",
+    "trusted_by_startups": "Trusted by"
   }
 }

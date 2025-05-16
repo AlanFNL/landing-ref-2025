@@ -19,7 +19,7 @@
 
   "about": {
     "1": "Somos un estudio de innovación digital dedicado a hacerte crecer.",
-    "2": "Completamos tus servicios mediante la implementación estratégica de marketing innovador",
+    "2": "Completamos tus servicios mediante la implementación estratégica de inteligencia artificial y marketing innovador",
     "3": "Completamos tus soluciones de marketing mediante la implementación de",
     "4": "tecnologías emergentes.",
     "new": "Creando soluciones que generan resultados",
@@ -288,5 +288,10 @@
     "title": "Lo que Dicen Nuestros Clientes",
     "subtitle": "Empresas líderes confían en nosotros",
     "role_at": "en"
+  },
+
+  "hero": {
+    "featured_on_bookface": "Destacado en Bookface por",
+    "trusted_by_startups": "Con la confianza de"
   }
 }

@@ -132,7 +132,7 @@ function Hero({ scrollToSection }) {
   return (
     <motion.section
       ref={sectionRef}
-      className="w-screen h-fit bg-[url('./assets/gradient-1.webp')] bg-cover overflow-hidden flex flex-col justify-center relative"
+      className="w-screen min-h-fit h-[100dvh] bg-[url('./assets/gradient-1.webp')] bg-cover overflow-hidden flex flex-col justify-center relative"
     >
       <div
         className="max-w-[1200px] mx-auto px-4 md:px-8 pt-24 md:pt-38 z-10 flex flex-col items-center"
@@ -150,7 +150,7 @@ function Hero({ scrollToSection }) {
 
           <div className="flex gap-2 items-center text-white/90 text-sm font-medium">
             <span className="flex items-center justify-center gap-2">
-              Featured on Bookface by{" "}
+              {t("hero.featured_on_bookface")}{" "}
               <img src={ycombinator} className="size-4" /> Combinator
             </span>
           </div>
@@ -236,8 +236,9 @@ function Hero({ scrollToSection }) {
           transition={{ duration: 0.5, delay: 1.5 }}
           className="mt-8 text-center pb-16"
         >
-          <p className="text-white/70 text-sm mb-6 font-medium tracking-wide">
-            Trusted by Y Combinator Startups
+          <p className="text-white/70 text-sm mb-6 font-medium tracking-wide flex gap-2">
+            {t("hero.trusted_by_startups")}{" "}
+            <img src={ycombinator} className="size-4" /> Combinator Startups
           </p>
           <div className="flex justify-center items-center gap-10 md:gap-16">
             {/* Placeholder logo 1 */}

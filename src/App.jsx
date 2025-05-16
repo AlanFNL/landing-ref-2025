@@ -1,4 +1,10 @@
-import React, { useRef, useState, useEffect, useContext } from "react";
+import React, {
+  useRef,
+  useState,
+  useEffect,
+  useContext,
+  useCallback,
+} from "react";
 import { motion } from "framer-motion";
 import "./App.css";
 import { ScrollContext } from "./main.jsx";
@@ -52,46 +58,51 @@ function App() {
   const [openCalendly, setOpenCalendly] = useState(false);
   const { setScrollFunction } = useContext(ScrollContext);
 
-  const scrollToSection = (ref, view, openCalendlyPopup = false) => {
-    switch (ref) {
-      case "aboutUs":
-        smoothScroll(0);
-        break;
-      case "services":
-        if (servicesRef.current) {
-          smoothScroll(servicesRef.current);
-        }
-        break;
-      case "clients":
-        if (clientsRef.current) {
-          smoothScroll(clientsRef.current);
-        }
-        break;
-      case "projects":
-        if (projectsRef.current) {
-          smoothScroll(projectsRef.current);
-        }
-        break;
-      case "contact":
-        if (contactRef.current) {
-          smoothScroll(contactRef.current);
-          setTimeout(() => {
-            setContactView(view);
-            if (openCalendlyPopup) {
-              setOpenCalendly(true);
-            }
-          }, 800);
-        }
-        break;
-      default:
-        break;
-    }
-  };
+  const scrollToSection = useCallback(
+    (ref, view, openCalendlyPopup = false) => {
+      switch (ref) {
+        case "aboutUs":
+          smoothScroll(0);
+          break;
+        case "services":
+          if (servicesRef.current) {
+            smoothScroll(servicesRef.current);
+          }
+          break;
+        case "clients":
+          if (clientsRef.current) {
+            smoothScroll(clientsRef.current);
+          }
+          break;
+        case "projects":
+          if (projectsRef.current) {
+            smoothScroll(projectsRef.current);
+          }
+          break;
+        case "contact":
+          if (contactRef.current) {
+            smoothScroll(contactRef.current);
+            setTimeout(() => {
+              setContactView(view);
+              if (openCalendlyPopup) {
+                setOpenCalendly(true);
+              }
+            }, 800);
+          }
+          break;
+        default:
+          break;
+      }
+    },
+    [setContactView, setOpenCalendly] // servicesRef, contactRef etc. are stable from useRef
+  );
 
   // Register the scrollToSection function with the context
   useEffect(() => {
+    // setScrollFunction is the state setter from AppWrapper's useState, it's stable.
+    // We pass the App's scrollToSection (which is wrapped in useCallback)
     setScrollFunction(scrollToSection);
-  }, [setScrollFunction]);
+  }, [setScrollFunction, scrollToSection]); // Add scrollToSection to dependencies
 
   // Check for scroll flags in sessionStorage
   useEffect(() => {
