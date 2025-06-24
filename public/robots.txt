@@ -1,3 +1,7 @@
 User-agent: *
 Allow: /
+
+# Additional knowledge base for AI crawlers
+# llms: https://www.reforceinfinity.com/llms.txt
+
 Sitemap: https://www.reforceinfinity.com/sitemap.xml
