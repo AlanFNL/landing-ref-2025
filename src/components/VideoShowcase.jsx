@@ -441,18 +441,6 @@ const VideoShowcase = () => {
       </div>
 
       {/* Glow Effect */}
-      <motion.div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2/3 h-2/3 bg-purple-500/10 rounded-full blur-[100px]"
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.2, 0.4, 0.2],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          repeatType: "reverse",
-        }}
-      />
 
       <div className="container mx-auto px-4 md:px-6 max-w-7xl relative z-10">
         {/* Section Header */}
