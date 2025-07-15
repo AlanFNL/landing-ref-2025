@@ -476,48 +476,6 @@ const Projects = forwardRef((props, ref) => {
                   ))}
 
                   {/* Coming Soon Card - Further Optimized for Safari */}
-                  <motion.div
-                    className="relative h-full w-full overflow-hidden rounded-2xl border border-white/10 bg-black/30 backdrop-blur-sm md:col-span-3 min-h-[160px] my-2 md:my-4 will-change-transform"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{
-                      opacity: isInView ? 1 : 0,
-                      y: isInView ? 0 : 20,
-                      transition: {
-                        delay: Math.min(projects.length * 0.05, 0.15),
-                        duration: 0.25,
-                        ease: "easeOut",
-                      },
-                    }}
-                    whileHover={{
-                      scale: 1.01,
-                      transition: { duration: 0.2 },
-                    }}
-                    style={{
-                      transform: "translateZ(0)",
-                      willChange: "transform, opacity",
-                    }}
-                  >
-                    <div className="absolute inset-0 z-0">
-                      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 via-black/80 to-black/90" />
-
-                      {/* Animated gradient background */}
-                      <motion.div
-                        className="absolute inset-0 opacity-30"
-                        animate={{
-                          background: [
-                            "linear-gradient(45deg, rgba(168, 85, 247, 0.2) 0%, rgba(80, 70, 230, 0.1) 100%)",
-                            "linear-gradient(45deg, rgba(80, 70, 230, 0.1) 0%, rgba(168, 85, 247, 0.2) 100%)",
-                            "linear-gradient(45deg, rgba(168, 85, 247, 0.2) 0%, rgba(80, 70, 230, 0.1) 100%)",
-                          ],
-                        }}
-                        transition={{
-                          duration: 8,
-                          repeat: Infinity,
-                          repeatType: "reverse",
-                        }}
-                      />
-                    </div>
-                  </motion.div>
                 </div>
               </motion.div>
             )}
