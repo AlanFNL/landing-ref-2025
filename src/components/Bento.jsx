@@ -297,11 +297,6 @@ export default function Bento({ scrollToSection }) {
                     +<CountingNumber value="11" />
                     <span className="text-4xl md:text-5xl ml-1">M</span>
                   </motion.div>
-                  <motion.div
-                    className="absolute -top-2 -right-2 w-5 h-5 bg-purple-500/50 rounded-full blur-md"
-                    animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  />
                 </div>
                 <p className="text-gray-500 mt-2 text-xl">
                   {t("bento.total_impressions") || "Total Impressions"}
