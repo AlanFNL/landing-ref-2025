@@ -281,14 +281,7 @@ const VideoModal = ({ isOpen, onClose, videoUrl, title }) => {
 };
 
 // Video Thumbnail Component
-const VideoThumbnail = ({
-  video,
-  index,
-  parallaxValue,
-  onClick,
-  isMobile,
-  isFirstUnhighlighted,
-}) => {
+const VideoThumbnail = ({ video, index, parallaxValue, onClick, isMobile }) => {
   const { t } = useTranslation("global");
   const cardRef = useRef(null);
   const isInView = useScroll({
@@ -311,10 +304,6 @@ const VideoThumbnail = ({
         video.isHighlighted
           ? "md:col-span-2 lg:row-span-1 xl:row-span-2 aspect-video md:aspect-[16/9]"
           : "aspect-square"
-      } ${
-        !isMobile && !video.isHighlighted && isFirstUnhighlighted
-          ? "xl:col-start-2"
-          : ""
       }`}
       style={isMobile ? {} : { y }}
       onClick={onClick}
@@ -440,10 +429,6 @@ const VideoShowcase = () => {
     });
   };
 
-  const firstUnhighlightedVideoIndex = videoData.findIndex(
-    (video) => !video.isHighlighted
-  );
-
   return (
     <section className="w-full bg-black py-16 md:py-20 relative overflow-hidden">
       {/* Background Grid */}
@@ -516,7 +501,6 @@ const VideoShowcase = () => {
               parallaxValue={scrollYProgress}
               onClick={() => handleVideoSelect(video)}
               isMobile={isMobile}
-              isFirstUnhighlighted={index === firstUnhighlightedVideoIndex}
             />
           ))}
         </motion.div>
