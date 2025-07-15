@@ -21,7 +21,6 @@ import thumb2 from "../assets/videos/2.webp";
 import thumb3 from "../assets/videos/3.webp";
 import thumb4 from "../assets/videos/4.webp";
 import thumb5 from "../assets/videos/5.webp";
-import thumb6 from "../assets/videos/6.webp";
 
 // Import videos properly instead of using URL strings
 import video1 from "../assets/videos/1.mp4";
@@ -29,7 +28,6 @@ import video2 from "../assets/videos/2.mp4";
 import video3 from "../assets/videos/3.mp4";
 import video4 from "../assets/videos/4.mp4";
 import video5 from "../assets/videos/5.mp4";
-import video6 from "../assets/videos/6.mp4";
 
 // Video data using imported files
 const videoData = [
@@ -73,14 +71,6 @@ const videoData = [
     description: "",
     thumbnail: thumb5,
     videoUrl: video5,
-    isHighlighted: false,
-  },
-  {
-    id: 6,
-    title: "Comulate",
-    description: "",
-    thumbnail: thumb6,
-    videoUrl: video6,
     isHighlighted: false,
   },
 ];

@@ -517,15 +517,6 @@ const Projects = forwardRef((props, ref) => {
                         }}
                       />
                     </div>
-
-                    <div className="relative z-20 flex h-full flex-col items-center justify-center py-8 px-4 md:px-8 text-center">
-                      <p className="text-sm md:text-base text-purple-200/80 max-w-lg">
-                        {t(
-                          "projects.stay_tuned",
-                          "Additional project showcases are coming to our website soon. Stay tuned!"
-                        )}
-                      </p>
-                    </div>
                   </motion.div>
                 </div>
               </motion.div>
