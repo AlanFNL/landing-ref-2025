@@ -401,6 +401,12 @@ const VideoShowcase = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [isPending, startTransition] = useTransition();
 
+  // Separate videos into highlighted and non-highlighted
+  const highlightedVideos = videoData.filter((video) => video.isHighlighted);
+  const nonHighlightedVideos = videoData.filter(
+    (video) => !video.isHighlighted
+  );
+
   // Check if screen is mobile on component mount and on resize
   useEffect(() => {
     const checkMobile = () => {
@@ -484,25 +490,42 @@ const VideoShowcase = () => {
           </div>
         )}
 
-        {/* Video Grid */}
+        {/* Video Grid Container */}
         <motion.div
           ref={containerRef}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 md:gap-6"
+          className="space-y-4 sm:space-y-5 md:space-y-6" // Use space-y to separate the two grids vertically
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true, amount: 0.1 }}
         >
-          {videoData.map((video, index) => (
-            <VideoThumbnail
-              key={video.id}
-              video={video}
-              index={index}
-              parallaxValue={scrollYProgress}
-              onClick={() => handleVideoSelect(video)}
-              isMobile={isMobile}
-            />
-          ))}
+          {/* Highlighted Videos Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4 sm:gap-5 md:gap-6">
+            {highlightedVideos.map((video, index) => (
+              <VideoThumbnail
+                key={video.id}
+                video={video}
+                index={index}
+                parallaxValue={scrollYProgress}
+                onClick={() => handleVideoSelect(video)}
+                isMobile={isMobile}
+              />
+            ))}
+          </div>
+
+          {/* Non-highlighted Videos Grid - Centered */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 mx-auto w-full md:w-fit gap-4 sm:gap-5 md:gap-6">
+            {nonHighlightedVideos.map((video, index) => (
+              <VideoThumbnail
+                key={video.id}
+                video={video}
+                index={index + highlightedVideos.length}
+                parallaxValue={scrollYProgress}
+                onClick={() => handleVideoSelect(video)}
+                isMobile={isMobile}
+              />
+            ))}
+          </div>
         </motion.div>
       </div>
 
