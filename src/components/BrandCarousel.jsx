@@ -130,6 +130,7 @@ const LogoColumn = React.memo(({ logos, index, currentTime, isInView }) => {
 });
 
 const BrandCarousel = forwardRef(({ clientsRef }, ref) => {
+  const isServer = typeof window === "undefined";
   const [t, i18n] = useTranslation("global");
   const [logoSets, setLogoSets] = useState([]);
   const [currentTime, setCurrentTime] = useState(0);
@@ -182,8 +183,10 @@ const BrandCarousel = forwardRef(({ clientsRef }, ref) => {
   }, [isInView]);
 
   useEffect(() => {
-    const browserLang = navigator.language;
-    i18n.changeLanguage(browserLang.startsWith("es") ? "es" : "en");
+    if (typeof window !== "undefined") {
+      const browserLang = navigator.language;
+      i18n.changeLanguage(browserLang.startsWith("es") ? "es" : "en");
+    }
   }, [i18n]);
 
   return (
@@ -208,7 +211,7 @@ const BrandCarousel = forwardRef(({ clientsRef }, ref) => {
       </div>
 
       <motion.h1
-        initial={{ opacity: 0, y: 40 }}
+        initial={isServer ? false : { opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ ease: "easeInOut", duration: 0.75 }}
         viewport={{ once: true }}
@@ -217,17 +220,46 @@ const BrandCarousel = forwardRef(({ clientsRef }, ref) => {
         {t("services.7")}
       </motion.h1>
 
-      <div className="relative z-10 flex justify-center space-x-4">
-        {logoSets.map((columnLogos, index) => (
-          <LogoColumn
-            key={index}
-            logos={columnLogos}
-            index={index}
-            currentTime={currentTime}
-            isInView={isInView}
-          />
-        ))}
-      </div>
+      {isServer ? (
+        <div className="relative z-10 mx-auto max-w-5xl px-6">
+          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {[
+              "Uala",
+              "pepsico",
+              "unaje",
+              "g20 young entrepreneurs alliance",
+              "fuseai",
+              "youshift",
+              "hkstp partner",
+              "the sandbox",
+              "hrztl",
+              "fije",
+              "give&get",
+              "charles taylor",
+              "millenium group",
+            ].map((name) => (
+              <li
+                key={name}
+                className="text-center text-white/90 bg-white/5 border border-white/10 rounded-xl px-4 py-2 backdrop-blur-sm"
+              >
+                {name}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : (
+        <div className="relative z-10 flex justify-center space-x-4">
+          {logoSets.map((columnLogos, index) => (
+            <LogoColumn
+              key={index}
+              logos={columnLogos}
+              index={index}
+              currentTime={currentTime}
+              isInView={isInView}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 });

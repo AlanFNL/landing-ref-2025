@@ -19,15 +19,15 @@ function Hero({ scrollToSection }) {
   const [animationKey, setAnimationKey] = useState(0);
 
   useEffect(() => {
-    // Check the browser's language and set the language accordingly
-    const browserLang = navigator.language;
-    if (browserLang.startsWith("es")) {
-      i18n.changeLanguage("es");
-    } else {
-      i18n.changeLanguage("en");
+    if (typeof window !== "undefined") {
+      const browserLang = navigator.language;
+      if (browserLang && browserLang.startsWith("es")) {
+        i18n.changeLanguage("es");
+      } else {
+        i18n.changeLanguage("en");
+      }
+      setAnimationKey((prev) => prev + 1);
     }
-    // Trigger animation reset when language changes
-    setAnimationKey((prev) => prev + 1);
   }, [i18n]);
 
   useEffect(() => {
@@ -141,7 +141,9 @@ function Hero({ scrollToSection }) {
         {/* Featured Badge with Laurel */}
         <motion.div
           key={`featured-${animationKey}`}
-          initial={{ opacity: 0, y: -10 }}
+          initial={
+            typeof window === "undefined" ? false : { opacity: 0, y: -10 }
+          }
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           className="mb-8 flex items-center justify-center bg-white/10 border-2 border-white/10 px-2 py-1 rounded-full"
@@ -185,7 +187,9 @@ function Hero({ scrollToSection }) {
         <motion.div
           key={`cta-${animationKey}`}
           className="mt-2"
-          initial={{ opacity: 0, y: 20 }}
+          initial={
+            typeof window === "undefined" ? false : { opacity: 0, y: 20 }
+          }
           animate={{ opacity: 1, y: 0 }}
           transition={{
             duration: 0.5,
@@ -231,7 +235,9 @@ function Hero({ scrollToSection }) {
         {/* Trusted by Y Combinator Startups */}
         <motion.div
           key={`trusted-${animationKey}`}
-          initial={{ opacity: 0, y: 20 }}
+          initial={
+            typeof window === "undefined" ? false : { opacity: 0, y: 20 }
+          }
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 1.5 }}
           className="mt-8 text-center pb-16"

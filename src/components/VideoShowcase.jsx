@@ -352,7 +352,9 @@ const VideoThumbnail = ({ video, index, parallaxValue, onClick, isMobile }) => {
         {video.isHighlighted && video.badge && (
           <motion.div
             className="mb-2 sm:mb-3 bg-purple-500/80 text-white font-medium text-xs py-1 px-3 rounded-full backdrop-blur-sm w-fit"
-            initial={{ opacity: 0, y: 10 }}
+            initial={
+              typeof window === "undefined" ? false : { opacity: 0, y: 10 }
+            }
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
           >
@@ -363,7 +365,9 @@ const VideoThumbnail = ({ video, index, parallaxValue, onClick, isMobile }) => {
         {video.title && (
           <motion.h3
             className="text-lg sm:text-xl font-bold text-white mb-1"
-            initial={{ opacity: 0, y: 10 }}
+            initial={
+              typeof window === "undefined" ? false : { opacity: 0, y: 10 }
+            }
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
@@ -395,6 +399,7 @@ const VideoThumbnail = ({ video, index, parallaxValue, onClick, isMobile }) => {
 };
 
 const VideoShowcase = () => {
+  const isServer = typeof window === "undefined";
   const [t] = useTranslation("global");
   const [selectedVideo, setSelectedVideo] = useState(null);
   const containerRef = useRef(null);
@@ -447,7 +452,9 @@ const VideoShowcase = () => {
         <div className="text-center mb-10 md:mb-16">
           <motion.h2
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 md:mb-4"
-            initial={{ opacity: 0, y: 20 }}
+            initial={
+              typeof window === "undefined" ? false : { opacity: 0, y: 20 }
+            }
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
@@ -456,12 +463,13 @@ const VideoShowcase = () => {
           </motion.h2>
           <motion.p
             className="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto"
-            initial={{ opacity: 0 }}
+            initial={typeof window === "undefined" ? false : { opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            {t("videos.subtitle")}
+            {t("videos.subtitle") ||
+              "Visual storytelling through dynamic motion graphics and captivating animations."}
           </motion.p>
         </div>
 
@@ -476,7 +484,7 @@ const VideoShowcase = () => {
         <motion.div
           ref={containerRef}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 md:gap-6"
-          initial={{ opacity: 0, y: 40 }}
+          initial={isServer ? false : { opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true, amount: 0.1 }}

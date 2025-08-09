@@ -154,7 +154,7 @@ const OurWork = () => {
               hidden: { width: 0, opacity: 0 },
               visible: { width: "180px", opacity: 1 },
             }}
-            initial="hidden"
+            initial={typeof window === "undefined" ? "visible" : "hidden"}
             animate={controls}
             transition={{
               duration: 1.2,
@@ -173,7 +173,7 @@ const OurWork = () => {
               hidden: { opacity: 0, y: 20 },
               visible: { opacity: 0.9, y: 0 },
             }}
-            initial="hidden"
+            initial={typeof window === "undefined" ? "visible" : "hidden"}
             animate={controls}
             transition={{
               duration: 0.8,

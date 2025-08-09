@@ -13,11 +13,13 @@ const Contact = forwardRef((props, ref) => {
   });
 
   useEffect(() => {
-    const browserLang = navigator.language;
-    if (browserLang.startsWith("es")) {
-      i18n.changeLanguage("es");
-    } else {
-      i18n.changeLanguage("en");
+    if (typeof window !== "undefined") {
+      const browserLang = navigator.language;
+      if (browserLang && browserLang.startsWith("es")) {
+        i18n.changeLanguage("es");
+      } else {
+        i18n.changeLanguage("en");
+      }
     }
   }, [i18n]);
 
@@ -89,7 +91,7 @@ const Contact = forwardRef((props, ref) => {
   return (
     <motion.div
       className="w-[98vw] m-auto rounded-xl min-h-screen flex flex-col bg-gradient-to-bl from-purple-900/90 via-slate-900/95 items-center justify-center px-4 py-16 bg-black/60"
-      initial={{ opacity: 0 }}
+      initial={typeof window === "undefined" ? false : { opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: false, margin: "-100px" }}
       transition={{ duration: 0.8 }}
@@ -104,14 +106,16 @@ const Contact = forwardRef((props, ref) => {
     >
       <motion.div
         className="w-full max-w-3xl mx-auto text-center"
-        initial={{ opacity: 0, y: 20 }}
+        initial={typeof window === "undefined" ? false : { opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, margin: "-100px" }}
         transition={{ duration: 0.8 }}
       >
         <motion.div
           key="consultation"
-          initial={{ opacity: 0, y: 20 }}
+          initial={
+            typeof window === "undefined" ? false : { opacity: 0, y: 20 }
+          }
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="space-y-8"
@@ -120,7 +124,7 @@ const Contact = forwardRef((props, ref) => {
             <motion.h1
               className="text-5xl font-bold text-white mb-2"
               variants={titleVariants}
-              initial="hidden"
+              initial={typeof window === "undefined" ? "visible" : "hidden"}
               whileInView="visible"
               viewport={{ once: false }}
             >
@@ -129,7 +133,7 @@ const Contact = forwardRef((props, ref) => {
             <motion.div
               className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-purple-500 via-purple-300 to-purple-500"
               variants={glowVariants}
-              initial="hidden"
+              initial={typeof window === "undefined" ? "visible" : "hidden"}
               whileInView="visible"
               viewport={{ once: false }}
               style={glowingLineStyle}
@@ -139,7 +143,7 @@ const Contact = forwardRef((props, ref) => {
           <motion.p
             className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto"
             variants={descriptionVariants}
-            initial="hidden"
+            initial={typeof window === "undefined" ? "visible" : "hidden"}
             whileInView="visible"
             viewport={{ once: false }}
           >
@@ -148,7 +152,9 @@ const Contact = forwardRef((props, ref) => {
 
           <motion.div
             className="flex justify-center items-center"
-            initial={{ opacity: 0, y: 20 }}
+            initial={
+              typeof window === "undefined" ? false : { opacity: 0, y: 20 }
+            }
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
           >

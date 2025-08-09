@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import { motion } from "framer-motion";
 import "./App.css";
-import { ScrollContext } from "./main.jsx";
+import { ScrollContext } from "./providers.jsx";
 
 import Hero from "./components/Hero";
 import Bento from "./components/Bento";
@@ -50,6 +50,7 @@ export const smoothScroll = (target, duration = 1000) => {
 };
 
 function App() {
+  const isServer = typeof window === "undefined";
   const servicesRef = useRef(null);
   const contactRef = useRef(null);
   const clientsRef = useRef(null);
@@ -137,37 +138,68 @@ function App() {
   return (
     <>
       <motion.div className="w-screen h-fit overflow-clip bg-black">
-        <ReactLenis
-          root
-          options={{ lerp: 0.1, duration: 1.5, smoothWheel: true }}
-        >
-          <NavBar scrollToSection={scrollToSection} />
-          <Hero scrollToSection={scrollToSection} />
-          <BrandCarousel />
-          <div ref={servicesRef}>
-            <StorytellingServices scrollToSection={scrollToSection} />
-          </div>
-          <div ref={projectsRef}>
-            <OurWork scrollToSection={scrollToSection} />
-          </div>
-
-          <Bento scrollToSection={scrollToSection} />
-          <div ref={clientsRef}>
+        {isServer ? (
+          <>
+            <NavBar scrollToSection={scrollToSection} />
+            <Hero scrollToSection={scrollToSection} />
             <BrandCarousel />
-          </div>
+            <div ref={servicesRef}>
+              <StorytellingServices scrollToSection={scrollToSection} />
+            </div>
+            <div ref={projectsRef}>
+              <OurWork scrollToSection={scrollToSection} />
+            </div>
 
-          <div ref={contactRef}>
-            <Contact
-              initialView={contactView}
-              openCalendly={openCalendly}
-              setOpenCalendly={setOpenCalendly}
-            />
-          </div>
-          <Testimonials />
-          <FAQ />
+            <Bento scrollToSection={scrollToSection} />
+            <div ref={clientsRef}>
+              <BrandCarousel />
+            </div>
 
-          <Footer scrollToSection={scrollToSection} />
-        </ReactLenis>
+            <div ref={contactRef}>
+              <Contact
+                initialView={contactView}
+                openCalendly={openCalendly}
+                setOpenCalendly={setOpenCalendly}
+              />
+            </div>
+            <Testimonials />
+            <FAQ />
+
+            <Footer scrollToSection={scrollToSection} />
+          </>
+        ) : (
+          <ReactLenis
+            root
+            options={{ lerp: 0.1, duration: 1.5, smoothWheel: true }}
+          >
+            <NavBar scrollToSection={scrollToSection} />
+            <Hero scrollToSection={scrollToSection} />
+            <BrandCarousel />
+            <div ref={servicesRef}>
+              <StorytellingServices scrollToSection={scrollToSection} />
+            </div>
+            <div ref={projectsRef}>
+              <OurWork scrollToSection={scrollToSection} />
+            </div>
+
+            <Bento scrollToSection={scrollToSection} />
+            <div ref={clientsRef}>
+              <BrandCarousel />
+            </div>
+
+            <div ref={contactRef}>
+              <Contact
+                initialView={contactView}
+                openCalendly={openCalendly}
+                setOpenCalendly={setOpenCalendly}
+              />
+            </div>
+            <Testimonials />
+            <FAQ />
+
+            <Footer scrollToSection={scrollToSection} />
+          </ReactLenis>
+        )}
       </motion.div>
     </>
   );

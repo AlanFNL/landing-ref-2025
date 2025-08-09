@@ -56,6 +56,15 @@
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
 
+    <!-- No-JS fallback: ensure elements aren't stuck transparent or transformed -->
+    <noscript>
+      <style>
+        [style*="opacity: 0"] { opacity: 1 !important; }
+        [style*="transform"] { transform: none !important; }
+        .opacity-0 { opacity: 1 !important; }
+      </style>
+    </noscript>
+
     <!-- Structured Data -->
     <script type="application/ld+json">
       {
@@ -72,8 +81,8 @@
     </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"><!--ssr-outlet--></div>
 
-    <script type="module" src="/src/main.jsx"></script>
+    <script type="module" src="/src/entry-client.jsx"></script>
   </body>
 </html>

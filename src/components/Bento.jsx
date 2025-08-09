@@ -64,6 +64,7 @@ const GridBackground = () => {
 
 // Counting number animation component
 const CountingNumber = ({ value, suffix = "", prefix = "", duration = 2 }) => {
+  const isServer = typeof window === "undefined";
   const nodeRef = useRef(null);
   const isInView = useInView(nodeRef, { once: true, amount: 0.3 });
   const [displayValue, setDisplayValue] = useState(0);
@@ -98,6 +99,20 @@ const CountingNumber = ({ value, suffix = "", prefix = "", duration = 2 }) => {
     return () => clearInterval(timer);
   }, [isInView, numericValue, duration]);
 
+  if (isServer) {
+    const serverFormatted = Number(numericValue).toLocaleString("en-US", {
+      minimumFractionDigits: value.includes(".") ? 1 : 0,
+      maximumFractionDigits: value.includes(".") ? 1 : 0,
+    });
+    return (
+      <span ref={nodeRef} className="inline-flex items-baseline">
+        {prefix}
+        {serverFormatted}
+        {suffix}
+      </span>
+    );
+  }
+
   const formattedValue = displayValue.toLocaleString("en-US", {
     minimumFractionDigits: value.includes(".") ? 1 : 0,
     maximumFractionDigits: value.includes(".") ? 1 : 0,
@@ -114,6 +129,7 @@ const CountingNumber = ({ value, suffix = "", prefix = "", duration = 2 }) => {
 
 // Stat Card Component
 const StatCard = ({ icon: Icon, title, value, subtitle, delay = 0 }) => {
+  const isServer = typeof window === "undefined";
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
   const opacity = useSpring(0, { stiffness: 60, damping: 20 });
@@ -126,6 +142,8 @@ const StatCard = ({ icon: Icon, title, value, subtitle, delay = 0 }) => {
     ? "K"
     : value.endsWith("M")
     ? "M"
+    : value.endsWith("+")
+    ? "+"
     : "";
   const numericValue = value.replace(/[^0-9.]/g, "");
 
@@ -139,7 +157,7 @@ const StatCard = ({ icon: Icon, title, value, subtitle, delay = 0 }) => {
     <motion.div
       ref={ref}
       className="rounded-3xl bg-black/50 p-5 backdrop-blur-sm border border-white/10 flex flex-col justify-between relative overflow-hidden group h-full"
-      initial={{ opacity: 0, y: 20 }}
+      initial={typeof window === "undefined" ? false : { opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay }}
       whileHover={{
@@ -149,14 +167,16 @@ const StatCard = ({ icon: Icon, title, value, subtitle, delay = 0 }) => {
     >
       <motion.div
         className="absolute -bottom-32 -right-32 w-64 h-64 bg-purple-500/5 rounded-full blur-3xl"
-        initial={{ opacity: 0 }}
+        initial={typeof window === "undefined" ? false : { opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1, delay: delay + 0.2 }}
       />
 
       <div className="flex items-start justify-between">
         <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
+          initial={
+            typeof window === "undefined" ? false : { scale: 0.8, opacity: 0 }
+          }
           whileInView={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.5, delay: delay + 0.1 }}
           className="p-2 rounded-lg bg-black/30 backdrop-blur-sm"
@@ -169,7 +189,7 @@ const StatCard = ({ icon: Icon, title, value, subtitle, delay = 0 }) => {
       <div>
         <motion.h3
           className="text-2xl md:text-3xl font-bold text-white mt-4 flex items-baseline"
-          style={{ opacity }}
+          style={isServer ? { opacity: 1 } : { opacity }}
         >
           {value === "10+" ? (
             "10+"
@@ -224,7 +244,9 @@ export default function Bento({ scrollToSection }) {
         {/* Section Title */}
         <motion.div
           className="text-center mb-12 md:mb-16"
-          initial={{ opacity: 0, y: 30 }}
+          initial={
+            typeof window === "undefined" ? false : { opacity: 0, y: 30 }
+          }
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
@@ -235,7 +257,9 @@ export default function Bento({ scrollToSection }) {
           <motion.div
             ref={mainCardRef}
             className="rounded-3xl bg-black/50 p-8 md:p-10 backdrop-blur-md border border-white/10 relative overflow-hidden"
-            initial={{ opacity: 0, y: 30 }}
+            initial={
+              typeof window === "undefined" ? false : { opacity: 0, y: 30 }
+            }
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             whileHover={{
@@ -262,7 +286,11 @@ export default function Bento({ scrollToSection }) {
                 </motion.div>
                 <motion.h3
                   className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4"
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={
+                    typeof window === "undefined"
+                      ? false
+                      : { opacity: 0, y: 20 }
+                  }
                   animate={isMainCardInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: 0.3 }}
                 >
@@ -271,7 +299,9 @@ export default function Bento({ scrollToSection }) {
                 </motion.h3>
                 <motion.p
                   className="text-gray-400 md:text-lg"
-                  initial={{ opacity: 0 }}
+                  initial={
+                    typeof window === "undefined" ? false : { opacity: 0 }
+                  }
                   animate={isMainCardInView ? { opacity: 1 } : {}}
                   transition={{ duration: 0.5, delay: 0.5 }}
                 >
@@ -282,7 +312,9 @@ export default function Bento({ scrollToSection }) {
 
               <motion.div
                 className="flex flex-col justify-center items-center text-center  rounded-2xl p-6 "
-                initial={{ opacity: 0, x: 20 }}
+                initial={
+                  typeof window === "undefined" ? false : { opacity: 0, x: 20 }
+                }
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
@@ -343,7 +375,9 @@ export default function Bento({ scrollToSection }) {
           {/* CTA Card */}
           <motion.div
             className="rounded-3xl bg-black/50 p-8 backdrop-blur-sm border border-white/10 relative overflow-hidden"
-            initial={{ opacity: 0, y: 20 }}
+            initial={
+              typeof window === "undefined" ? false : { opacity: 0, y: 20 }
+            }
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.7 }}
             whileHover={{
@@ -353,7 +387,7 @@ export default function Bento({ scrollToSection }) {
           >
             <motion.div
               className="absolute -top-40 -left-40 w-96 h-96 bg-purple-500/10 rounded-full blur-[100px]"
-              initial={{ opacity: 0 }}
+              initial={typeof window === "undefined" ? false : { opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 1.5 }}
             />
@@ -361,8 +395,10 @@ export default function Bento({ scrollToSection }) {
             <div className="flex flex-col md:flex-row items-center justify-between gap-6">
               <div className="flex items-center gap-4">
                 <motion.div
-                  initial={{ scale: 0.9, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
+                  initial={
+                    typeof window === "undefined" ? false : { opacity: 0 }
+                  }
+                  whileInView={{ opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.8 }}
                   className="p-3 rounded-xl bg-black/40 backdrop-blur-sm"
                 >

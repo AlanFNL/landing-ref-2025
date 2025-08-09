@@ -6,4 +6,12 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   assetsInclude: ['**/*.lottie'],
+  build: {
+    rollupOptions: {
+      input: '/index.html',
+    },
+  },
+  ssr: {
+    noExternal: ['lenis']
+  }
 })

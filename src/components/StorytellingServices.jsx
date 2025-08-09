@@ -61,7 +61,9 @@ export const StorytellingServices = ({ scrollToSection }) => {
       {/* Left side content */}
       <div className="w-full md:w-1/2 flex flex-col justify-start md:justify-center p-8 md:p-16 sticky top-0 md:h-screen bg-[#0A0A0A] md:bg-transparent h-fit z-[11]">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={
+            typeof window === "undefined" ? false : { opacity: 0, y: 20 }
+          }
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="max-w-xl mt-16 md:mt-0"
@@ -96,7 +98,11 @@ export const StorytellingServices = ({ scrollToSection }) => {
             <motion.div
               key={index}
               className="flex items-center gap-6"
-              initial={{ opacity: 0.3 }}
+              initial={
+                typeof window === "undefined"
+                  ? { opacity: 1 }
+                  : { opacity: 0.3 }
+              }
               whileInView={{ opacity: 1 }}
               viewport={{ once: false, margin: "-150px 0px" }}
               transition={{ duration: 0.6 }}

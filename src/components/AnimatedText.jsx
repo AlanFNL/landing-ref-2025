@@ -10,6 +10,7 @@ const AnimatedText = ({
   animationKey, // Add this prop
 }) => {
   const controls = useAnimation();
+  const isServer = typeof window === "undefined";
 
   // Reset and restart animation when text or animationKey changes
   useEffect(() => {
@@ -53,6 +54,17 @@ const AnimatedText = ({
 
   // Split text into lines and words, respecting the lines prop
   const textLines = text.split("\n").slice(0, lines);
+
+  // On the server, render static text so SSG shows content without JS
+  if (isServer) {
+    return (
+      <div className={className}>
+        {textLines.map((line, lineIndex) => (
+          <div key={`${lineIndex}-ssr`}>{line}</div>
+        ))}
+      </div>
+    );
+  }
 
   return (
     <motion.div

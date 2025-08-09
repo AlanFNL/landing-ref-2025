@@ -52,7 +52,7 @@ const ProjectCard = ({ project, index, isInView, t, onCardClick }) => {
     <motion.div
       ref={cardRef}
       className="relative h-full w-full overflow-hidden rounded-2xl border border-white/10 bg-black/30 backdrop-blur-sm cursor-pointer will-change-transform"
-      initial={{ opacity: 0, y: 20 }}
+      initial={typeof window === "undefined" ? false : { opacity: 0, y: 20 }}
       animate={{
         opacity: isInView ? 1 : 0,
         y: isInView ? 0 : 20,
@@ -280,7 +280,7 @@ const Projects = forwardRef((props, ref) => {
 
         <motion.div
           className="absolute inset-0"
-          initial={{ opacity: 0 }}
+          initial={typeof window === "undefined" ? false : { opacity: 0 }}
           animate={{ opacity: animationComplete ? 1 : 0 }}
           transition={{ duration: 0.8 }}
         >
@@ -291,7 +291,7 @@ const Projects = forwardRef((props, ref) => {
         {animationStarted && !animationComplete && (
           <motion.div
             className="absolute inset-0 overflow-hidden"
-            initial={{ opacity: 0 }}
+            initial={typeof window === "undefined" ? 0.6 : 0}
             animate={{ opacity: [0, 0.7, 0.6] }}
             transition={{ duration: 2, times: [0, 0.6, 1] }}
             onAnimationComplete={() => setAnimationComplete(true)}
@@ -338,7 +338,7 @@ const Projects = forwardRef((props, ref) => {
 
         <motion.div
           className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-500/40 to-transparent"
-          initial={{ opacity: 0 }}
+          initial={typeof window === "undefined" ? 0.3 : 0}
           animate={{ opacity: isInView ? 0.3 : 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         />
@@ -357,12 +357,66 @@ const Projects = forwardRef((props, ref) => {
           }}
         >
           <AnimatePresence mode="wait">
-            {!showCards ? (
+            {typeof window === "undefined" ? (
+              // Server: show the intro content (text visible) and also render the cards list so users without JS can see projects
+              <motion.div
+                key="intro-ssr"
+                className="mx-auto max-w-3xl text-center"
+              >
+                <div className="relative mb-6 inline-block">
+                  <h2 className="text-5xl font-bold text-white">
+                    {t("projects.title", "Our Projects")}
+                  </h2>
+                </div>
+                <p className="mx-auto mb-8 max-w-2xl text-lg text-gray-300">
+                  {t(
+                    "projects.description",
+                    "Explore our detailed case studies showcasing successful projects and client outcomes across various industries."
+                  )}
+                </p>
+                <div className="grid gap-6 md:grid-cols-3 mt-8">
+                  {projects.map((project, index) => (
+                    <div
+                      key={project.id}
+                      className="relative h-full w-full overflow-hidden rounded-2xl border border-white/10 bg-black/30 backdrop-blur-sm"
+                    >
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="h-40 w-full object-cover object-center"
+                      />
+                      <div className="p-4">
+                        <div className="mb-2 flex flex-wrap gap-2">
+                          {project.pills.map((pill, idx) => (
+                            <span
+                              key={idx}
+                              className="rounded-full bg-purple-600/30 px-3 py-1 text-xs font-medium text-purple-200 backdrop-blur-sm"
+                            >
+                              {pill}
+                            </span>
+                          ))}
+                        </div>
+                        <h3 className="mb-2 text-xl font-bold text-white">
+                          {project.title}
+                        </h3>
+                        <a
+                          href={`/projects/${project.id}`}
+                          className="inline-flex items-center gap-2 text-sm font-medium text-purple-300 hover:text-white"
+                        >
+                          {t("projects.learn_more", "Learn more")}
+                          <ArrowRight className="h-4 w-4" />
+                        </a>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            ) : !showCards ? (
               <motion.div
                 key="intro"
                 className="mx-auto max-w-3xl text-center"
                 variants={introVariants}
-                initial="hidden"
+                initial={typeof window === "undefined" ? "visible" : "hidden"}
                 animate="visible"
                 exit="exit"
                 style={{

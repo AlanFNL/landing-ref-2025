@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { ChevronLeft, ArrowRight, Globe } from "lucide-react";
 import Footer from "./Footer";
 import NavBar from "./NavBar";
-import { ScrollContext } from "../main.jsx";
+import { ScrollContext } from "../providers.jsx";
 // Import project layout components
 import UalaLayout from "./projects/UalaLayout";
 import ChesterLayout from "./projects/ChesterLayout";

@@ -5,6 +5,7 @@ import testimonials2 from "../assets/testimonials2.webp";
 import { useTranslation } from "react-i18next";
 
 function Testimonials() {
+  const isServer = typeof window === "undefined";
   const [currentIndex, setCurrentIndex] = useState(0);
   const ref = useRef(null);
   const isInView = useInView(ref);
@@ -54,7 +55,7 @@ function Testimonials() {
       <div className="relative max-w-7xl mx-auto px-4">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={isServer ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
@@ -70,7 +71,7 @@ function Testimonials() {
           <AnimatePresence mode="wait">
             <motion.div
               key={currentIndex}
-              initial={{ opacity: 0, x: 100 }}
+              initial={isServer ? false : { opacity: 0, x: 100 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -100 }}
               transition={{ duration: 0.5, ease: "easeInOut" }}

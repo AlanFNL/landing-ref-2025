@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
 function FAQ() {
+  const isServer = typeof window === "undefined";
   const [openIndex, setOpenIndex] = useState(null);
   const [t] = useTranslation("global");
 
@@ -31,7 +32,7 @@ function FAQ() {
 
       <motion.div
         variants={containerVariants}
-        initial="hidden"
+        initial={isServer ? "visible" : "hidden"}
         whileInView="visible"
         className="space-y-4"
         viewport={{ once: true }}
@@ -58,19 +59,25 @@ function FAQ() {
               </motion.span>
             </motion.button>
 
-            <AnimatePresence>
-              {openIndex === index && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="border-t border-slate-800"
-                >
-                  <p className="p-6 text-slate-400">{item.answer}</p>
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {isServer ? (
+              <div className="border-t border-slate-800">
+                <p className="p-6 text-slate-400">{item.answer}</p>
+              </div>
+            ) : (
+              <AnimatePresence>
+                {openIndex === index && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="border-t border-slate-800"
+                  >
+                    <p className="p-6 text-slate-400">{item.answer}</p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            )}
           </motion.div>
         ))}
       </motion.div>

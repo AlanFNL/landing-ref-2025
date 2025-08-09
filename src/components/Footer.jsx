@@ -11,6 +11,7 @@ const IconFallback = () => (
 );
 
 function Footer({ scrollToSection }) {
+  const isServer = typeof window === "undefined";
   const [t] = useTranslation("global");
 
   const fadeInUp = {
@@ -38,7 +39,7 @@ function Footer({ scrollToSection }) {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
         {/* Logo and Description */}
         <motion.div
-          initial="initial"
+          initial={isServer ? false : "initial"}
           whileInView="animate"
           variants={fadeInUp}
           viewport={{ once: true, amount: 0.6 }}
@@ -53,7 +54,7 @@ function Footer({ scrollToSection }) {
 
         {/* Navigation */}
         <motion.div
-          initial="initial"
+          initial={isServer ? false : "initial"}
           whileInView="animate"
           variants={fadeInUp}
           viewport={{ once: true, amount: 0.6 }}
@@ -79,7 +80,7 @@ function Footer({ scrollToSection }) {
 
         {/* CTA Buttons */}
         <motion.div
-          initial="initial"
+          initial={isServer ? false : "initial"}
           whileInView="animate"
           variants={fadeInUp}
           viewport={{ once: true, amount: 0.3 }}
@@ -109,7 +110,7 @@ function Footer({ scrollToSection }) {
 
       {/* Bottom Section */}
       <motion.div
-        initial={{ opacity: 0 }}
+        initial={isServer ? false : { opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ delay: 0.3 }}
