@@ -17,6 +17,8 @@
       content="Somos un estudio de innovación digital dedicado a hacerte crecer."
     />
 
+
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.reforceinfinity.com/" />
@@ -56,6 +58,16 @@
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
 
+    <!-- PASTE THIS IN <head>: Initialize Cavia and optionally set config (e.g., clientId, endpoint). -->
+    <!-- Keep this before any other scripts that might call cavia(). -->
+    <script>
+      (function(c,a,v,i,a){
+        c[a] = c[a] || function(){ (c[a].q = c[a].q || []).push(arguments) };
+        c[a].l = Date.now();
+      })(window, document, 0, 0, 'cavia');
+      window.cavia('config', { clientId: 'reforce' });
+  </script>
+
     <!-- No-JS fallback: ensure elements aren't stuck transparent or transformed -->
     <noscript>
       <style>
@@ -82,7 +94,9 @@
   </head>
   <body>
     <div id="root"><!--ssr-outlet--></div>
-
+    <!-- PASTE THIS JUST BEFORE </body>: Load the Cavia tracking script (deferred). -->
+    <!-- If you didn't set clientId via head config, pass it via data-client-id here. -->
+    <script defer src="https://cavia-analytics.vercel.app/analytics.js"></script>
     <script type="module" src="/src/entry-client.jsx"></script>
   </body>
 </html>
