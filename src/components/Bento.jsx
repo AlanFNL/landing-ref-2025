@@ -445,7 +445,7 @@ export default function Bento({ scrollToSection }) {
                     />
                   </div>
                   <span className="text_button font-medium">
-                    {t("bento.cta_button") || "Schedule a free consultation"}
+                    {t("about.cta")}
                   </span>
                 </motion.button>
               </motion.div>
