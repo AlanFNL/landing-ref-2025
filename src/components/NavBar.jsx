@@ -320,9 +320,9 @@ function NavBar({ scrollToSection }) {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => handleMenuItemClick("contact")}
-                  className="button font-medium transition-all !px-4 !py-2 !text-sm"
+                  className="button font-medium transition-all !px-6 !py-2 !text-sm w-fit whitespace-nowrap"
                 >
-                  <span className="text_button font-medium !text-xs !w-fit">
+                  <span className="text_button font-medium">
                     {t("navbar.5")}
                   </span>
                 </motion.button>
@@ -498,7 +498,7 @@ function NavBar({ scrollToSection }) {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => handleMenuItemClick("contact")}
-                    className="button font-medium transition-all w-full !px-4 !py-3 !text-sm"
+                    className="button font-medium transition-all w-full !px-4 !py-3 !text-sm whitespace-nowrap"
                   >
                     <div className="dots_border"></div>
                     <div className="sparkle">
