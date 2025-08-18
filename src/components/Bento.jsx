@@ -16,6 +16,7 @@ import {
   ChevronRight,
   Rocket,
 } from "./icons";
+import { Sparkles } from "lucide-react";
 
 // Create a loading fallback for icons
 const IconFallback = () => (
@@ -409,36 +410,45 @@ export default function Bento({ scrollToSection }) {
                 </span>
               </div>
 
-              <motion.button
-                whileHover={{ scale: 1.03 }}
+              <motion.div
+                whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.2 }}
-                className="px-6 md:px-8 py-3 md:py-4 md:w-auto w-full bg-white text-black font-bold rounded-xl shadow-[0_0_15px_rgba(168,85,247,0.3)] hover:shadow-[0_0_25px_rgba(168,85,247,0.5)] transition-all group"
-                onClick={() => scrollToSection("contact")}
-                aria-label="Schedule a free consultation"
-                tabIndex="0"
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    scrollToSection("contact");
-                  }
-                }}
+                className="group relative flex justify-center items-center"
               >
-                <span className="inline-flex items-center gap-2">
-                  {t("bento.cta_button") || "Schedule a free consultation"}
-                  <motion.div
-                    initial={{ x: 0 }}
-                    animate={{ x: [0, 5, 0] }}
-                    transition={{
-                      duration: 1.5,
-                      repeat: Infinity,
-                      repeatType: "loop",
-                      repeatDelay: 2,
-                    }}
-                  >
-                    <ChevronRight className="w-5 h-5" />
-                  </motion.div>
-                </span>
-              </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() =>
+                    window.open(
+                      "https://calendly.com/reforceinfinity-info/30min",
+                      "_blank"
+                    )
+                  }
+                  className="button font-medium transition-all !px-8 !py-3"
+                  aria-label="Schedule a free consultation"
+                  tabIndex="0"
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      window.open(
+                        "https://calendly.com/reforceinfinity-info/30min",
+                        "_blank"
+                      );
+                    }
+                  }}
+                >
+                  <div className="dots_border"></div>
+                  <div className="sparkle">
+                    <Sparkles
+                      className="w-5 h-5"
+                      style={{ color: "#9810fa" }}
+                    />
+                  </div>
+                  <span className="text_button font-medium">
+                    {t("bento.cta_button") || "Schedule a free consultation"}
+                  </span>
+                </motion.button>
+              </motion.div>
             </div>
           </motion.div>
         </div>
