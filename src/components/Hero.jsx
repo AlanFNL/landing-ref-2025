@@ -207,13 +207,21 @@ function Hero({ scrollToSection }) {
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              onClick={() => scrollToSection("contact")}
+              onClick={() =>
+                window.open(
+                  "https://calendly.com/reforceinfinity-info/30min",
+                  "_blank"
+                )
+              }
               className="button font-medium transition-all"
               aria-label={t("about.cta")}
               tabIndex="0"
               onKeyDown={(e) => {
                 if (e.key === "Enter" || e.key === " ") {
-                  scrollToSection("contact");
+                  window.open(
+                    "https://calendly.com/reforceinfinity-info/30min",
+                    "_blank"
+                  );
                 }
               }}
             >

@@ -319,7 +319,12 @@ function NavBar({ scrollToSection }) {
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  onClick={() => handleMenuItemClick("contact")}
+                  onClick={() =>
+                    window.open(
+                      "https://calendly.com/reforceinfinity-info/30min",
+                      "_blank"
+                    )
+                  }
                   className="button font-medium transition-all !px-6 !py-2 !text-sm w-fit whitespace-nowrap"
                 >
                   <span className="text_button font-medium">
@@ -497,7 +502,12 @@ function NavBar({ scrollToSection }) {
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    onClick={() => handleMenuItemClick("contact")}
+                    onClick={() =>
+                      window.open(
+                        "https://calendly.com/reforceinfinity-info/30min",
+                        "_blank"
+                      )
+                    }
                     className="button font-medium transition-all w-full !px-4 !py-3 !text-sm whitespace-nowrap"
                   >
                     <div className="dots_border"></div>
