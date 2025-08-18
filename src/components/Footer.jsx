@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import logo from "../assets/reflogo.webp";
 // Import lazy loaded icons
 import { Linkedin, Instagram, Send, Calendar } from "./icons";
+import { Sparkles } from "lucide-react";
 
 // Create a loading fallback for icons
 const IconFallback = () => (
@@ -32,6 +33,18 @@ function Footer({ scrollToSection }) {
     } else if (type === "message") {
       scrollToSection("contact", "form", false); // Will open form after delay
     }
+  };
+
+  const buttonTextStyle = {
+    color: "#9333ea", // purple-600
+    position: "relative",
+    zIndex: 10,
+  };
+
+  const iconStyle = {
+    color: "#9333ea", // purple-600
+    position: "relative",
+    zIndex: 10,
   };
 
   return (
@@ -91,18 +104,34 @@ function Footer({ scrollToSection }) {
           </h3>
           <div className="flex flex-col sm:flex-row gap-4">
             <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               onClick={() =>
                 window.open(
                   "https://calendly.com/reforceinfinity-info/30min",
                   "_blank"
                 )
               }
-              className="flex items-center gap-2 px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg shadow-lg hover:shadow-purple-500/25 transition-colors"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+              className="group relative w-[80vw] md:w-fit flex items-center gap-3 px-8 py-4 button font-medium transition-all "
+              aria-label="Schedule a free consultation"
+              tabIndex="0"
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  window.open(
+                    "https://calendly.com/reforceinfinity-info/30min",
+                    "_blank"
+                  );
+                }
+              }}
             >
-              <Calendar className="w-4 h-4" />
-              {t("footer.schedule_consultation")}
+              <div className="dots_border"></div>
+              <div className="sparkle">
+                <Sparkles className="w-5 h-5" style={iconStyle} />
+              </div>
+
+              <span className="text_button font-medium" style={buttonTextStyle}>
+                {t("footer.schedule_consultation")}
+              </span>
             </motion.button>
           </div>
         </motion.div>

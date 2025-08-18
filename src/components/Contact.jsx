@@ -1,5 +1,5 @@
 import React, { forwardRef, useEffect, useRef } from "react";
-import { Calendar } from "lucide-react";
+import { Calendar, Sparkles } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { motion, useInView } from "framer-motion";
 
@@ -11,6 +11,19 @@ const Contact = forwardRef((props, ref) => {
     margin: "100px 0px",
     once: false,
   });
+
+  // Custom styles to override button text transparency
+  const buttonTextStyle = {
+    color: "#9333ea", // purple-600
+    position: "relative",
+    zIndex: 10,
+  };
+
+  const iconStyle = {
+    color: "#9333ea", // purple-600
+    position: "relative",
+    zIndex: 10,
+  };
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -163,8 +176,6 @@ const Contact = forwardRef((props, ref) => {
               whileTap={{ scale: 0.98 }}
               className="relative group flex justify-center items-center"
             >
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-purple-400 rounded-xl blur opacity-0 group-hover:opacity-30 transition duration-500" />
-
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -174,7 +185,7 @@ const Contact = forwardRef((props, ref) => {
                     "_blank"
                   )
                 }
-                className="group relative w-[80vw] md:w-fit flex items-center gap-3 px-8 py-4 bg-purple-600 text-white backdrop-blur-sm rounded-xl font-medium transition-all border border-white/20 hover:shadow-purple-500/25"
+                className="group relative w-[80vw] md:w-fit flex items-center gap-3 px-8 py-4 button font-medium transition-all "
                 aria-label="Schedule a free consultation"
                 tabIndex="0"
                 onKeyDown={(e) => {
@@ -186,8 +197,17 @@ const Contact = forwardRef((props, ref) => {
                   }
                 }}
               >
-                <Calendar className="w-5 h-5" />
-                {t("footer.schedule_consultation")}
+                <div className="dots_border"></div>
+                <div className="sparkle">
+                  <Sparkles className="w-5 h-5" style={iconStyle} />
+                </div>
+
+                <span
+                  className="text_button font-medium"
+                  style={buttonTextStyle}
+                >
+                  {t("footer.schedule_consultation")}
+                </span>
               </motion.button>
             </motion.div>
           </motion.div>
