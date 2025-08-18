@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import logo from "../assets/reflogo.webp";
-import { Globe, CircleArrowRight, ChevronDown } from "lucide-react";
+import { Globe, CircleArrowRight, ChevronDown, Sparkles } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -310,17 +310,23 @@ function NavBar({ scrollToSection }) {
                   )}
                 </AnimatePresence>
               </div>
-              <motion.button
+              <motion.div
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.2 }}
-                className="px-4 md:px-8 py-2 w-64 bg-white text-purple-500 font-bold border-[#ffffff52] rounded-full text-md shadow-lg hover:shadow-xl transition-shadow group"
-                onClick={() => handleMenuItemClick("contact")}
+                className="group relative flex justify-center items-center"
               >
-                <span className="inline-flex items-center gap-2">
-                  {t("navbar.5")}
-                </span>
-              </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => handleMenuItemClick("contact")}
+                  className="button font-medium transition-all !px-4 !py-2 !text-sm"
+                >
+                  <span className="text_button font-medium !text-xs !w-fit">
+                    {t("navbar.5")}
+                  </span>
+                </motion.button>
+              </motion.div>
             </div>
           </div>
         </div>
@@ -483,12 +489,29 @@ function NavBar({ scrollToSection }) {
                 transition={{ delay: 0.5 }}
                 className="mt-auto mb-8"
               >
-                <button
-                  onClick={() => handleMenuItemClick("contact")}
-                  className="w-full bg-white text-purple-800 py-4 rounded-full text-lg transition-colors"
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="group relative flex justify-center items-center"
                 >
-                  {t("navbar.5")}
-                </button>
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => handleMenuItemClick("contact")}
+                    className="button font-medium transition-all w-full !px-4 !py-3 !text-sm"
+                  >
+                    <div className="dots_border"></div>
+                    <div className="sparkle">
+                      <Sparkles
+                        className="w-4 h-4"
+                        style={{ color: "#9810fa" }}
+                      />
+                    </div>
+                    <span className="text_button font-medium !text-xs">
+                      {t("navbar.5")}
+                    </span>
+                  </motion.button>
+                </motion.div>
               </motion.div>
             </div>
           </motion.div>

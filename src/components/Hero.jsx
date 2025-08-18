@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 
 import { motion } from "framer-motion";
+import { Sparkles } from "lucide-react";
 import AnimatedText from "./AnimatedText";
 import youshift from "../assets/youshift.webp";
 import ycombinator from "../assets/y-combinator.png";
@@ -197,39 +198,32 @@ function Hero({ scrollToSection }) {
             ease: [0.33, 1, 0.68, 1],
           }}
         >
-          <motion.button
+          <motion.div
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             transition={{ duration: 0.2 }}
-            className="px-6 py-3 md:px-10 md:py-4 bg-white text-purple-700 font-bold rounded-full text-base md:text-lg shadow-lg hover:shadow-xl transition-all group"
-            onClick={() => scrollToSection("contact")}
-            aria-label={t("about.cta")}
-            tabIndex="0"
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                scrollToSection("contact");
-              }
-            }}
+            className="group relative flex justify-center items-center"
           >
-            <span className="inline-flex items-center gap-2">
-              {t("about.cta")}
-              <motion.svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="group-hover:translate-x-1 transition-transform duration-200"
-              >
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </motion.svg>
-            </span>
-          </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => scrollToSection("contact")}
+              className="button font-medium transition-all"
+              aria-label={t("about.cta")}
+              tabIndex="0"
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  scrollToSection("contact");
+                }
+              }}
+            >
+              <div className="dots_border"></div>
+              <div className="sparkle">
+                <Sparkles className="w-5 h-5" style={{ color: "#9810fa" }} />
+              </div>
+              <span className="text_button font-medium">{t("about.cta")}</span>
+            </motion.button>
+          </motion.div>
         </motion.div>
 
         {/* Trusted by Y Combinator Startups */}

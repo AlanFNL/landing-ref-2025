@@ -13,17 +13,6 @@ const Contact = forwardRef((props, ref) => {
   });
 
   // Custom styles to override button text transparency
-  const buttonTextStyle = {
-    color: "#9333ea", // purple-600
-    position: "relative",
-    zIndex: 10,
-  };
-
-  const iconStyle = {
-    color: "#9333ea", // purple-600
-    position: "relative",
-    zIndex: 10,
-  };
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -199,13 +188,10 @@ const Contact = forwardRef((props, ref) => {
               >
                 <div className="dots_border"></div>
                 <div className="sparkle">
-                  <Sparkles className="w-5 h-5" style={iconStyle} />
+                  <Sparkles className="w-5 h-5" style={{ color: "#9810fa" }} />
                 </div>
 
-                <span
-                  className="text_button font-medium"
-                  style={buttonTextStyle}
-                >
+                <span className="text_button font-medium">
                   {t("footer.schedule_consultation")}
                 </span>
               </motion.button>
