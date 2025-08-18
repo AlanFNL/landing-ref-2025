@@ -163,7 +163,8 @@ const Contact = forwardRef((props, ref) => {
             <motion.div
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="relative group flex justify-center items-center"
+              transition={{ duration: 0.2 }}
+              className="group relative flex justify-center items-center"
             >
               <motion.button
                 whileHover={{ scale: 1.02 }}
@@ -174,8 +175,8 @@ const Contact = forwardRef((props, ref) => {
                     "_blank"
                   )
                 }
-                className="group relative w-[80vw] md:w-fit flex items-center gap-3 px-8 py-4 button font-medium transition-all "
-                aria-label="Schedule a free consultation"
+                className="button font-medium transition-all"
+                aria-label={t("about.cta")}
                 tabIndex="0"
                 onKeyDown={(e) => {
                   if (e.key === "Enter" || e.key === " ") {
@@ -190,9 +191,8 @@ const Contact = forwardRef((props, ref) => {
                 <div className="sparkle">
                   <Sparkles className="w-5 h-5" style={{ color: "#9810fa" }} />
                 </div>
-
                 <span className="text_button font-medium">
-                  {t("footer.schedule_consultation")}
+                  {t("about.cta")}
                 </span>
               </motion.button>
             </motion.div>

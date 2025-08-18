@@ -130,7 +130,7 @@ function Footer({ scrollToSection }) {
               </div>
 
               <span className="text_button font-medium" style={buttonTextStyle}>
-                {t("footer.schedule_consultation")}
+                {t("about.cta")}
               </span>
             </motion.button>
           </div>
