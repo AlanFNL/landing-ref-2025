@@ -322,7 +322,12 @@ function NavBar({ scrollToSection }) {
                   className="button font-medium transition-all !px-6 !py-2 !text-sm w-fit whitespace-nowrap"
                 >
                   <div className="dots_border"></div>
-
+                  <div className="sparkle">
+                    <Sparkles
+                      className="w-5 h-5"
+                      style={{ color: "#9810fa" }}
+                    />
+                  </div>
                   <span className="text_button font-medium">
                     {t("navbar.5")}
                   </span>
