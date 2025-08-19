@@ -425,7 +425,7 @@ export default function Bento({ scrollToSection }) {
                       "_blank"
                     )
                   }
-                  className="button font-medium transition-all !px-8 !py-3"
+                  className="button font-medium transition-all !px-8 !py-3 w-fit whitespace-nowrap"
                   aria-label="Schedule a free consultation"
                   tabIndex="0"
                   onKeyDown={(e) => {

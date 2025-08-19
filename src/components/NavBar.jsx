@@ -519,7 +519,7 @@ function NavBar({ scrollToSection }) {
                         style={{ color: "#9810fa" }}
                       />
                     </div>
-                    <span className="text_button font-medium !text-xs">
+                    <span className="text_button font-medium">
                       {t("navbar.5")}
                     </span>
                   </motion.button>
