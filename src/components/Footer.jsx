@@ -112,7 +112,7 @@ function Footer({ scrollToSection }) {
                   "_blank"
                 )
               }
-              className="group relative w-[80vw] md:w-fit flex items-center gap-3 px-8 py-4 button font-medium transition-all "
+              className="group relative w-full md:w-fit flex items-center justify-center gap-3 px-6 md:px-8 py-4 md:py-4 button font-medium transition-all text-center"
               aria-label="Schedule a free consultation"
               tabIndex="0"
               onKeyDown={(e) => {
@@ -126,11 +126,14 @@ function Footer({ scrollToSection }) {
             >
               <div className="dots_border"></div>
               <div className="sparkle">
-                <Sparkles className="w-5 h-5" style={iconStyle} />
+                <Sparkles className="w-6 h-6 md:w-5 md:h-5" style={iconStyle} />
               </div>
 
-              <span className="text_button font-medium" style={buttonTextStyle}>
-                {t("about.cta")}
+              <span
+                className="text_button font-medium text-center text-lg md:text-base"
+                style={buttonTextStyle}
+              >
+                {t("navbar.5")}
               </span>
             </motion.button>
           </div>

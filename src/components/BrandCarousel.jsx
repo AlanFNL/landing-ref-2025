@@ -1,5 +1,5 @@
-import React, { forwardRef, useEffect, useRef, useState, useMemo } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import React, { forwardRef, useEffect, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import logo1 from "../assets/logo1.png";
 import logo2 from "../assets/logo2.png";
 import logo3 from "../assets/logo3.png";
@@ -18,169 +18,27 @@ import { useTranslation } from "react-i18next";
 const logos = [
   logo1,
   logo2,
-  logo3,
-  logo4,
-  logo5,
   logo6,
+  logo4,
+  logo3,
+  logo5,
   logo7,
   logo11,
   logo9,
   logo10,
-  logo12,
   logo8,
+  logo12,
 ];
-
-const shuffleArray = (array) => {
-  const shuffled = [...array];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  return shuffled;
-};
-
-const distributeLogos = (allLogos, columnCount) => {
-  const shuffled = shuffleArray(allLogos);
-  const columns = Array.from({ length: columnCount }, () => []);
-
-  shuffled.forEach((logo, index) => {
-    columns[index % columnCount].push(logo);
-  });
-
-  const maxLength = Math.max(...columns.map((col) => col.length));
-  columns.forEach((col) => {
-    while (col.length < maxLength) {
-      col.push(shuffled[Math.floor(Math.random() * shuffled.length)]);
-    }
-  });
-
-  return columns;
-};
-
-const LogoColumn = React.memo(({ logos, index, currentTime, isInView }) => {
-  const cycleInterval = 3000;
-  const columnDelay = index * 200;
-  const currentIndex = useMemo(() => {
-    if (!isInView) return 0;
-    const adjustedTime =
-      (currentTime + columnDelay) % (cycleInterval * logos.length);
-    return Math.floor(adjustedTime / cycleInterval);
-  }, [currentTime, columnDelay, cycleInterval, logos.length, isInView]);
-
-  const animationProps = isInView
-    ? {
-        initial: { y: "10%", opacity: 0 },
-        animate: {
-          y: "0%",
-          opacity: 1,
-          transition: {
-            type: "spring",
-            stiffness: 200,
-            damping: 20,
-            mass: 1,
-            bounce: 0.2,
-          },
-        },
-        exit: {
-          y: "-20%",
-          opacity: 0,
-          transition: {
-            duration: 0.3,
-            ease: "easeOut",
-          },
-        },
-      }
-    : {
-        initial: false,
-        animate: { y: "0%", opacity: 1 },
-        exit: false,
-      };
-
-  return (
-    <motion.div
-      className="relative h-14 w-24 overflow-hidden md:h-24 md:w-48"
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{
-        delay: index * 0.1,
-        duration: 0.5,
-        ease: "easeOut",
-      }}
-    >
-      <AnimatePresence mode="wait" initial={false}>
-        <motion.div
-          key={`logo-${currentIndex}`}
-          className="absolute inset-0 flex items-center justify-center"
-          {...animationProps}
-        >
-          <img
-            loading="lazy"
-            src={logos[currentIndex]}
-            alt={`logo-${currentIndex}`}
-            className="h-24 w-24 md:h-32 md:w-32 max-h-[85%] max-w-[85%] object-contain brightness-0 invert opacity-80"
-            style={{
-              willChange: isInView ? "transform" : "auto",
-              transform: isInView ? "translateZ(0)" : "none",
-            }}
-          />
-        </motion.div>
-      </AnimatePresence>
-    </motion.div>
-  );
-});
 
 const BrandCarousel = forwardRef(({ clientsRef }, ref) => {
   const isServer = typeof window === "undefined";
   const [t, i18n] = useTranslation("global");
-  const [logoSets, setLogoSets] = useState([]);
-  const [currentTime, setCurrentTime] = useState(0);
-  const columnCount = 4;
   const containerRef = useRef(null);
-  const animationRef = useRef(null);
   const isInView = useInView(containerRef, {
     once: false,
     amount: 0.3,
     margin: "100px",
   });
-
-  const distributedLogos = useMemo(() => {
-    return distributeLogos(logos, columnCount);
-  }, []);
-
-  useEffect(() => {
-    setLogoSets(distributedLogos);
-  }, [distributedLogos]);
-
-  useEffect(() => {
-    let lastUpdate = 0;
-    const fps = 30;
-    const interval = 1000 / fps;
-
-    const updateTime = (timestamp) => {
-      if (!isInView) {
-        animationRef.current = null;
-        return;
-      }
-
-      if (!lastUpdate || timestamp - lastUpdate >= interval) {
-        setCurrentTime((prevTime) => prevTime + interval);
-        lastUpdate = timestamp;
-      }
-
-      animationRef.current = requestAnimationFrame(updateTime);
-    };
-
-    if (isInView) {
-      animationRef.current = requestAnimationFrame(updateTime);
-    }
-
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-        animationRef.current = null;
-      }
-    };
-  }, [isInView]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -189,77 +47,147 @@ const BrandCarousel = forwardRef(({ clientsRef }, ref) => {
     }
   }, [i18n]);
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 200,
+        damping: 20,
+        duration: 0.6,
+      },
+    },
+  };
+
   return (
     <div
-      className="relative w-full overflow-hidden bg-[#0A0A0A] py-20"
+      className="relative w-full overflow-hidden bg-[#0A0A0A] py-16"
       ref={containerRef}
       id="carousel-section"
     >
-      <div className="absolute inset-0 flex items-center justify-center">
+      {/* Premium Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Subtle gradient orb */}
         <motion.div
-          initial={{ opacity: 0, width: "40%" }}
-          whileInView={{ opacity: 1, width: "100%" }}
-          transition={{ duration: 0.8, ease: "easeInOut" }}
-          className="absolute h-full bg-gradient-to-b from-purple-500/30 via-transparent to-transparent blur-3xl"
-          style={{
-            maskImage:
-              "radial-gradient(circle at center 0%, black, transparent 70%)",
-            willChange: isInView ? "transform, opacity" : "auto",
-            transform: isInView ? "translateZ(0)" : "none",
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-500/8 rounded-full blur-[100px]"
+          animate={{
+            opacity: [0.08, 0.12, 0.08],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
           }}
         />
+
+        {/* Static grid pattern */}
+        <div className="absolute inset-0 opacity-[0.015]">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1px, transparent 0)`,
+              backgroundSize: "80px 80px",
+            }}
+          />
+        </div>
       </div>
 
-      <motion.h1
-        initial={isServer ? false : { opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ ease: "easeInOut", duration: 0.75 }}
-        viewport={{ once: true }}
-        className="relative z-10 text-center text-4xl font-bold text-white mb-16"
-      >
-        {t("services.7")}
-      </motion.h1>
+      <div className="relative z-10 mx-auto max-w-6xl px-6">
+        {/* Section Header */}
+        <motion.div
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <motion.h2
+            className="text-3xl md:text-4xl font-bold text-white mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            {t("services.7")}
+          </motion.h2>
+          <motion.div
+            className="w-24 h-[2px] bg-gradient-to-r from-purple-400 via-purple-300 to-purple-400 mx-auto"
+            initial={{ width: "0%" }}
+            whileInView={{ width: "24" }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+          />
+        </motion.div>
 
-      {isServer ? (
-        <div className="relative z-10 mx-auto max-w-5xl px-6">
-          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {[
-              "Uala",
-              "pepsico",
-              "unaje",
-              "g20 young entrepreneurs alliance",
-              "fuseai",
-              "youshift",
-              "hkstp partner",
-              "the sandbox",
-              "hrztl",
-              "fije",
-              "give&get",
-              "charles taylor",
-              "millenium group",
-            ].map((name) => (
-              <li
-                key={name}
-                className="text-center text-white/90 bg-white/5 border border-white/10 rounded-xl px-4 py-2 backdrop-blur-sm"
-              >
-                {name}
-              </li>
-            ))}
-          </ul>
-        </div>
-      ) : (
-        <div className="relative z-10 flex justify-center space-x-4">
-          {logoSets.map((columnLogos, index) => (
-            <LogoColumn
+        {/* Premium Partners Grid */}
+        <motion.div
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          {logos.map((logo, index) => (
+            <motion.div
               key={index}
-              logos={columnLogos}
-              index={index}
-              currentTime={currentTime}
-              isInView={isInView}
-            />
+              variants={itemVariants}
+              className="group relative"
+            >
+              <motion.div
+                className="relative bg-black/30 backdrop-blur-sm border border-white/10 rounded-2xl p-3 md:p-4 h-20 md:h-24 flex items-center justify-center overflow-hidden"
+                whileHover={{
+                  scale: 1.05,
+                  borderColor: "rgba(255, 255, 255, 0.25)",
+                  boxShadow: "0 0 20px rgba(168, 85, 247, 0.15)",
+                }}
+                transition={{ duration: 0.3 }}
+              >
+                {/* Subtle glow effect */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100"
+                  transition={{ duration: 0.3 }}
+                />
+
+                {/* Logo Container with Consistent Dimensions */}
+                <div className="relative z-10 w-full h-full flex items-center justify-center p-2">
+                  <img
+                    loading="lazy"
+                    src={logo}
+                    alt={`partner-logo-${index}`}
+                    className="w-full h-full object-contain brightness-0 invert opacity-80 group-hover:opacity-100 transition-all duration-300"
+                    style={{
+                      maxWidth: "100%",
+                      maxHeight: "100%",
+                      objectFit: "contain",
+                      objectPosition: "center",
+                    }}
+                  />
+                </div>
+
+                {/* Hover overlay */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100"
+                  transition={{ duration: 0.3 }}
+                />
+              </motion.div>
+            </motion.div>
           ))}
-        </div>
-      )}
+        </motion.div>
+      </div>
     </div>
   );
 });

@@ -2,6 +2,8 @@ import React, { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import testimonials1 from "../assets/testimonials1.webp";
 import testimonials2 from "../assets/testimonials2.webp";
+import testimonials3 from "../assets/testimonials3.webp";
+
 import { useTranslation } from "react-i18next";
 
 function Testimonials() {
@@ -20,10 +22,17 @@ function Testimonials() {
       image: testimonials1,
     },
     {
+      name: "Yossi Hertz",
+      role: "Head of Product",
+      company: "Bitbean",
+      content: t("testimonials.2"),
+      image: testimonials3,
+    },
+    {
       name: "Sebastián Otárola",
       role: "CMO",
       company: "Mosaikus",
-      content: t("testimonials.2"),
+      content: t("testimonials.3"),
       image: testimonials2,
     },
   ];

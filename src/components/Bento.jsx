@@ -327,7 +327,7 @@ export default function Bento({ scrollToSection }) {
                     className="text-6xl md:text-7xl font-bold text-white flex items-baseline"
                     transition={{ type: "spring", stiffness: 100, delay: 0.6 }}
                   >
-                    +<CountingNumber value="11" />
+                    +<CountingNumber value="17" />
                     <span className="text-4xl md:text-5xl ml-1">M</span>
                   </motion.div>
                 </div>
@@ -343,7 +343,7 @@ export default function Bento({ scrollToSection }) {
             <StatCard
               icon={MousePointerClick}
               title={t("bento.engagement") || "ENGAGEMENT"}
-              value="253.6K"
+              value="380.4K"
               subtitle={t("bento.total_clicks") || "Total Clicks"}
               delay={0.3}
             />
@@ -359,7 +359,7 @@ export default function Bento({ scrollToSection }) {
             <StatCard
               icon={Target}
               title={t("bento.success_rate") || "SUCCESS RATE"}
-              value="+28%"
+              value="+29%"
               subtitle={t("bento.conversion_rate") || "Conversion Rate"}
               delay={0.5}
             />
@@ -367,7 +367,7 @@ export default function Bento({ scrollToSection }) {
             <StatCard
               icon={Users}
               title={t("bento.growth") || "GROWTH"}
-              value="14+"
+              value="30+"
               subtitle={t("bento.track_record") || "Track Record"}
               delay={0.6}
             />
@@ -445,7 +445,7 @@ export default function Bento({ scrollToSection }) {
                     />
                   </div>
                   <span className="text_button font-medium">
-                    {t("about.cta")}
+                    {t("navbar.5")}
                   </span>
                 </motion.button>
               </motion.div>

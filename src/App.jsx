@@ -142,7 +142,9 @@ function App() {
           <>
             <NavBar scrollToSection={scrollToSection} />
             <Hero scrollToSection={scrollToSection} />
-            <BrandCarousel />
+            <div ref={clientsRef}>
+              <BrandCarousel />
+            </div>
             <div ref={servicesRef}>
               <StorytellingServices scrollToSection={scrollToSection} />
             </div>
@@ -151,9 +153,8 @@ function App() {
             </div>
 
             <Bento scrollToSection={scrollToSection} />
-            <div ref={clientsRef}>
-              <BrandCarousel />
-            </div>
+
+            <BrandCarousel />
 
             <div ref={contactRef}>
               <Contact
@@ -174,7 +175,9 @@ function App() {
           >
             <NavBar scrollToSection={scrollToSection} />
             <Hero scrollToSection={scrollToSection} />
-            <BrandCarousel />
+            <div ref={clientsRef}>
+              <BrandCarousel />
+            </div>
             <div ref={servicesRef}>
               <StorytellingServices scrollToSection={scrollToSection} />
             </div>
@@ -183,9 +186,6 @@ function App() {
             </div>
 
             <Bento scrollToSection={scrollToSection} />
-            <div ref={clientsRef}>
-              <BrandCarousel />
-            </div>
 
             <div ref={contactRef}>
               <Contact

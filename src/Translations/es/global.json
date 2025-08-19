@@ -33,14 +33,29 @@
     "4": "Experiencia en el metaverso",
     "5": "Gestión de evento",
     "6": "Ver más proyectos",
-    "title": "Casos de Estudio",
-    "description": "Explora nuestros casos de estudio detallados que muestran proyectos exitosos y resultados para clientes en diversas industrias.",
+    "title": "Caso de Estudio",
+    "description": "Nuestras historias de éxito muestran cómo transformamos marcas a través de experiencias digitales innovadoras. Cada proyecto representa un viaje único de creatividad, tecnología y resultados medibles.",
     "cta": "Explorar Casos de Estudio",
     "back": "Volver",
     "featured": "Casos de Estudio Destacados",
     "learn_more": "Saber más",
     "more_coming_soon": "Estamos constantemente expandiendo nuestro portafolio con nuevos proyectos emocionantes.",
-    "stay_tuned": "Más proyectos destacados llegarán a nuestro sitio web pronto."
+    "stay_tuned": "Más proyectos destacados llegarán a nuestro sitio web pronto.",
+    "uala": {
+      "title": "Ualá - Experiencia Metaverso",
+      "description": "Creamos una experiencia inmersiva en el metaverso que transformó cómo Ualá se conecta con su audiencia, combinando innovación digital con narrativa de marca.",
+      "pills": ["Metaverso", "Realidad Virtual", "Experiencia de Marca"]
+    },
+    "unaje": {
+      "title": "UNAJE - Contenido y Publicidad",
+      "description": "Estrategia integral de creación de contenido y publicidad que elevó la presencia digital de UNAJE en múltiples plataformas y audiencias.",
+      "pills": ["Creación de Contenido", "Publicidad Digital", "Estrategia"]
+    },
+    "chester": {
+      "title": "Chester - Colección NFT PepsiCo",
+      "description": "Proyecto revolucionario de colección NFT y desarrollo web que llevó la marca Chester al espacio Web3 con coleccionables digitales innovadores.",
+      "pills": ["NFT", "Desarrollo Web", "Coleccionables Digitales"]
+    }
   },
 
   "services": {
@@ -85,6 +100,24 @@
       "name": "Nombre",
       "message": "Mensaje",
       "send": "Enviar Mensaje"
+    },
+    "benefits": {
+      "free_consultation": {
+        "title": "100% Consulta Gratuita",
+        "description": "Sin costos ocultos, sin presión. Solo una conversación genuina sobre tus objetivos."
+      },
+      "ai_powered": {
+        "title": "Rendimiento Potenciado por IA",
+        "description": "Aprovechamos herramientas de IA de vanguardia para entregar resultados más rápidos e inteligentes para tu negocio."
+      },
+      "tailored": {
+        "title": "Adaptado a tus Necesidades",
+        "description": "Cada estrategia está construida a medida para tus desafíos empresariales únicos y objetivos."
+      },
+      "proven_track": {
+        "title": "Trayectoria Comprobada",
+        "description": "Únete a más de 14 clientes exitosos que han logrado un crecimiento notable con nuestro enfoque."
+      }
     }
   },
 
@@ -231,7 +264,7 @@
     "conversion_rate": "Tasa de Conversión",
     "growth": "Crecimiento",
     "track_record": "Trayectoria",
-    "heading": "Impulsando el Crecimiento a través de la Excelencia Digital",
+    "heading": "Publicidad Digital que Impulsa tu Crecimiento",
     "subheading": "Nuestras estrategias basadas en datos han transformado negocios en diversas industrias, entregando un ROI excepcional a través de campañas dirigidas y optimización.",
     "cta": "¿Listo para Elevar tu Presencia Digital?",
     "cta_button": "Agenda una consulta gratuita"
@@ -284,7 +317,8 @@
 
   "testimonials": {
     "1": "Si hay un hito clave en 2024, es la incorporación de Reforce Infinity para elevar nuestra comunicación. GRACIAS por impulsar nuestra visión, llevar la camiseta Unajera y conectar mejor con nuestra comunidad",
-    "2": "Nuestra experiencia con Reforce Infinity ha sido increíble, supieron adaptarse a nuestras necesidades con una visión estratégica y creativa. Su enfoque en investigación de mercado y pautas publicitarias hizo una gran diferencia en nuestros resultados. ¡Un equipo con el que da gusto trabajar!",
+    "2": "Los videos que nos producieron son una obra de arte.",
+    "3": "Nuestra experiencia con Reforce Infinity ha sido increíble, supieron adaptarse a nuestras necesidades con una visión estratégica y creativa. Su enfoque en investigación de mercado y pautas publicitarias hizo una gran diferencia en nuestros resultados. ¡Un equipo con el que da gusto trabajar!",
     "title": "Lo que Dicen Nuestros Clientes",
     "subtitle": "Empresas líderes confían en nosotros",
     "role_at": "en"

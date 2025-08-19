@@ -33,14 +33,29 @@
     "4": "Metaverse experience",
     "5": "Event management",
     "6": "See more projects",
-    "title": "Case Studies",
-    "description": "Explore our detailed case studies showcasing successful projects and client outcomes across various industries.",
+    "title": "Case Study",
+    "description": "Our success stories showcase how we transform brands through innovative digital experiences. Each project represents a unique journey of creativity, technology, and measurable results.",
     "cta": "Explore Case Studies",
     "back": "Back",
     "featured": "Featured Case Studies",
     "learn_more": "Learn more",
-      "more_coming_soon": "We're constantly expanding our portfolio with exciting new work.",
-    "stay_tuned": "Additional project showcases are coming to our website soon. Stay tuned!"
+    "more_coming_soon": "We're constantly expanding our portfolio with exciting new work.",
+    "stay_tuned": "Additional project showcases are coming to our website soon. Stay tuned!",
+    "uala": {
+      "title": "Ualá - Metaverse Experience",
+      "description": "We created an immersive metaverse experience that transformed how Ualá connects with their audience, blending digital innovation with brand storytelling.",
+      "pills": ["Metaverse", "Virtual Reality", "Brand Experience"]
+    },
+    "unaje": {
+      "title": "UNAJE - Content & Advertising",
+      "description": "Comprehensive content creation and advertising strategy that elevated UNAJE's digital presence across multiple platforms and audiences.",
+      "pills": ["Content Creation", "Digital Advertising", "Strategy"]
+    },
+    "chester": {
+      "title": "Chester - PepsiCo NFT Collection",
+      "description": "Revolutionary NFT collection and web development project that brought Chester's brand into the Web3 space with innovative digital collectibles.",
+      "pills": ["NFT", "Web Development", "Digital Collectibles"]
+    }
   },
 
   "services": {
@@ -85,6 +100,24 @@
       "name": "Name",
       "message": "Message",
       "send": "Send Message"
+    },
+    "benefits": {
+      "free_consultation": {
+        "title": "100% Free Consultation",
+        "description": "No hidden fees, no pressure. Just a genuine conversation about your goals."
+      },
+      "ai_powered": {
+        "title": "AI-Powered Performance",
+        "description": "We leverage cutting-edge AI tools to deliver faster, smarter results for your business."
+      },
+      "tailored": {
+        "title": "Tailored to Your Needs",
+        "description": "Every strategy is custom-built for your unique business challenges and objectives."
+      },
+      "proven_track": {
+        "title": "Proven Track Record",
+        "description": "Join 14+ successful clients who've achieved remarkable growth with our approach."
+      }
     }
   },
 
@@ -231,7 +264,7 @@
     "conversion_rate": "Conversion Rate",
     "growth": "Growth",
     "track_record": "Track Record",
-    "heading": "Driving Growth Through Digital Excellence",
+    "heading": "Digital Marketing That Boosts Your Growth",
     "subheading": "Our data-driven strategies have transformed businesses across industries, delivering exceptional ROI through targeted campaigns and optimization.",
     "cta": "Ready to Elevate Your Digital Presence?",
     "cta_button": "Schedule a free consultation"
@@ -284,7 +317,8 @@
 
   "testimonials": {
     "1": "A key milestone in 2024 has been integrating Reforce Infinity to enhance our communication. THANK YOU for driving our vision, wearing the Unajera jersey, and helping us connect more effectively.",
-    "2": "Our experience with Reforce Infinity has been incredible; they adapted to our needs with a strategic and creative vision. Their focus on market research and advertising strategies made a significant difference in our results. A team that is truly a pleasure to work with!",
+    "2": "The videos you produced us are a work of art.",
+    "3": "Our experience with Reforce Infinity has been incredible; they adapted to our needs with a strategic and creative vision. Their focus on market research and advertising strategies made a significant difference in our results. A team that is truly a pleasure to work with!",
     "title": "What Our Clients Say",
     "subtitle": "Trusted by leading companies worldwide",
     "role_at": "at"

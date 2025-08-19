@@ -147,14 +147,14 @@ function Hero({ scrollToSection }) {
           }
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="mb-8 flex items-center justify-center bg-white/10 border-2 border-white/10 px-2 py-1 rounded-full"
+          className="mb-8 flex items-center justify-center bg-white/10 border-2 border-white/10 px-2 py-1 md:px-4 md:py-2 rounded-full"
         >
-          <p className="text-white text-sm mr-1 opacity-80">★</p>
+          <p className="text-white text-sm md:text-base mr-1 opacity-80">★</p>
 
-          <div className="flex gap-2 items-center text-white/90 text-sm font-medium">
+          <div className="flex gap-2 items-center text-white/90 text-sm md:text-base font-medium">
             <span className="flex items-center justify-center gap-2">
               {t("hero.featured_on_bookface")}{" "}
-              <img src={ycombinator} className="size-4" /> Combinator
+              <img src={ycombinator} className="size-4 md:size-6" /> Combinator
             </span>
           </div>
         </motion.div>
@@ -213,7 +213,7 @@ function Hero({ scrollToSection }) {
                   "_blank"
                 )
               }
-              className="button font-medium transition-all"
+              className="button font-medium transition-all text-base md:text-lg lg:text-xl px-6 py-3 md:px-8 md:py-4 lg:px-10 lg:py-5"
               aria-label={t("about.cta")}
               tabIndex="0"
               onKeyDown={(e) => {
@@ -244,9 +244,10 @@ function Hero({ scrollToSection }) {
           transition={{ duration: 0.5, delay: 1.5 }}
           className="mt-8 text-center pb-16"
         >
-          <p className="text-white/70 text-sm mb-6 font-medium tracking-wide flex gap-2">
+          <p className="text-white/70 text-sm md:text-base mb-6 font-medium tracking-wide flex gap-2">
             {t("hero.trusted_by_startups")}{" "}
-            <img src={ycombinator} className="size-4" /> Combinator Startups
+            <img src={ycombinator} className="size-4 md:size-6" /> Combinator
+            Startups
           </p>
           <div className="flex justify-center items-center gap-10 md:gap-16">
             {/* Placeholder logo 1 */}

@@ -200,10 +200,10 @@ function NavBar({ scrollToSection }) {
               />
               <div className="hidden md:flex items-center justify-around w-[60%]">
                 <button
-                  onClick={scrollToTop}
+                  onClick={() => handleMenuItemClick("clients")}
                   className="text-gray-300 hover:text-white transition-colors"
                 >
-                  {t("navbar.1")}
+                  {t("navbar.4")}
                 </button>
 
                 {/* Projects button with dropdown */}
@@ -265,12 +265,6 @@ function NavBar({ scrollToSection }) {
                   className="text-gray-300 hover:text-white transition-colors"
                 >
                   {t("navbar.3")}
-                </button>
-                <button
-                  onClick={() => handleMenuItemClick("clients")}
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  {t("navbar.4")}
                 </button>
               </div>
             </div>
@@ -510,16 +504,16 @@ function NavBar({ scrollToSection }) {
                         "_blank"
                       )
                     }
-                    className="button font-medium transition-all w-full !px-4 !py-3 !text-sm whitespace-nowrap"
+                    className="button font-medium transition-all w-full !px-6 !py-4 !text-lg md:!text-sm whitespace-nowrap text-center"
                   >
                     <div className="dots_border"></div>
                     <div className="sparkle">
                       <Sparkles
-                        className="w-4 h-4"
+                        className="w-5 h-5 md:w-4 md:h-4"
                         style={{ color: "#9810fa" }}
                       />
                     </div>
-                    <span className="text_button font-medium">
+                    <span className="text_button font-medium text-center">
                       {t("navbar.5")}
                     </span>
                   </motion.button>
