@@ -51,7 +51,7 @@ export const smoothScroll = (target, duration = 1000) => {
 };
 
 function App() {
-  const isServer = typeof window === "undefined";
+  const [isClient, setIsClient] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const servicesRef = useRef(null);
@@ -62,13 +62,18 @@ function App() {
   const [openCalendly, setOpenCalendly] = useState(false);
   const { setScrollFunction } = useContext(ScrollContext);
 
+  // Handle client-side initialization
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   // Handle language detection and redirect
   useEffect(() => {
-    if (!isServer && location.pathname === "/") {
+    if (isClient && location.pathname === "/") {
       const defaultLanguage = getDefaultLanguage();
       navigate(`/${defaultLanguage}`, { replace: true });
     }
-  }, [navigate, location.pathname, isServer]);
+  }, [navigate, location.pathname, isClient]);
 
   // Get default language based on browser preference or fallback to English
   const getDefaultLanguage = () => {
@@ -160,7 +165,7 @@ function App() {
   return (
     <>
       <motion.div className="w-screen h-fit overflow-clip bg-black">
-        {isServer ? (
+        {!isClient ? (
           <>
             <NavBar scrollToSection={scrollToSection} />
             <Hero scrollToSection={scrollToSection} />

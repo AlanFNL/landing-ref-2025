@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
 
 const AnimatedText = ({
@@ -10,13 +10,20 @@ const AnimatedText = ({
   animationKey, // Add this prop
 }) => {
   const controls = useAnimation();
-  const isServer = typeof window === "undefined";
+  const [isClient, setIsClient] = useState(false);
+
+  // Ensure consistent client-side detection
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   // Reset and restart animation when text or animationKey changes
   useEffect(() => {
-    controls.set("hidden");
-    controls.start("visible");
-  }, [text, animationKey, controls]);
+    if (isClient) {
+      controls.set("hidden");
+      controls.start("visible");
+    }
+  }, [text, animationKey, controls, isClient]);
 
   // Animation variants
   const whipInUp = {
@@ -55,8 +62,8 @@ const AnimatedText = ({
   // Split text into lines and words, respecting the lines prop
   const textLines = text.split("\n").slice(0, lines);
 
-  // On the server, render static text so SSG shows content without JS
-  if (isServer) {
+  // On the server or before client hydration, render static text
+  if (!isClient) {
     return (
       <div className={className}>
         {textLines.map((line, lineIndex) => (

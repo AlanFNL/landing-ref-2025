@@ -35,6 +35,9 @@ export const ScrollContext = createContext({
   setScrollFunction: defaultSetScrollFunction,
 });
 
+// Ensure context is stable across renders
+ScrollContext.displayName = 'ScrollContext';
+
 // Wrapper component to provide context
 const AppWrapper = ({ children }) => {
   // scrollFunctionInState will hold the actual scrollToSection function registered by App.jsx
