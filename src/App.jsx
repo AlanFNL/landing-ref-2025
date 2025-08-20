@@ -154,8 +154,6 @@ function App() {
 
             <Bento scrollToSection={scrollToSection} />
 
-            <BrandCarousel />
-
             <div ref={contactRef}>
               <Contact
                 initialView={contactView}
