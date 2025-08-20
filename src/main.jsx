@@ -11,6 +11,8 @@ import App from "./App.jsx";
 import { Analytics } from "@vercel/analytics/react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ProjectDetail from "./components/ProjectDetail.jsx";
+import { routes } from "./routes.jsx";
+import LanguageWrapper from "./components/LanguageWrapper.jsx";
 
 // Define default functions for the context
 const defaultScrollToSection = (targetName, viewOptions, openPopup) => {
@@ -84,18 +86,13 @@ console.log = function filterLogs(msg, ...args) {
 // i18n moved to providers.jsx for SSR/SSG compatibility
 
 // Create router with route-specific elements
-const router = createBrowserRouter([
-  { path: "/", element: <App /> },
-  { path: "/projects/:projectSlug", element: <ProjectDetail /> },
-]);
+const router = createBrowserRouter(routes);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <I18nextProvider i18n={i18next}>
-      <AppWrapper>
-        <Analytics />
-        <RouterProvider router={router} />
-      </AppWrapper>
-    </I18nextProvider>
+    <AppWrapper>
+      <Analytics />
+      <RouterProvider router={router} />
+    </AppWrapper>
   </StrictMode>
 );

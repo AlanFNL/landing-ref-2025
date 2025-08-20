@@ -23,6 +23,20 @@ function NavBar({ scrollToSection }) {
   const handleLanguageChange = (lang) => {
     i18n.changeLanguage(lang);
     setIsDropdownOpen(false);
+
+    // Update URL to reflect language change
+    const currentPath = location.pathname;
+    const pathSegments = currentPath.split("/").filter(Boolean);
+
+    if (pathSegments.length > 0 && ["en", "es"].includes(pathSegments[0])) {
+      // Replace the language segment
+      pathSegments[0] = lang;
+      const newPath = `/${pathSegments.join("/")}`;
+      navigate(newPath);
+    } else {
+      // If no language in path, add it
+      navigate(`/${lang}${currentPath === "/" ? "" : currentPath}`);
+    }
   };
 
   const handleClickOutside = (event) => {

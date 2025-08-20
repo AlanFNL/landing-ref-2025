@@ -8,6 +8,7 @@ import React, {
 import { motion } from "framer-motion";
 import "./App.css";
 import { ScrollContext } from "./providers.jsx";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import Hero from "./components/Hero";
 import Bento from "./components/Bento";
@@ -51,6 +52,8 @@ export const smoothScroll = (target, duration = 1000) => {
 
 function App() {
   const isServer = typeof window === "undefined";
+  const navigate = useNavigate();
+  const location = useLocation();
   const servicesRef = useRef(null);
   const contactRef = useRef(null);
   const clientsRef = useRef(null);
@@ -58,6 +61,25 @@ function App() {
   const [contactView, setContactView] = useState("options");
   const [openCalendly, setOpenCalendly] = useState(false);
   const { setScrollFunction } = useContext(ScrollContext);
+
+  // Handle language detection and redirect
+  useEffect(() => {
+    if (!isServer && location.pathname === "/") {
+      const defaultLanguage = getDefaultLanguage();
+      navigate(`/${defaultLanguage}`, { replace: true });
+    }
+  }, [navigate, location.pathname, isServer]);
+
+  // Get default language based on browser preference or fallback to English
+  const getDefaultLanguage = () => {
+    if (typeof window !== "undefined") {
+      const browserLang = navigator.language;
+      if (browserLang && browserLang.startsWith("es")) {
+        return "es";
+      }
+    }
+    return "en";
+  };
 
   const scrollToSection = useCallback(
     (ref, view, openCalendlyPopup = false) => {

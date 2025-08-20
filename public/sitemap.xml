@@ -1,35 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
-  <!-- Homepage -->
+  <!-- English Homepage -->
+  <url>
+    <loc>https://www.reforceinfinity.com/en</loc>
+    <lastmod>2025-03-19T12:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.reforceinfinity.com/es" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.reforceinfinity.com/" />
+  </url>
+
+  <!-- Spanish Homepage -->
+  <url>
+    <loc>https://www.reforceinfinity.com/es</loc>
+    <lastmod>2025-03-19T12:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.reforceinfinity.com/en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.reforceinfinity.com/" />
+  </url>
+
+  <!-- Default Homepage (redirects to language-specific) -->
   <url>
     <loc>https://www.reforceinfinity.com/</loc>
     <lastmod>2025-03-19T12:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.reforceinfinity.com/en" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.reforceinfinity.com/es" />
   </url>
 
+  <!-- English Projects -->
+  <url>
+    <loc>https://www.reforceinfinity.com/en/projects/uala</loc>
+    <lastmod>2025-03-01T10:00:00+00:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.reforceinfinity.com/es/projects/uala" />
+  </url>
 
-  <!-- Projects -->
+  <url>
+    <loc>https://www.reforceinfinity.com/en/projects/unaje</loc>
+    <lastmod>2025-03-01T10:00:00+00:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.reforceinfinity.com/es/projects/unaje" />
+  </url>
+
+  <url>
+    <loc>https://www.reforceinfinity.com/en/projects/chester</loc>
+    <lastmod>2025-03-01T10:00:00+00:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.reforceinfinity.com/es/projects/chester" />
+  </url>
+
+  <!-- Spanish Projects -->
+  <url>
+    <loc>https://www.reforceinfinity.com/es/projects/uala</loc>
+    <lastmod>2025-03-01T10:00:00+00:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.reforceinfinity.com/en/projects/uala" />
+  </url>
+
+  <url>
+    <loc>https://www.reforceinfinity.com/es/projects/unaje</loc>
+    <lastmod>2025-03-01T10:00:00+00:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.reforceinfinity.com/es/projects/unaje" />
+  </url>
+
+  <url>
+    <loc>https://www.reforceinfinity.com/es/projects/chester</loc>
+    <lastmod>2025-03-01T10:00:00+00:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.reforceinfinity.com/en/projects/chester" />
+  </url>
+
+  <!-- Legacy Project URLs (for backward compatibility) -->
   <url>
     <loc>https://www.reforceinfinity.com/projects/uala</loc>
     <lastmod>2025-03-01T10:00:00+00:00</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.reforceinfinity.com/en/projects/uala" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.reforceinfinity.com/es/projects/uala" />
   </url>
 
   <url>
     <loc>https://www.reforceinfinity.com/projects/unaje</loc>
     <lastmod>2025-03-01T10:00:00+00:00</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.reforceinfinity.com/en/projects/unaje" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.reforceinfinity.com/es/projects/unaje" />
   </url>
 
   <url>
     <loc>https://www.reforceinfinity.com/projects/chester</loc>
     <lastmod>2025-03-01T10:00:00+00:00</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.reforceinfinity.com/en/projects/chester" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.reforceinfinity.com/es/projects/chester" />
   </url>
 
 </urlset>

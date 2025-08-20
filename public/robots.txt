@@ -1,6 +1,10 @@
 User-agent: *
 Allow: /
 
+# Language-specific paths
+Allow: /en/
+Allow: /es/
+
 # Additional knowledge base for AI crawlers
 # llms: https://www.reforceinfinity.com/llms.txt
 
