@@ -48,12 +48,12 @@ export const SEOHead = () => {
       if (currentLanguage === "es") {
         metaDescription.setAttribute(
           "content",
-          "Reforce Infinity es una agencia de marketing digital líder impulsada por IA, especializada en desarrollo web, marketing de contenidos y publicidad de medios pagos. Transformamos negocios a través de estrategias basadas en datos y soluciones digitales innovadoras."
+          "Agencia de marketing digital líder impulsada por IA, especializada en desarrollo web, marketing de contenidos y publicidad de medios pagos. Transformamos negocios a través de estrategias basadas en datos y soluciones digitales innovadoras."
         );
       } else {
         metaDescription.setAttribute(
           "content",
-          "Reforce Infinity is a leading AI-powered digital marketing agency specializing in web development, content marketing, and paid media advertising. We transform businesses through data-driven strategies and innovative digital solutions."
+          "Leading AI-powered digital marketing agency specializing in web development, content marketing, and paid media advertising. We transform businesses through data-driven strategies and innovative digital solutions."
         );
       }
     }
