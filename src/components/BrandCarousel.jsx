@@ -134,65 +134,94 @@ const BrandCarousel = forwardRef(({ clientsRef }, ref) => {
         </motion.div>
 
         {/* Premium Partners Grid */}
-        <motion.div
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          {logos.map((logo, index) => {
-            // Identify wide logos that need object-contain to avoid cutoff
-            const wideLogoIndexes = [1, 2, 5, 6, 8, 9, 10, 11]; // MileniumC, PEPSICO, HRZTL., ualá, give&get, Charles Taylor, Charles Taylor InsureTech
-            const isWideLogo = wideLogoIndexes.includes(index);
-
-            return (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                className="group relative"
+        {isServer ? (
+          // Server: show brand names as text for no-JS mode
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              "Uala",
+              "pepsico",
+              "unaje",
+              "g20 young entrepreneurs alliance",
+              "fuseai",
+              "youshift",
+              "hkstp partner",
+              "the sandbox",
+              "hrztl",
+              "fije",
+              "give&get",
+              "charles taylor",
+              "millenium group",
+            ].map((name) => (
+              <div
+                key={name}
+                className="text-center text-white/90 bg-black/30 border border-white/10 rounded-2xl px-6 py-4 backdrop-blur-sm"
               >
+                {name}
+              </div>
+            ))}
+          </div>
+        ) : (
+          // Client: show animated logo grid
+          <motion.div
+            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            {logos.map((logo, index) => {
+              // Identify wide logos that need object-contain to avoid cutoff
+              const wideLogoIndexes = [1, 2, 5, 6, 8, 9, 10, 11]; // MileniumC, PEPSICO, HRZTL., ualá, give&get, Charles Taylor, Charles Taylor InsureTech
+              const isWideLogo = wideLogoIndexes.includes(index);
+
+              return (
                 <motion.div
-                  className="relative bg-black/30 backdrop-blur-sm border border-white/10 rounded-2xl p-3 md:p-4 h-20 md:h-24 flex items-center justify-center overflow-hidden"
-                  whileHover={{
-                    scale: 1.05,
-                    borderColor: "rgba(255, 255, 255, 0.25)",
-                    boxShadow: "0 0 20px rgba(168, 85, 247, 0.15)",
-                  }}
-                  transition={{ duration: 0.3 }}
+                  key={index}
+                  variants={itemVariants}
+                  className="group relative"
                 >
-                  {/* Subtle glow effect */}
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100"
+                    className="relative bg-black/30 backdrop-blur-sm border border-white/10 rounded-2xl p-3 md:p-4 h-20 md:h-24 flex items-center justify-center overflow-hidden"
+                    whileHover={{
+                      scale: 1.05,
+                      borderColor: "rgba(255, 255, 255, 0.25)",
+                      boxShadow: "0 0 20px rgba(168, 85, 247, 0.15)",
+                    }}
                     transition={{ duration: 0.3 }}
-                  />
-
-                  {/* Logo Container with Adaptive Object-Fit */}
-                  <div className="relative z-10 w-full h-full flex items-center justify-center p-1 md:p-0">
-                    <img
-                      loading="lazy"
-                      src={logo}
-                      alt={`partner-logo-${index}`}
-                      className="w-full h-full brightness-0 invert opacity-80 group-hover:opacity-100 transition-all duration-300"
-                      style={{
-                        maxWidth: "100%",
-                        maxHeight: "100%",
-                        objectFit: isWideLogo ? "contain" : "cover",
-                        objectPosition: "center",
-                      }}
+                  >
+                    {/* Subtle glow effect */}
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100"
+                      transition={{ duration: 0.3 }}
                     />
-                  </div>
 
-                  {/* Hover overlay */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100"
-                    transition={{ duration: 0.3 }}
-                  />
+                    {/* Logo Container with Adaptive Object-Fit */}
+                    <div className="relative z-10 w-full h-full flex items-center justify-center p-1 md:p-0">
+                      <img
+                        loading="lazy"
+                        src={logo}
+                        alt={`partner-logo-${index}`}
+                        className="w-full h-full brightness-0 invert opacity-80 group-hover:opacity-100 transition-all duration-300"
+                        style={{
+                          maxWidth: "100%",
+                          maxHeight: "100%",
+                          objectFit: isWideLogo ? "contain" : "cover",
+                          objectPosition: "center",
+                        }}
+                      />
+                    </div>
+
+                    {/* Hover overlay */}
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100"
+                      transition={{ duration: 0.3 }}
+                    />
+                  </motion.div>
                 </motion.div>
-              </motion.div>
-            );
-          })}
-        </motion.div>
+              );
+            })}
+          </motion.div>
+        )}
       </div>
     </div>
   );

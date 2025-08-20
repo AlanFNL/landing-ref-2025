@@ -221,106 +221,163 @@ const Contact = forwardRef((props, ref) => {
         </motion.div>
 
         {/* Benefit Cards Section - More Compact */}
-        <motion.div
-          className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, margin: "-100px" }}
-        >
-          {benefitCards.map((card, index) => {
-            const IconComponent = card.icon;
-            return (
-              <motion.div
-                key={card.title}
-                custom={index}
-                variants={cardVariants}
-                className="group relative"
-              >
-                <motion.div
-                  className="rounded-2xl bg-black/30 p-5 backdrop-blur-sm border border-white/10 relative overflow-hidden h-full"
-                  whileHover={{
-                    boxShadow: "0 0 20px rgba(168, 85, 247, 0.2)",
-                    borderColor: "rgba(255, 255, 255, 0.25)",
-                    scale: 1.01,
-                  }}
-                  transition={{ duration: 0.2 }}
+        {typeof window === "undefined" ? (
+          // Server: show static benefit cards for no-JS mode
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+            {benefitCards.map((card, index) => {
+              const IconComponent = card.icon;
+              return (
+                <div
+                  key={card.title}
+                  className="group relative rounded-2xl bg-black/30 p-5 backdrop-blur-sm border border-white/10 relative overflow-hidden h-full"
                 >
-                  {/* Simplified glow background */}
-                  <motion.div
-                    className="absolute -bottom-16 -right-16 w-32 h-32 bg-purple-500/10 rounded-full blur-[50px]"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ duration: 0.8, delay: 0.8 + index * 0.1 }}
-                  />
+                  {/* Static glow background */}
+                  <div className="absolute -bottom-16 -right-16 w-32 h-32 bg-purple-500/10 rounded-full blur-[50px]" />
 
                   <div className="relative z-10">
-                    <motion.div
-                      className="mb-3 p-2 rounded-lg bg-black/30 backdrop-blur-sm w-fit"
-                      initial={{ scale: 0.8, opacity: 0 }}
-                      whileInView={{ scale: 1, opacity: 1 }}
-                      transition={{ duration: 0.4, delay: 1 + index * 0.1 }}
-                    >
+                    <div className="mb-3 p-2 rounded-lg bg-black/30 backdrop-blur-sm w-fit">
                       <IconComponent className="text-white w-5 h-5" />
-                    </motion.div>
+                    </div>
 
-                    <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-purple-200 transition-colors">
+                    <h3 className="text-lg font-semibold text-white mb-2">
                       {card.title}
                     </h3>
 
-                    <p className="text-gray-300 text-sm leading-relaxed group-hover:text-gray-200 transition-colors">
+                    <p className="text-gray-300 text-sm leading-relaxed">
                       {card.description}
                     </p>
                   </div>
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          // Client: show animated benefit cards
+          <motion.div
+            className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, margin: "-100px" }}
+          >
+            {benefitCards.map((card, index) => {
+              const IconComponent = card.icon;
+              return (
+                <motion.div
+                  key={card.title}
+                  custom={index}
+                  variants={cardVariants}
+                  className="group relative"
+                >
+                  <motion.div
+                    className="rounded-2xl bg-black/30 p-5 backdrop-blur-sm border border-white/10 relative overflow-hidden h-full"
+                    whileHover={{
+                      boxShadow: "0 0 20px rgba(168, 85, 247, 0.2)",
+                      borderColor: "rgba(255, 255, 255, 0.25)",
+                      scale: 1.01,
+                    }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {/* Simplified glow background */}
+                    <motion.div
+                      className="absolute -bottom-16 -right-16 w-32 h-32 bg-purple-500/10 rounded-full blur-[50px]"
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      transition={{ duration: 0.8, delay: 0.8 + index * 0.1 }}
+                    />
+
+                    <div className="relative z-10">
+                      <motion.div
+                        className="mb-3 p-2 rounded-lg bg-black/30 backdrop-blur-sm w-fit"
+                        initial={{ scale: 0.8, opacity: 0 }}
+                        whileInView={{ scale: 1, opacity: 1 }}
+                        transition={{ duration: 0.4, delay: 1 + index * 0.1 }}
+                      >
+                        <IconComponent className="text-white w-5 h-5" />
+                      </motion.div>
+
+                      <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-purple-200 transition-colors">
+                        {card.title}
+                      </h3>
+
+                      <p className="text-gray-300 text-sm leading-relaxed group-hover:text-gray-200 transition-colors">
+                        {card.description}
+                      </p>
+                    </div>
+                  </motion.div>
                 </motion.div>
-              </motion.div>
-            );
-          })}
-        </motion.div>
+              );
+            })}
+          </motion.div>
+        )}
       </motion.div>
 
-      <motion.div
-        className="flex justify-center items-center mt-8"
-        initial={typeof window === "undefined" ? false : { opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.6 }}
-      >
+      {typeof window === "undefined" ? (
+        // Server: show static CTA button for no-JS mode
+        <div className="flex justify-center items-center mt-8">
+          <div className="group relative flex justify-center items-center">
+            <a
+              href="https://calendly.com/reforceinfinity-info/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="button font-medium transition-all text-base px-6 py-3"
+              aria-label={t("about.cta")}
+            >
+              <div className="dots_border"></div>
+              <div className="sparkle">
+                <Sparkles className="w-5 h-5" style={{ color: "#9810fa" }} />
+              </div>
+              <span className="text_button font-medium text-base md:text-lg lg:text-xl">
+                {t("about.cta")}
+              </span>
+            </a>
+          </div>
+        </div>
+      ) : (
+        // Client: show animated CTA button
         <motion.div
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          transition={{ duration: 0.2 }}
-          className="group relative flex justify-center items-center"
+          className="flex justify-center items-center mt-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
         >
-          <motion.button
+          <motion.div
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            onClick={() =>
-              window.open(
-                "https://calendly.com/reforceinfinity-info/30min",
-                "_blank"
-              )
-            }
-            className="button font-medium transition-all text-base px-6 py-3"
-            aria-label={t("about.cta")}
-            tabIndex="0"
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
+            transition={{ duration: 0.2 }}
+            className="group relative flex justify-center items-center"
+          >
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() =>
                 window.open(
                   "https://calendly.com/reforceinfinity-info/30min",
                   "_blank"
-                );
+                )
               }
-            }}
-          >
-            <div className="dots_border"></div>
-            <div className="sparkle">
-              <Sparkles className="w-5 h-5" style={{ color: "#9810fa" }} />
-            </div>
-            <span className="text_button font-medium text-base md:text-lg lg:text-xl">
-              {t("about.cta")}
-            </span>
-          </motion.button>
+              className="button font-medium transition-all text-base px-6 py-3"
+              aria-label={t("about.cta")}
+              tabIndex="0"
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  window.open(
+                    "https://calendly.com/reforceinfinity-info/30min",
+                    "_blank"
+                  );
+                }
+              }}
+            >
+              <div className="dots_border"></div>
+              <div className="sparkle">
+                <Sparkles className="w-5 h-5" style={{ color: "#9810fa" }} />
+              </div>
+              <span className="text_button font-medium text-base md:text-lg lg:text-xl">
+                {t("about.cta")}
+              </span>
+            </motion.button>
+          </motion.div>
         </motion.div>
-      </motion.div>
+      )}
     </motion.div>
   );
 });
