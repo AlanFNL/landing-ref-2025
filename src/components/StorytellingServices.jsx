@@ -71,9 +71,9 @@ export const StorytellingServices = ({ scrollToSection }) => {
           <h2 className="text-sm md:text-base uppercase tracking-wide text-white/70 mb-4">
             REFORCE INFINITY
           </h2>
-          <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight mb-8">
+          <h2 className="text-5xl md:text-7xl font-bold text-white leading-tight mb-8">
             {t("services_section.title", "Complete Marketing Services")}
-          </h1>
+          </h2>
 
           <p className="text-2xl md:text-4xl text-white font-bold">
             {t(
