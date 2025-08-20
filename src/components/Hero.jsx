@@ -24,8 +24,11 @@ function Hero({ scrollToSection }) {
   // Handle client-side initialization
   useEffect(() => {
     setIsClient(true);
+  }, []);
 
-    if (typeof window !== "undefined") {
+  // Handle language detection after client is ready
+  useEffect(() => {
+    if (isClient) {
       const browserLang = navigator.language;
       if (browserLang && browserLang.startsWith("es")) {
         i18n.changeLanguage("es");
@@ -34,7 +37,7 @@ function Hero({ scrollToSection }) {
       }
       setAnimationKey((prev) => prev + 1);
     }
-  }, [i18n]);
+  }, [i18n, isClient]);
 
   useEffect(() => {
     if (isOpen) {

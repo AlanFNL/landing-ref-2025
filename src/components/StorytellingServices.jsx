@@ -4,9 +4,15 @@ import { useTranslation } from "react-i18next";
 
 export const StorytellingServices = ({ scrollToSection }) => {
   const { t } = useTranslation("global");
+  const [isClient, setIsClient] = useState(false);
   const containerRef = useRef(null);
   const servicesListRef = useRef(null);
   const [transformDistance, setTransformDistance] = useState(-600);
+
+  // Handle client-side initialization
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -62,7 +68,7 @@ export const StorytellingServices = ({ scrollToSection }) => {
       <div className="w-full md:w-1/2 flex flex-col justify-start md:justify-center p-8 md:p-16 sticky top-0 md:h-screen bg-[#0A0A0A] md:bg-transparent h-fit z-[11]">
         <motion.div
           initial={
-            typeof window === "undefined" ? false : { opacity: 0, y: 20 }
+            !isClient ? false : { opacity: 0, y: 20 }
           }
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -99,7 +105,7 @@ export const StorytellingServices = ({ scrollToSection }) => {
               key={index}
               className="flex items-center gap-6"
               initial={
-                typeof window === "undefined"
+                !isClient
                   ? { opacity: 1 }
                   : { opacity: 0.3 }
               }

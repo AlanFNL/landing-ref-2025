@@ -52,7 +52,7 @@ export const smoothScroll = (target, duration = 1000) => {
 };
 
 function AppEn() {
-  const isServer = typeof window === "undefined";
+  const [isClient, setIsClient] = useState(false);
   const servicesRef = useRef(null);
   const contactRef = useRef(null);
   const clientsRef = useRef(null);
@@ -60,6 +60,13 @@ function AppEn() {
   const [contactView, setContactView] = useState("options");
   const [openCalendly, setOpenCalendly] = useState(false);
   const { setScrollFunction } = useContext(ScrollContext);
+
+  // Handle client-side initialization
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  const isServer = !isClient;
 
   const scrollToSection = useCallback(
     (ref, view, openCalendlyPopup = false) => {

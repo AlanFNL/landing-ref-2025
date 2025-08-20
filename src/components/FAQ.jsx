@@ -1,9 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
 function FAQ() {
-  const isServer = typeof window === "undefined";
+  const [isClient, setIsClient] = useState(false);
+
+  // Handle client-side initialization
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+  const isServer = !isClient;
   const [openIndex, setOpenIndex] = useState(null);
   const [t] = useTranslation("global");
 

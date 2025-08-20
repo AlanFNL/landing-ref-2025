@@ -65,10 +65,15 @@ const GridBackground = () => {
 
 // Counting number animation component
 const CountingNumber = ({ value, suffix = "", prefix = "", duration = 2 }) => {
-  const isServer = typeof window === "undefined";
+  const [isClient, setIsClient] = useState(false);
   const nodeRef = useRef(null);
   const isInView = useInView(nodeRef, { once: true, amount: 0.3 });
   const [displayValue, setDisplayValue] = useState(0);
+
+  // Handle client-side initialization
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   // Parse the numeric part only
   const numericValue = parseFloat(value.replace(/[^0-9.]/g, ""));
@@ -100,7 +105,7 @@ const CountingNumber = ({ value, suffix = "", prefix = "", duration = 2 }) => {
     return () => clearInterval(timer);
   }, [isInView, numericValue, duration]);
 
-  if (isServer) {
+  if (!isClient) {
     const serverFormatted = Number(numericValue).toLocaleString("en-US", {
       minimumFractionDigits: value.includes(".") ? 1 : 0,
       maximumFractionDigits: value.includes(".") ? 1 : 0,
@@ -130,10 +135,15 @@ const CountingNumber = ({ value, suffix = "", prefix = "", duration = 2 }) => {
 
 // Stat Card Component
 const StatCard = ({ icon: Icon, title, value, subtitle, delay = 0 }) => {
-  const isServer = typeof window === "undefined";
+  const [isClient, setIsClient] = useState(false);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
   const opacity = useSpring(0, { stiffness: 60, damping: 20 });
+
+  // Handle client-side initialization
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   // Extract prefix/suffix from value
   const prefix = value.startsWith("+") ? "+" : "";
@@ -158,7 +168,7 @@ const StatCard = ({ icon: Icon, title, value, subtitle, delay = 0 }) => {
     <motion.div
       ref={ref}
       className="rounded-3xl bg-black/50 p-5 backdrop-blur-sm border border-white/10 flex flex-col justify-between relative overflow-hidden group h-full"
-      initial={typeof window === "undefined" ? false : { opacity: 0, y: 20 }}
+      initial={!isClient ? false : { opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay }}
       whileHover={{
@@ -168,16 +178,14 @@ const StatCard = ({ icon: Icon, title, value, subtitle, delay = 0 }) => {
     >
       <motion.div
         className="absolute -bottom-32 -right-32 w-64 h-64 bg-purple-500/5 rounded-full blur-3xl"
-        initial={typeof window === "undefined" ? false : { opacity: 0 }}
+        initial={!isClient ? false : { opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1, delay: delay + 0.2 }}
       />
 
       <div className="flex items-start justify-between">
         <motion.div
-          initial={
-            typeof window === "undefined" ? false : { scale: 0.8, opacity: 0 }
-          }
+          initial={!isClient ? false : { scale: 0.8, opacity: 0 }}
           whileInView={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.5, delay: delay + 0.1 }}
           className="p-2 rounded-lg bg-black/30 backdrop-blur-sm"
@@ -190,7 +198,7 @@ const StatCard = ({ icon: Icon, title, value, subtitle, delay = 0 }) => {
       <div>
         <motion.h3
           className="text-2xl md:text-3xl font-bold text-white mt-4 flex items-baseline"
-          style={isServer ? { opacity: 1 } : { opacity }}
+          style={!isClient ? { opacity: 1 } : { opacity }}
         >
           {value === "10+" ? (
             "10+"
@@ -212,9 +220,15 @@ const StatCard = ({ icon: Icon, title, value, subtitle, delay = 0 }) => {
 
 export default function Bento({ scrollToSection }) {
   const [t] = useTranslation("global");
+  const [isClient, setIsClient] = useState(false);
   const containerRef = useRef(null);
   const mainCardRef = useRef(null);
   const isMainCardInView = useInView(mainCardRef, { once: true, amount: 0.3 });
+
+  // Handle client-side initialization
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -245,9 +259,7 @@ export default function Bento({ scrollToSection }) {
         {/* Section Title */}
         <motion.div
           className="text-center mb-12 md:mb-16"
-          initial={
-            typeof window === "undefined" ? false : { opacity: 0, y: 30 }
-          }
+          initial={!isClient ? false : { opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
@@ -258,9 +270,7 @@ export default function Bento({ scrollToSection }) {
           <motion.div
             ref={mainCardRef}
             className="rounded-3xl bg-black/50 p-8 md:p-10 backdrop-blur-md border border-white/10 relative overflow-hidden"
-            initial={
-              typeof window === "undefined" ? false : { opacity: 0, y: 30 }
-            }
+            initial={!isClient ? false : { opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             whileHover={{
@@ -287,11 +297,7 @@ export default function Bento({ scrollToSection }) {
                 </motion.div>
                 <motion.h3
                   className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4"
-                  initial={
-                    typeof window === "undefined"
-                      ? false
-                      : { opacity: 0, y: 20 }
-                  }
+                  initial={!isClient ? false : { opacity: 0, y: 20 }}
                   animate={isMainCardInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: 0.3 }}
                 >
@@ -300,9 +306,7 @@ export default function Bento({ scrollToSection }) {
                 </motion.h3>
                 <motion.p
                   className="text-gray-400 md:text-lg"
-                  initial={
-                    typeof window === "undefined" ? false : { opacity: 0 }
-                  }
+                  initial={!isClient ? false : { opacity: 0 }}
                   animate={isMainCardInView ? { opacity: 1 } : {}}
                   transition={{ duration: 0.5, delay: 0.5 }}
                 >

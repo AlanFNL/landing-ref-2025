@@ -281,7 +281,14 @@ const VideoModal = ({ isOpen, onClose, videoUrl, title }) => {
 };
 
 // Video Thumbnail Component
-const VideoThumbnail = ({ video, index, parallaxValue, onClick, isMobile }) => {
+const VideoThumbnail = ({
+  video,
+  index,
+  parallaxValue,
+  onClick,
+  isMobile,
+  isClient,
+}) => {
   const { t } = useTranslation("global");
   const cardRef = useRef(null);
   const isInView = useScroll({
@@ -352,9 +359,7 @@ const VideoThumbnail = ({ video, index, parallaxValue, onClick, isMobile }) => {
         {video.isHighlighted && video.badge && (
           <motion.div
             className="mb-2 sm:mb-3 bg-purple-500/80 text-white font-medium text-xs py-1 px-3 rounded-full backdrop-blur-sm w-fit"
-            initial={
-              typeof window === "undefined" ? false : { opacity: 0, y: 10 }
-            }
+            initial={!isClient ? false : { opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
           >
@@ -365,9 +370,7 @@ const VideoThumbnail = ({ video, index, parallaxValue, onClick, isMobile }) => {
         {video.title && (
           <motion.h3
             className="text-lg sm:text-xl font-bold text-white mb-1"
-            initial={
-              typeof window === "undefined" ? false : { opacity: 0, y: 10 }
-            }
+            initial={!isClient ? false : { opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
@@ -399,12 +402,19 @@ const VideoThumbnail = ({ video, index, parallaxValue, onClick, isMobile }) => {
 };
 
 const VideoShowcase = () => {
-  const isServer = typeof window === "undefined";
+  const [isClient, setIsClient] = useState(false);
   const [t] = useTranslation("global");
   const [selectedVideo, setSelectedVideo] = useState(null);
   const containerRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
   const [isPending, startTransition] = useTransition();
+
+  // Handle client-side initialization
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  const isServer = !isClient;
 
   // Check if screen is mobile on component mount and on resize
   useEffect(() => {
@@ -452,9 +462,7 @@ const VideoShowcase = () => {
         <div className="text-center mb-10 md:mb-16">
           <motion.h2
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 md:mb-4"
-            initial={
-              typeof window === "undefined" ? false : { opacity: 0, y: 20 }
-            }
+            initial={!isClient ? false : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
@@ -463,7 +471,7 @@ const VideoShowcase = () => {
           </motion.h2>
           <motion.p
             className="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto"
-            initial={typeof window === "undefined" ? false : { opacity: 0 }}
+            initial={!isClient ? false : { opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
@@ -497,6 +505,7 @@ const VideoShowcase = () => {
               parallaxValue={scrollYProgress}
               onClick={() => handleVideoSelect(video)}
               isMobile={isMobile}
+              isClient={isClient}
             />
           ))}
         </motion.div>

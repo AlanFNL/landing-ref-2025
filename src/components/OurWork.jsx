@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { motion, useInView, useAnimation } from "framer-motion";
 import Projects from "./Projects";
@@ -6,9 +6,15 @@ import VideoShowcase from "./VideoShowcase";
 
 const OurWork = () => {
   const { t } = useTranslation("global");
+  const [isClient, setIsClient] = useState(false);
   const controls = useAnimation();
   const titleRef = useRef(null);
   const isInView = useInView(titleRef, { once: true, amount: 0.3 });
+
+  // Handle client-side initialization
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   // Use proper case for main title and split into letters
   const mainTitle = "Our Work";
@@ -154,7 +160,7 @@ const OurWork = () => {
               hidden: { width: 0, opacity: 0 },
               visible: { width: "180px", opacity: 1 },
             }}
-            initial={typeof window === "undefined" ? "visible" : "hidden"}
+            initial={!isClient ? "visible" : "hidden"}
             animate={controls}
             transition={{
               duration: 1.2,
@@ -173,7 +179,7 @@ const OurWork = () => {
               hidden: { opacity: 0, y: 20 },
               visible: { opacity: 0.9, y: 0 },
             }}
-            initial={typeof window === "undefined" ? "visible" : "hidden"}
+            initial={!isClient ? "visible" : "hidden"}
             animate={controls}
             transition={{
               duration: 0.8,

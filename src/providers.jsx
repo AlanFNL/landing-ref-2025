@@ -1,4 +1,10 @@
-import React, { StrictMode, createContext, useMemo, useState } from "react";
+import React, {
+  StrictMode,
+  createContext,
+  useMemo,
+  useState,
+  useEffect,
+} from "react";
 import { Analytics } from "@vercel/analytics/react";
 import { I18nextProvider } from "react-i18next";
 import i18next from "i18next";
@@ -28,10 +34,17 @@ if (!i18next.isInitialized) {
 }
 
 export const AppProviders = ({ children }) => {
-  const isServer = typeof window === "undefined";
+  const [isClient, setIsClient] = useState(false);
   const [scrollFunctionInState, setScrollFunctionInState] = useState(
     () => () => {}
   );
+
+  // Handle client-side initialization
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  const isServer = !isClient;
 
   const contextValue = useMemo(
     () => ({

@@ -1,9 +1,9 @@
-import React, { Suspense } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import logo from "../assets/reflogo.webp";
 // Import lazy loaded icons
-import { Linkedin, Instagram, Send, Calendar } from "./icons";
+import { Linkedin, Instagram } from "./icons";
 import { Sparkles } from "lucide-react";
 
 // Create a loading fallback for icons
@@ -12,7 +12,13 @@ const IconFallback = () => (
 );
 
 function Footer({ scrollToSection }) {
-  const isServer = typeof window === "undefined";
+  const [isClient, setIsClient] = useState(false);
+
+  // Handle client-side initialization
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+  const isServer = !isClient;
   const [t] = useTranslation("global");
 
   const fadeInUp = {

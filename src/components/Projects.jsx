@@ -16,7 +16,14 @@ import ualaBg from "../assets/projects/cover-1.webp";
 import unajeBg from "../assets/projects/cover-2.webp";
 import chesterBg from "../assets/projects/cover-3.webp";
 
-const ProjectCard = ({ project, index, isInView, t, onCardClick, isServer }) => {
+const ProjectCard = ({
+  project,
+  index,
+  isInView,
+  t,
+  onCardClick,
+  isServer,
+}) => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const cardRef = useRef(null);
@@ -49,9 +56,7 @@ const ProjectCard = ({ project, index, isInView, t, onCardClick, isServer }) => 
   if (isServer) {
     // Server: show static project card for no-JS mode
     return (
-      <div
-        className="relative w-full h-[600px] md:h-[500px] lg:h-[400px] overflow-hidden rounded-3xl border border-white/10 bg-black/30 backdrop-blur-sm"
-      >
+      <div className="relative w-full h-[600px] md:h-[500px] lg:h-[400px] overflow-hidden rounded-3xl border border-white/10 bg-black/30 backdrop-blur-sm">
         {/* Mobile: Stacked layout, Desktop: Side-by-side */}
         <div className="flex flex-col md:flex-row h-full">
           {/* Image section - 50% width on desktop, full width on mobile */}
@@ -191,14 +196,21 @@ const ProjectCard = ({ project, index, isInView, t, onCardClick, isServer }) => 
 };
 
 const Projects = forwardRef((props, ref) => {
-  const [t, i18n] = useTranslation("global");
+  const { t, i18n } = useTranslation("global");
   const [comingFromProjectDetail, setComingFromProjectDetail] = useState(false);
+  const [isClient, setIsClient] = useState(false);
   const containerRef = useRef(null);
   const titleRef = useRef(null);
   const navigate = useNavigate();
   const location = useLocation();
   const { scrollToSection } = props;
-  const isServer = typeof window === "undefined";
+
+  // Handle client-side initialization
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  const isServer = !isClient;
 
   const isInView = useInView(containerRef, {
     once: false,
@@ -321,10 +333,7 @@ const Projects = forwardRef((props, ref) => {
           {/* Title section with scroll effect */}
           {isServer ? (
             // Server: show static title for no-JS mode
-            <div
-              ref={titleRef}
-              className="text-center mb-20 md:mb-24"
-            >
+            <div ref={titleRef} className="text-center mb-20 md:mb-24">
               <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8">
                 {t("projects.title", "Case Study")}
               </h2>

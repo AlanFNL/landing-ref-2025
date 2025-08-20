@@ -7,7 +7,13 @@ import testimonials3 from "../assets/testimonials3.webp";
 import { useTranslation } from "react-i18next";
 
 function Testimonials() {
-  const isServer = typeof window === "undefined";
+  const [isClient, setIsClient] = useState(false);
+
+  // Handle client-side initialization
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+  const isServer = !isClient;
   const [currentIndex, setCurrentIndex] = useState(0);
   const ref = useRef(null);
   const isInView = useInView(ref);

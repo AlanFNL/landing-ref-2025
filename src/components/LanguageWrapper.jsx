@@ -7,6 +7,12 @@ export const LanguageWrapper = ({ children }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [isInitialized, setIsInitialized] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+
+  // Handle client-side initialization
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   useEffect(() => {
     // Extract language from URL path
@@ -29,7 +35,7 @@ export const LanguageWrapper = ({ children }) => {
 
   // Get default language based on browser preference or fallback to English
   const getDefaultLanguage = () => {
-    if (typeof window !== "undefined") {
+    if (isClient) {
       const browserLang = navigator.language;
       if (browserLang && browserLang.startsWith("es")) {
         return "es";

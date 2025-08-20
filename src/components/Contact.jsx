@@ -1,10 +1,11 @@
-import React, { forwardRef, useEffect, useRef } from "react";
+import React, { forwardRef, useEffect, useRef, useState } from "react";
 import { Calendar, Sparkles, Zap, Users, Target, Shield } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { motion, useInView } from "framer-motion";
 
 const Contact = forwardRef((props, ref) => {
   const [t, i18n] = useTranslation("global");
+  const [isClient, setIsClient] = useState(false);
   const contactRef = useRef(null);
   const { openCalendly = false, setOpenCalendly } = props;
   const isInView = useInView(contactRef, {
@@ -12,10 +13,14 @@ const Contact = forwardRef((props, ref) => {
     once: false,
   });
 
-  // Custom styles to override button text transparency
-
+  // Handle client-side initialization
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    setIsClient(true);
+  }, []);
+
+  // Handle language detection after client is ready
+  useEffect(() => {
+    if (isClient) {
       const browserLang = navigator.language;
       if (browserLang && browserLang.startsWith("es")) {
         i18n.changeLanguage("es");
@@ -23,7 +28,7 @@ const Contact = forwardRef((props, ref) => {
         i18n.changeLanguage("en");
       }
     }
-  }, [i18n]);
+  }, [i18n, isClient]);
 
   useEffect(() => {
     if (openCalendly) {
@@ -131,7 +136,7 @@ const Contact = forwardRef((props, ref) => {
   return (
     <motion.div
       className="w-[98vw] m-auto rounded-xl h-fit flex flex-col bg-gradient-to-bl from-purple-900/90 via-slate-900/95 items-center justify-center px-4 py-8 bg-black/60 relative overflow-hidden"
-      initial={typeof window === "undefined" ? false : { opacity: 0 }}
+      initial={!isClient ? false : { opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: false, margin: "-100px" }}
       transition={{ duration: 0.8 }}
@@ -173,16 +178,14 @@ const Contact = forwardRef((props, ref) => {
 
       <motion.div
         className="w-full max-w-4xl mx-auto text-center relative z-10"
-        initial={typeof window === "undefined" ? false : { opacity: 0, y: 20 }}
+        initial={!isClient ? false : { opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, margin: "-100px" }}
         transition={{ duration: 0.8 }}
       >
         <motion.div
           key="consultation"
-          initial={
-            typeof window === "undefined" ? false : { opacity: 0, y: 20 }
-          }
+          initial={!isClient ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="space-y-6"
@@ -191,7 +194,7 @@ const Contact = forwardRef((props, ref) => {
             <motion.h1
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight tracking-tight"
               variants={titleVariants}
-              initial={typeof window === "undefined" ? "visible" : "hidden"}
+              initial={!isClient ? "visible" : "hidden"}
               whileInView="visible"
               viewport={{ once: false }}
             >
@@ -202,7 +205,7 @@ const Contact = forwardRef((props, ref) => {
             <motion.div
               className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-purple-400 via-purple-300 to-purple-400"
               variants={glowVariants}
-              initial={typeof window === "undefined" ? "visible" : "hidden"}
+              initial={!isClient ? "visible" : "hidden"}
               whileInView="visible"
               viewport={{ once: false }}
               style={glowingLineStyle}
@@ -212,7 +215,7 @@ const Contact = forwardRef((props, ref) => {
           <motion.p
             className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed font-light"
             variants={descriptionVariants}
-            initial={typeof window === "undefined" ? "visible" : "hidden"}
+            initial={!isClient ? "visible" : "hidden"}
             whileInView="visible"
             viewport={{ once: false }}
           >
@@ -221,7 +224,7 @@ const Contact = forwardRef((props, ref) => {
         </motion.div>
 
         {/* Benefit Cards Section - More Compact */}
-        {typeof window === "undefined" ? (
+        {!isClient ? (
           // Server: show static benefit cards for no-JS mode
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
             {benefitCards.map((card, index) => {
@@ -229,7 +232,7 @@ const Contact = forwardRef((props, ref) => {
               return (
                 <div
                   key={card.title}
-                  className="group relative rounded-2xl bg-black/30 p-5 backdrop-blur-sm border border-white/10 relative overflow-hidden h-full"
+                  className="group relative rounded-2xl bg-black/30 p-5 backdrop-blur-sm border border-white/10 overflow-hidden h-full"
                 >
                   {/* Static glow background */}
                   <div className="absolute -bottom-16 -right-16 w-32 h-32 bg-purple-500/10 rounded-full blur-[50px]" />
@@ -311,7 +314,7 @@ const Contact = forwardRef((props, ref) => {
         )}
       </motion.div>
 
-      {typeof window === "undefined" ? (
+      {!isClient ? (
         // Server: show static CTA button for no-JS mode
         <div className="flex justify-center items-center mt-8">
           <div className="group relative flex justify-center items-center">

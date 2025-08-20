@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, forwardRef } from "react";
 import { motion, useInView } from "framer-motion";
 import logo1 from "../assets/logo1.png";
 import logo2 from "../assets/logo2.png";
@@ -31,7 +31,7 @@ const logos = [
 ];
 
 const BrandCarousel = forwardRef(({ clientsRef }, ref) => {
-  const isServer = typeof window === "undefined";
+  const [isClient, setIsClient] = useState(false);
   const [t, i18n] = useTranslation("global");
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, {
@@ -40,12 +40,19 @@ const BrandCarousel = forwardRef(({ clientsRef }, ref) => {
     margin: "100px",
   });
 
+  // Handle client-side initialization
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    setIsClient(true);
+  }, []);
+
+  const isServer = !isClient;
+
+  useEffect(() => {
+    if (isClient) {
       const browserLang = navigator.language;
       i18n.changeLanguage(browserLang.startsWith("es") ? "es" : "en");
     }
-  }, [i18n]);
+  }, [i18n, isClient]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
