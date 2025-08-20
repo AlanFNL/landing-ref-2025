@@ -3,6 +3,8 @@ import { renderToString } from "react-dom/server";
 import { MemoryRouter, Routes, Route } from "react-router-dom";
 import { AppProviders } from "./providers.jsx";
 import App from "./App.jsx";
+import AppEn from "./components/AppEn.jsx";
+import AppEs from "./components/AppEs.jsx";
 import ProjectDetail from "./components/ProjectDetail.jsx";
 
 export function render(url) {
@@ -12,7 +14,17 @@ export function render(url) {
         <MemoryRouter initialEntries={[url]}>
           <Routes>
             <Route path="/" element={<App />} />
+            <Route path="/en" element={<AppEn />} />
+            <Route path="/es" element={<AppEs />} />
             <Route path="/projects/:projectSlug" element={<ProjectDetail />} />
+            <Route
+              path="/en/projects/:projectSlug"
+              element={<ProjectDetail />}
+            />
+            <Route
+              path="/es/projects/:projectSlug"
+              element={<ProjectDetail />}
+            />
           </Routes>
         </MemoryRouter>
       </AppProviders>

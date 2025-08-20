@@ -20,9 +20,17 @@ async function prerender() {
 
   const routes = [
     "/",
+    "/en",
+    "/es",
     "/projects/uala",
     "/projects/unaje",
     "/projects/chester",
+    "/en/projects/uala",
+    "/en/projects/unaje",
+    "/en/projects/chester",
+    "/es/projects/uala",
+    "/es/projects/unaje",
+    "/es/projects/chester",
   ];
 
   for (const url of routes) {
