@@ -154,7 +154,12 @@ function Hero({ scrollToSection }) {
           <div className="flex gap-2 items-center text-white/90 text-sm md:text-base font-medium">
             <span className="flex items-center justify-center gap-2">
               {t("hero.featured_on_bookface")}{" "}
-              <img src={ycombinator} className="size-4 md:size-6" /> Combinator
+              <img
+                src={ycombinator}
+                className="size-4 md:size-6"
+                alt="Y Combinator logo"
+              />{" "}
+              Combinator
             </span>
           </div>
         </motion.div>
@@ -246,8 +251,12 @@ function Hero({ scrollToSection }) {
         >
           <p className="text-white/70 text-sm md:text-base mb-6 font-medium tracking-wide flex gap-2">
             {t("hero.trusted_by_startups")}{" "}
-            <img src={ycombinator} className="size-4 md:size-6" /> Combinator
-            Startups
+            <img
+              src={ycombinator}
+              className="size-4 md:size-6"
+              alt="Y Combinator logo"
+            />{" "}
+            Combinator Startups
           </p>
           <div className="flex justify-center items-center gap-10 md:gap-16">
             {/* Placeholder logo 1 */}
@@ -276,7 +285,7 @@ function Hero({ scrollToSection }) {
             <div className="w-20 h-10 md:w-24 md:h-12 flex items-center justify-center">
               <img
                 src={youshift}
-                alt="YouShift img"
+                alt="YouShift YCombinator"
                 className="filter saturate-0 invert"
               />
             </div>
