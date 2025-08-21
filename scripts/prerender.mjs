@@ -21,16 +21,12 @@ async function prerender() {
   const routes = [
     "/",
     "/en",
-    "/es",
     "/projects/uala",
     "/projects/unaje",
     "/projects/chester",
     "/en/projects/uala",
     "/en/projects/unaje",
     "/en/projects/chester",
-    "/es/projects/uala",
-    "/es/projects/unaje",
-    "/es/projects/chester",
   ];
 
   for (const url of routes) {
@@ -150,9 +146,9 @@ function updateMetaTagsForRoute(html, url) {
 
   // Add hreflang links
   const hreflangLinks = `
-    <link rel="alternate" hreflang="en" href="${baseUrl}/en${url.startsWith('/en') ? url.substring(3) : url.startsWith('/es') ? url.substring(3) : url}" />
-    <link rel="alternate" hreflang="es" href="${baseUrl}/es${url.startsWith('/en') ? url.substring(3) : url.startsWith('/es') ? url.substring(3) : url}" />
-    <link rel="alternate" hreflang="x-default" href="${baseUrl}${url.startsWith('/en') ? url.substring(3) : url.startsWith('/es') ? url.substring(3) : url}" />
+    <link rel="alternate" hreflang="en" href="${baseUrl}/en${url.startsWith('/en') ? url.substring(3) : url}" />
+    <link rel="alternate" hreflang="es" href="${baseUrl}${url.startsWith('/en') ? url.substring(3) : url}" />
+    <link rel="alternate" hreflang="x-default" href="${baseUrl}${url.startsWith('/en') ? url.substring(3) : url}" />
   `;
   
   // Insert hreflang links after the canonical link
