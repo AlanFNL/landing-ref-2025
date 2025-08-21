@@ -64,7 +64,7 @@ async function prerender() {
 
 function updateMetaTagsForRoute(html, url) {
   const pathSegments = url.split("/").filter(Boolean);
-  const currentLanguage = pathSegments[0] && ["en", "es"].includes(pathSegments[0]) ? pathSegments[0] : "en";
+  const currentLanguage = pathSegments[0] && ["en", "es"].includes(pathSegments[0]) ? pathSegments[0] : "es";
   const baseUrl = "https://reforceinfinity.com";
   const currentUrl = `${baseUrl}${url}`;
   
