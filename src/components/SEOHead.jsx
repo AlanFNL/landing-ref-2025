@@ -9,7 +9,7 @@ export const SEOHead = () => {
   const currentLanguage =
     pathSegments[0] && ["en", "es"].includes(pathSegments[0])
       ? pathSegments[0]
-      : "en";
+      : "es"; // Default to Spanish for root path "/"
 
   // Base URL for your site - UPDATE THIS WITH YOUR ACTUAL DOMAIN
   const baseUrl = "https://reforceinfinity.com"; // Replace with your actual domain
