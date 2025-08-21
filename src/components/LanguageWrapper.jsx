@@ -9,6 +9,10 @@ export const LanguageWrapper = ({ children }) => {
   const [isInitialized, setIsInitialized] = useState(false);
   const [isClient, setIsClient] = useState(false);
 
+  // Check if we're in a hydrated container
+  const container =
+    typeof document !== "undefined" ? document.getElementById("root") : null;
+
   // Handle client-side initialization
   useEffect(() => {
     setIsClient(true);
@@ -36,7 +40,7 @@ export const LanguageWrapper = ({ children }) => {
   }, [location.pathname, i18n]);
 
   // During SSR, render children immediately with default language
-  if (typeof window === 'undefined') {
+  if (typeof window === "undefined") {
     // Server-side: set language and render
     const pathSegments = location.pathname.split("/").filter(Boolean);
     const urlLanguage = pathSegments[0];
@@ -48,7 +52,20 @@ export const LanguageWrapper = ({ children }) => {
     return children;
   }
 
-  // Client-side: wait for initialization
+  // Client-side: during hydration, render immediately to match SSR
+  if (!isInitialized && container && container.hasChildNodes()) {
+    // During hydration, render children immediately to prevent mismatch
+    const pathSegments = location.pathname.split("/").filter(Boolean);
+    const urlLanguage = pathSegments[0];
+    if (urlLanguage && ["en"].includes(urlLanguage)) {
+      i18n.changeLanguage(urlLanguage);
+    } else {
+      i18n.changeLanguage("es");
+    }
+    return children;
+  }
+
+  // Client-side: wait for initialization only after hydration
   if (!isInitialized) {
     return null;
   }

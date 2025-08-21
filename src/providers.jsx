@@ -55,14 +55,11 @@ export const AppProviders = ({ children }) => {
   );
 
   return (
-    <StrictMode>
-      <I18nextProvider i18n={i18next}>
-        {isServer && <style>{`:root { --reduced-motion: 1 }`}</style>}
-        <ScrollContext.Provider value={contextValue}>
-          {!isServer && <Analytics />}
-          {children}
-        </ScrollContext.Provider>
-      </I18nextProvider>
-    </StrictMode>
+    <I18nextProvider i18n={i18next}>
+      <ScrollContext.Provider value={contextValue}>
+        {!isServer && <Analytics />}
+        {children}
+      </ScrollContext.Provider>
+    </I18nextProvider>
   );
 };
