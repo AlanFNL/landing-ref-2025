@@ -52,7 +52,6 @@ export const smoothScroll = (target, duration = 1000) => {
 };
 
 function AppEs() {
-  const [isClient, setIsClient] = useState(false);
   const servicesRef = useRef(null);
   const contactRef = useRef(null);
   const clientsRef = useRef(null);
@@ -60,13 +59,6 @@ function AppEs() {
   const [contactView, setContactView] = useState("options");
   const [openCalendly, setOpenCalendly] = useState(false);
   const { setScrollFunction } = useContext(ScrollContext);
-
-  // Handle client-side initialization
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  const isServer = !isClient;
 
   const scrollToSection = useCallback(
     (ref, view, openCalendlyPopup = false) => {
@@ -145,66 +137,36 @@ function AppEs() {
       <SEOHead />
       <LanguageWrapper>
         <motion.div className="w-screen h-fit overflow-clip bg-black">
-          {isServer ? (
-            <>
-              <NavBar scrollToSection={scrollToSection} />
-              <Hero scrollToSection={scrollToSection} />
-              <div ref={clientsRef}>
-                <BrandCarousel />
-              </div>
-              <div ref={servicesRef}>
-                <StorytellingServices scrollToSection={scrollToSection} />
-              </div>
-              <div ref={projectsRef}>
-                <OurWork scrollToSection={scrollToSection} />
-              </div>
+          <ReactLenis
+            root
+            options={{ lerp: 0.1, duration: 1.5, smoothWheel: true }}
+          >
+            <NavBar scrollToSection={scrollToSection} />
+            <Hero scrollToSection={scrollToSection} />
+            <div ref={clientsRef}>
+              <BrandCarousel />
+            </div>
+            <div ref={servicesRef}>
+              <StorytellingServices scrollToSection={scrollToSection} />
+            </div>
+            <div ref={projectsRef}>
+              <OurWork scrollToSection={scrollToSection} />
+            </div>
 
-              <Bento scrollToSection={scrollToSection} />
+            <Bento scrollToSection={scrollToSection} />
 
-              <div ref={contactRef}>
-                <Contact
-                  initialView={contactView}
-                  openCalendly={openCalendly}
-                  setOpenCalendly={setOpenCalendly}
-                />
-              </div>
-              <Testimonials />
-              <FAQ />
+            <div ref={contactRef}>
+              <Contact
+                initialView={contactView}
+                openCalendly={openCalendly}
+                setOpenCalendly={setOpenCalendly}
+              />
+            </div>
+            <Testimonials />
+            <FAQ />
 
-              <Footer scrollToSection={scrollToSection} />
-            </>
-          ) : (
-            <ReactLenis
-              root
-              options={{ lerp: 0.1, duration: 1.5, smoothWheel: true }}
-            >
-              <NavBar scrollToSection={scrollToSection} />
-              <Hero scrollToSection={scrollToSection} />
-              <div ref={clientsRef}>
-                <BrandCarousel />
-              </div>
-              <div ref={servicesRef}>
-                <StorytellingServices scrollToSection={scrollToSection} />
-              </div>
-              <div ref={projectsRef}>
-                <OurWork scrollToSection={scrollToSection} />
-              </div>
-
-              <Bento scrollToSection={scrollToSection} />
-
-              <div ref={contactRef}>
-                <Contact
-                  initialView={contactView}
-                  openCalendly={openCalendly}
-                  setOpenCalendly={setOpenCalendly}
-                />
-              </div>
-              <Testimonials />
-              <FAQ />
-
-              <Footer scrollToSection={scrollToSection} />
-            </ReactLenis>
-          )}
+            <Footer scrollToSection={scrollToSection} />
+          </ReactLenis>
         </motion.div>
       </LanguageWrapper>
     </>
