@@ -250,10 +250,7 @@ const Projects = forwardRef((props, ref) => {
     },
   ];
 
-  useEffect(() => {
-    const browserLang = navigator.language;
-    i18n.changeLanguage(browserLang.startsWith("es") ? "es" : "en");
-  }, [i18n]);
+  // Language is now handled by LanguageWrapper based on URL route
 
   useEffect(() => {
     const isReturning = sessionStorage.getItem("scrollToProjects");

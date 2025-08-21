@@ -18,17 +18,7 @@ const Contact = forwardRef((props, ref) => {
     setIsClient(true);
   }, []);
 
-  // Handle language detection after client is ready
-  useEffect(() => {
-    if (isClient) {
-      const browserLang = navigator.language;
-      if (browserLang && browserLang.startsWith("es")) {
-        i18n.changeLanguage("es");
-      } else {
-        i18n.changeLanguage("en");
-      }
-    }
-  }, [i18n, isClient]);
+  // Language is now handled by LanguageWrapper based on URL route
 
   useEffect(() => {
     if (openCalendly) {

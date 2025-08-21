@@ -47,12 +47,7 @@ const BrandCarousel = forwardRef(({ clientsRef }, ref) => {
 
   const isServer = !isClient;
 
-  useEffect(() => {
-    if (isClient) {
-      const browserLang = navigator.language;
-      i18n.changeLanguage(browserLang.startsWith("es") ? "es" : "en");
-    }
-  }, [i18n, isClient]);
+  // Language is now handled by LanguageWrapper based on URL route
 
   const containerVariants = {
     hidden: { opacity: 0 },
