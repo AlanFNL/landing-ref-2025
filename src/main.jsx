@@ -7,7 +7,6 @@ import {
 } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import App from "./App.jsx";
 import { Analytics } from "@vercel/analytics/react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ProjectDetail from "./components/ProjectDetail.jsx";
@@ -36,7 +35,7 @@ export const ScrollContext = createContext({
 });
 
 // Ensure context is stable across renders
-ScrollContext.displayName = 'ScrollContext';
+ScrollContext.displayName = "ScrollContext";
 
 // Wrapper component to provide context
 const AppWrapper = ({ children }) => {
