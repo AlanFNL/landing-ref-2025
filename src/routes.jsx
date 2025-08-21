@@ -5,10 +5,8 @@ import AppEs from "./components/AppEs.jsx";
 import ProjectDetail from "./components/ProjectDetail.jsx";
 
 export const routes = [
-  { path: "/", element: <App /> },
-  { path: "/en", element: <AppEn /> },
-  { path: "/es", element: <AppEs /> },
-  { path: "/en/projects/:projectSlug", element: <ProjectDetail /> },
-  { path: "/es/projects/:projectSlug", element: <ProjectDetail /> },
-  { path: "/projects/:projectSlug", element: <ProjectDetail /> },
+  { path: "/", element: <AppEs /> }, // Default language (Spanish)
+  { path: "/en", element: <AppEn /> }, // English version
+  { path: "/projects/:projectSlug", element: <ProjectDetail /> }, // Default language projects (Spanish)
+  { path: "/en/projects/:projectSlug", element: <ProjectDetail /> }, // English projects
 ];

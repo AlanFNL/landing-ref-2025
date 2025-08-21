@@ -28,14 +28,28 @@ function NavBar({ scrollToSection }) {
     const currentPath = location.pathname;
     const pathSegments = currentPath.split("/").filter(Boolean);
 
-    if (pathSegments.length > 0 && ["en", "es"].includes(pathSegments[0])) {
+    if (pathSegments.length > 0 && ["en"].includes(pathSegments[0])) {
       // Replace the language segment
-      pathSegments[0] = lang;
-      const newPath = `/${pathSegments.join("/")}`;
-      navigate(newPath);
+      if (lang === "es") {
+        // For Spanish, remove the language prefix (go to root)
+        pathSegments.shift();
+        const newPath =
+          pathSegments.length > 0 ? `/${pathSegments.join("/")}` : "/";
+        navigate(newPath);
+      } else {
+        // For English, replace the language segment
+        pathSegments[0] = lang;
+        const newPath = `/${pathSegments.join("/")}`;
+        navigate(newPath);
+      }
     } else {
-      // If no language in path, add it
-      navigate(`/${lang}${currentPath === "/" ? "" : currentPath}`);
+      // If no language in path (Spanish), add English prefix if switching to English
+      if (lang === "en") {
+        navigate(`/${lang}${currentPath === "/" ? "" : currentPath}`);
+      } else {
+        // Already on Spanish, no need to navigate
+        navigate(currentPath);
+      }
     }
   };
 

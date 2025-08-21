@@ -21,10 +21,10 @@ export const ScrollContext = createContext({
 if (!i18next.isInitialized) {
   i18next.init({
     interpolation: { escapeValue: false },
-    lng: "en",
-    fallbackLng: "en",
+    lng: "es",
+    fallbackLng: "es",
     supportedLngs: ["en", "es"],
-    preload: ["en"],
+    preload: ["es"],
     react: { useSuspense: false },
     resources: {
       es: { global: global_es },

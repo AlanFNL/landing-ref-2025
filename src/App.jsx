@@ -67,25 +67,6 @@ function App() {
     setIsClient(true);
   }, []);
 
-  // Handle language detection and redirect
-  useEffect(() => {
-    if (isClient && location.pathname === "/") {
-      const defaultLanguage = getDefaultLanguage();
-      navigate(`/${defaultLanguage}`, { replace: true });
-    }
-  }, [navigate, location.pathname, isClient]);
-
-  // Get default language based on browser preference or fallback to English
-  const getDefaultLanguage = () => {
-    if (typeof window !== "undefined") {
-      const browserLang = navigator.language;
-      if (browserLang && browserLang.startsWith("es")) {
-        return "es";
-      }
-    }
-    return "en";
-  };
-
   const scrollToSection = useCallback(
     (ref, view, openCalendlyPopup = false) => {
       switch (ref) {
@@ -122,7 +103,7 @@ function App() {
           break;
       }
     },
-    [setContactView, setOpenCalendly] // servicesRef, contactRef etc. are stable from useRef
+    [setContactView, setOpenCalendly]
   );
 
   // Register the scrollToSection function with the context

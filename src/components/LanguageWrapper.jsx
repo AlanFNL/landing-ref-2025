@@ -20,29 +20,20 @@ export const LanguageWrapper = ({ children }) => {
     const urlLanguage = pathSegments[0];
 
     // Check if URL has a valid language
-    if (urlLanguage && ["en", "es"].includes(urlLanguage)) {
-      // Set language based on URL
+    if (urlLanguage && ["en"].includes(urlLanguage)) {
+      // Set language based on URL (English)
       if (i18n.language !== urlLanguage) {
         i18n.changeLanguage(urlLanguage);
       }
       setIsInitialized(true);
     } else {
-      // No language in URL, redirect to default language
-      const defaultLanguage = getDefaultLanguage();
-      navigate(`/${defaultLanguage}`, { replace: true });
-    }
-  }, [location.pathname, i18n, navigate]);
-
-  // Get default language based on browser preference or fallback to English
-  const getDefaultLanguage = () => {
-    if (isClient) {
-      const browserLang = navigator.language;
-      if (browserLang && browserLang.startsWith("es")) {
-        return "es";
+      // No language in URL or root path = Spanish (default)
+      if (i18n.language !== "es") {
+        i18n.changeLanguage("es");
       }
+      setIsInitialized(true);
     }
-    return "en";
-  };
+  }, [location.pathname, i18n]);
 
   // Don't render children until language is initialized
   if (!isInitialized) {
