@@ -35,7 +35,20 @@ export const LanguageWrapper = ({ children }) => {
     }
   }, [location.pathname, i18n]);
 
-  // Don't render children until language is initialized
+  // During SSR, render children immediately with default language
+  if (typeof window === 'undefined') {
+    // Server-side: set language and render
+    const pathSegments = location.pathname.split("/").filter(Boolean);
+    const urlLanguage = pathSegments[0];
+    if (urlLanguage && ["en"].includes(urlLanguage)) {
+      i18n.changeLanguage(urlLanguage);
+    } else {
+      i18n.changeLanguage("es");
+    }
+    return children;
+  }
+
+  // Client-side: wait for initialization
   if (!isInitialized) {
     return null;
   }

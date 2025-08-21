@@ -38,8 +38,9 @@ async function prerender() {
     // Generate language-specific meta tags based on URL
     let rendered = template.replace("<!--ssr-outlet-->", html);
     if (rendered === template) {
+      // Fallback: replace the root div content
       rendered = template.replace(
-        /<div id="root">\s*<\/div>/,
+        /<div id="root">[^<]*<\/div>/,
         `<div id="root">${html}</div>`
       );
     }
