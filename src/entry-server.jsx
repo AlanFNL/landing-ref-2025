@@ -13,9 +13,9 @@ export function render(url) {
       <AppProviders>
         <MemoryRouter initialEntries={[url]}>
           <Routes>
-            <Route path="/" element={<App />} />
+            <Route path="/" element={<AppEs />} />
             <Route path="/en" element={<AppEn />} />
-            <Route path="/es" element={<AppEs />} />
+
             <Route path="/projects/:projectSlug" element={<ProjectDetail />} />
             <Route
               path="/en/projects/:projectSlug"
