@@ -67,8 +67,8 @@ function updateMetaTagsForRoute(html, url) {
   
   // Language-specific meta descriptions
   const descriptions = {
-    en: "Leading AI-powered digital marketing agency specializing in web development, content marketing, and paid media advertising. We transform businesses through data-driven strategies and innovative digital solutions.",
-    es: "Agencia de marketing digital líder impulsada por IA, especializada en desarrollo web, marketing de contenidos y campañas de anuncios. Transformamos negocios a través de estrategias basadas en datos y soluciones digitales innovadoras."
+    en: "Digital Marketing with AI → Web Development and Design → Content Generation and Social Media Management → Ad Campaigns. Transform your business with data-driven strategies and innovative digital solutions that deliver results.",
+    es: "Marketing Digital con IA → Desarrollo y diseño Web → Generación de contenido y Manejo de Redes Sociales → Campañas de anuncios. Transforma tu negocio con estrategias basadas en datos y soluciones digitales innovadoras que generan resultados."
   };
 
   // Language-specific titles
