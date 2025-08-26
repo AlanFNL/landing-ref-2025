@@ -319,7 +319,7 @@ const Contact = forwardRef((props, ref) => {
               <div className="sparkle">
                 <Sparkles className="w-5 h-5" style={{ color: "#9810fa" }} />
               </div>
-              <span className="text_button font-medium text-base md:text-lg lg:text-xl">
+              <span className="text_button font-medium text-xs md:text-lg lg:text-xl">
                 {t("about.cta")}
               </span>
             </a>

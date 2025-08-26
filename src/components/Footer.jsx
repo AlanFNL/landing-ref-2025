@@ -136,7 +136,7 @@ function Footer({ scrollToSection }) {
               </div>
 
               <span
-                className="text_button font-medium text-center text-lg md:text-base"
+                className="text_button font-medium text-center text-xs md:text-base"
                 style={buttonTextStyle}
               >
                 {t("navbar.5")}
