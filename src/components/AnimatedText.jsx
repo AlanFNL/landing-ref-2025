@@ -71,6 +71,12 @@ const AnimatedText = ({
         repeatDelay: 4,
       },
     },
+    paused: {
+      backgroundPosition: ["-200% 0", "-200% 0"],
+      transition: {
+        duration: 0,
+      },
+    },
   };
 
   // Split text into lines and words, respecting the lines prop
@@ -127,6 +133,8 @@ const AnimatedText = ({
               className="inline-block relative bg-gradient-to-r from-transparent via-purple-500/80 to-transparent bg-[length:200%_100%] bg-clip-text text-transparent"
               variants={shimmerVariants}
               animate="shimmer"
+              whileInView="shimmer"
+              viewport={{ once: false, margin: "-100px" }}
               style={{
                 backgroundImage:
                   "linear-gradient(90deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255) 50%, rgba(255,255,255,0.5) 100%)",
