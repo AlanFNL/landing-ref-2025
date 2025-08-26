@@ -18,12 +18,13 @@
   },
 
   "about": {
-    "1": "Unlock Exponential Growth with AI-Powered Marketing.",
+    "1": "AI-Powered Marketing → Websites, Content, and Ad Campaigns that Help You Stand Out, Convert Smarter, and Scale Faster",
     "2": "We transform your business with cutting-edge AI strategies and innovative marketing, driving measurable results.",
     "3": "We complete your marketing solutions through the implementation of",
     "4": "emerging technologies.",
     "new": "Crafting solutions that drive results",
-    "cta": "Get a Free Growth Audit"
+    "cta": "Get a Free Growth Audit",
+    "audit_disclaimer": "Free 30-minute consultation with founders"
   },
 
   "projects": {
@@ -326,6 +327,11 @@
 
   "hero": {
     "featured_on_bookface": "Featured on Bookface by",
-    "trusted_by_startups": "Trusted by"
+    "trusted_by_startups": "Trusted by",
+    "trusted_by_industry_leaders": "Trusted by Industry Leaders",
+    "free_consultation_text": "Free 30-minute consultation with founders",
+    "track_record": "Track Record",
+    "average_roi": "Average ROI",
+    "impressions": "Impressions"
   }
 }

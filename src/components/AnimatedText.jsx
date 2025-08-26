@@ -8,6 +8,7 @@ const AnimatedText = ({
   lines = 1,
   lineDelay = 0.15, // delay between lines in seconds
   animationKey, // Add this prop
+  highlightText = "", // Text to highlight with shimmer effect
 }) => {
   const controls = useAnimation();
   const [isClient, setIsClient] = useState(false);
@@ -59,8 +60,87 @@ const AnimatedText = ({
     },
   };
 
+  // Shimmer effect variants for highlighted text
+  const shimmerVariants = {
+    shimmer: {
+      backgroundPosition: ["-200% 0", "200% 0"],
+      transition: {
+        duration: 3,
+        ease: "easeInOut",
+        repeat: Infinity,
+        repeatDelay: 4,
+      },
+    },
+  };
+
   // Split text into lines and words, respecting the lines prop
   const textLines = text.split("\n").slice(0, lines);
+
+  // Function to split text and highlight specific portion
+  const renderTextWithHighlight = (line, lineIndex) => {
+    if (!highlightText || !line.includes(highlightText)) {
+      // No highlight needed, render normally
+      return line.split(" ").map((word, wordIndex) => (
+        <span
+          key={`${wordIndex}-${animationKey}`}
+          className="inline-block overflow-hidden mr-[0.25em]"
+        >
+          <motion.span className="inline-block" variants={whipInUp.child}>
+            {word}
+          </motion.span>
+        </span>
+      ));
+    }
+
+    // Split line by highlight text
+    const parts = line.split(highlightText);
+    const elements = [];
+
+    parts.forEach((part, partIndex) => {
+      if (part) {
+        // Add regular text
+        part.split(" ").forEach((word, wordIndex) => {
+          if (word) {
+            elements.push(
+              <span
+                key={`regular-${partIndex}-${wordIndex}-${animationKey}`}
+                className="inline-block overflow-hidden mr-[0.25em]"
+              >
+                <motion.span className="inline-block" variants={whipInUp.child}>
+                  {word}
+                </motion.span>
+              </span>
+            );
+          }
+        });
+      }
+
+      if (partIndex < parts.length - 1) {
+        // Add highlighted text with shimmer
+        elements.push(
+          <motion.span
+            key={`highlight-${partIndex}-${animationKey}`}
+            className="inline-block overflow-hidden mr-[0.25em] relative"
+            variants={whipInUp.child}
+          >
+            <motion.span
+              className="inline-block relative bg-gradient-to-r from-transparent via-purple-500/80 to-transparent bg-[length:200%_100%] bg-clip-text text-transparent"
+              variants={shimmerVariants}
+              animate="shimmer"
+              style={{
+                backgroundImage:
+                  "linear-gradient(90deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255) 50%, rgba(255,255,255,0.5) 100%)",
+              }}
+            >
+              {highlightText}
+            </motion.span>
+          </motion.span>
+        );
+      }
+    });
+
+    return elements;
+  };
 
   // On the server or before client hydration, render static text
   if (!isClient) {
@@ -87,16 +167,7 @@ const AnimatedText = ({
           variants={whipInUp.line}
           className="overflow-hidden"
         >
-          {line.split(" ").map((word, wordIndex) => (
-            <span
-              key={`${wordIndex}-${animationKey}`}
-              className="inline-block overflow-hidden mr-[0.25em]"
-            >
-              <motion.span className="inline-block" variants={whipInUp.child}>
-                {word}
-              </motion.span>
-            </span>
-          ))}
+          {renderTextWithHighlight(line, lineIndex)}
         </motion.div>
       ))}
     </motion.div>

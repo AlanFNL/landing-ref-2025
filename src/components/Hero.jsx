@@ -164,7 +164,12 @@ function Hero({ scrollToSection }) {
           <AnimatedText
             animationKey={animationKey}
             text={t("about.1")}
-            className="text-4xl md:text-6xl font-bold text-white leading-tight max-w-6xl"
+            highlightText={
+              i18n.language === "es"
+                ? "Marketing impulsado por IA"
+                : "AI-Powered Marketing"
+            }
+            className="text-3xl md:text-6xl font-bold text-white leading-tight max-w-6xl"
             delay={0.1}
             lines={3}
             lineDelay={0.1}
@@ -200,7 +205,7 @@ function Hero({ scrollToSection }) {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             transition={{ duration: 0.2 }}
-            className="group relative flex justify-center items-center"
+            className="group relative flex flex-col items-center"
           >
             <motion.button
               whileHover={{ scale: 1.02 }}
@@ -211,7 +216,7 @@ function Hero({ scrollToSection }) {
                   "_blank"
                 )
               }
-              className="button font-medium transition-all text-base md:text-lg lg:text-xl px-6 py-3 md:px-8 md:py-4 lg:px-10 lg:py-5"
+              className="button font-medium transition-all text-xs md:text-lg lg:text-xl px-6 py-3 md:px-8 md:py-4 lg:px-10 lg:py-5"
               aria-label={t("about.cta")}
               tabIndex="0"
               onKeyDown={(e) => {
@@ -229,6 +234,20 @@ function Hero({ scrollToSection }) {
               </div>
               <span className="text_button font-medium">{t("about.cta")}</span>
             </motion.button>
+
+            {/* Disclaimer */}
+            <motion.p
+              initial={!isClient ? false : { opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.4,
+                delay: 1.4,
+                ease: [0.33, 1, 0.68, 1],
+              }}
+              className="mt-3 text-white/70 text-xs md:text-sm text-center max-w-xs md:max-w-sm font-medium"
+            >
+              {t("about.audit_disclaimer")}
+            </motion.p>
           </motion.div>
         </motion.div>
 

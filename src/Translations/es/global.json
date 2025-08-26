@@ -18,12 +18,13 @@
   },
 
   "about": {
-    "1": "Desbloquea el Crecimiento Exponencial de tu Negocio con Marketing Potenciado por IA",
+    "1": "Marketing impulsado por IA → Sitios web, contenido y Ads que te hacen destacar, vender mejor y crecer más rápido.",
     "2": "Transformamos tu negocio con estrategias de IA de vanguardia y marketing innovador que generan resultados medibles.",
     "3": "Completamos tus soluciones de marketing mediante la implementación de",
     "4": "tecnologías emergentes.",
     "new": "Creando soluciones que generan resultados",
-    "cta": "Solicita tu Auditoría de Crecimiento Gratis"
+    "cta": "Solicita tu Auditoría de Crecimiento Gratis",
+    "audit_disclaimer": "Consulta gratuita de 30 minutos con los fundadores"
   },
 
   "projects": {
@@ -326,6 +327,11 @@
 
   "hero": {
     "featured_on_bookface": "Destacado en Bookface por",
-    "trusted_by_startups": "Con la confianza de"
+    "trusted_by_startups": "Con la confianza de",
+    "trusted_by_industry_leaders": "Con la confianza de Líderes de la Industria",
+    "free_consultation_text": "Consulta gratuita de 30 minutos con los fundadores.",
+    "track_record": "Trayectoria",
+    "average_roi": "ROI Promedio",
+    "impressions": "Impresiones"
   }
 }
