@@ -333,5 +333,13 @@
     "track_record": "Track Record",
     "average_roi": "Average ROI",
     "impressions": "Impressions"
+  },
+
+  "rebrand": {
+    "title": "Reforce Infinity is now Cavia",
+    "message": "We've rebranded and moved to our new domain.",
+    "visit_new_site": "Visit New Site",
+    "stay_here": "Stay Here",
+    "subtitle": "New name, new chapter"
   }
 }

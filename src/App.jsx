@@ -15,13 +15,12 @@ import Bento from "./components/Bento";
 import { StorytellingServices } from "./components/StorytellingServices";
 import Contact from "./components/Contact";
 import BrandCarousel from "./components/BrandCarousel";
-import Projects from "./components/Projects";
+
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import { ReactLenis } from "lenis/dist/lenis-react";
 import FAQ from "./components/FAQ";
 import Testimonials from "./components/Testimonials";
-import VideoShowcase from "./components/VideoShowcase.jsx";
 import OurWork from "./components/OurWork.jsx";
 
 // Export the smoothScroll function for use in other components

@@ -24,6 +24,7 @@ import FAQ from "./FAQ";
 import Testimonials from "./Testimonials";
 import VideoShowcase from "./VideoShowcase.jsx";
 import OurWork from "./OurWork.jsx";
+import RebrandNotification from "./RebrandNotification";
 
 // Export the smoothScroll function for use in other components
 export const smoothScroll = (target, duration = 1000) => {
@@ -143,6 +144,7 @@ function AppEn() {
   return (
     <>
       <SEOHead />
+      <RebrandNotification />
       <LanguageWrapper>
         <motion.div className="w-screen h-fit overflow-clip bg-black">
           {isServer ? (
