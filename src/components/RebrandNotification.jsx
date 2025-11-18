@@ -91,7 +91,7 @@ const RebrandNotification = () => {
 
   const handleVisitNewSite = () => {
     if (typeof window !== "undefined") {
-      window.open("https://cavia.agency/?ref=reforceinfinity.com", "_blank", "noopener,noreferrer");
+      window.open("https://cavia.agency/?ref=reforceinfinity.com", "_blank", "noopener");
     }
     handleDismiss();
   };
